@@ -33,7 +33,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="page-header">
+                <div class="page-header" id="titleHead">
                     <h1>AoA <small>text based adventure</small></h1>
                 </div>
             </div>
@@ -56,10 +56,16 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
                 <div id="mainWindow">
                     <div id="textWindow">
                     </div>
+                    <form id="chatInput">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">info</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                    </div>
+                    </form>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="charachterPanel">

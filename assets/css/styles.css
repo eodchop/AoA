@@ -2,13 +2,23 @@ body{
   background-color: grey;
 }
 
+#titleHead{
+	margin-bottom:10px;
+}
+
 img {
-	width:250px;
+	width:100%;
 	height:200px;
 }
 
 #textWindow {
-	width:90%;
+	width:100%;
 	height:350px;
 	background-color:white;
+}
+
+#playerContainer, #mapEnemyDisplay {
+	padding:10px;
+	border: solid 1px black;
+	border-radius: 5px;
 }
