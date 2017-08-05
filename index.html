@@ -1,35 +1,96 @@
 <!DOCTYPE html>
 <html lang='en-us'>
-	<head>
 
-		<meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
+    <!-- CSS -->
+    <!-- Meyer Reset-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <!-- Tether -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
+    <!-- Twitter Bootstrap-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <!-- Google Fonts-->
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Our own css-->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <!-- /CSS -->
+    <!-- JavaScript -->
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Tether -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <!-- Twitter Bootstrap -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <!-- Our own JavaScript-->
+    <script type="text/javascript" src="./assets/scripts/main.js"></script>
+    <!-- /JavaScript -->
+    <title>AoA</title>
+</head>
 
-		<!-- CSS -->
-			<!-- Meyer Reset-->
-			<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-			<!-- Tether -->
-			<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
-			<!-- Twitter Bootstrap-->
-			<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-			<!-- Google Fonts-->
-			<!-- Font Awesome-->
-			<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-			<!-- Our own css-->
-      <link rel="stylesheet" href="./assets/css/styles.css">
-		<!-- /CSS -->
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-header">
+                    <h1>AoA <small>text based adventure</small></h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="mapPanel">
+                <div id="mapEnemyDisplay">
+                    <div id="mapImage">
+                        <img src="assets/css/mapPlaceholder.png">
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">info</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">info</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div id="mainWindow">
+                    <div id="textWindow">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="charachterPanel">
+                <div id="playerContainer">
+                    <div id="playerImage">
+                        <img src="assets/css/playerPLaceholder.jpg">
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Character Name</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Description</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                        </div>
+                    </form>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pick a Class
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Warrior</a>
+                            <a class="dropdown-item" href="#">Ranger</a>
+                            <a class="dropdown-item" href="#">Mage</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 
-		<!-- JavaScript -->
-			<!-- jQuery -->
-			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<!-- Tether -->
-			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-			<!-- Twitter Bootstrap -->
-			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-			<!-- Our own JavaScript-->
-      <script type="text/javascript" src="./assets/scripts/main.js"></script>
-		<!-- /JavaScript -->
-		<title>AoA</title>
-	</head>
-	<body>
-	</body>
 </html>

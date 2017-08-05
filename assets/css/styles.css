@@ -1,3 +1,14 @@
 body{
   background-color: grey;
 }
+
+img {
+	width:250px;
+	height:200px;
+}
+
+#textWindow {
+	width:90%;
+	height:350px;
+	background-color:white;
+}
