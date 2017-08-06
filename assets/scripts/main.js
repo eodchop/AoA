@@ -38,6 +38,17 @@ class AjaxCalls {
     }
 }
 
+//Utility functions that come in handy everywhere.
+var Utils = {
+  toTitleCase: function(str){
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  },
+  locationDataReformat: function(locationString){
+    locationString = locationString.replace("_", " ");
+    locationString = Utils.toTitleCase(locationString);
+    return locationString;
+  }
+}
 //---sorting out creating and storing characters
 
 var userCharacter = {
@@ -55,4 +66,3 @@ var userCharacter = {
     items: "",
 
 };
-
