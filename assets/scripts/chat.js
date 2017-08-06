@@ -41,7 +41,6 @@
         PlayerData.playerChatroomRef.on('child_added', function(snapshot) {
           ChatHandler.pushMessageLocal(snapshot.val());
         })
-        ChatHandler.pushMessageLocal("<p>You have travled to "+ Utils.locationDataReformat(newLocation) +"</p>");
       })
     }
   }
@@ -68,16 +67,32 @@
       PlayerData.playerChatroomRef.push(message);
       this.updateChatScroll();
     },
+    infoAlert: function(message){
+      var alert = $("<p>");
+      alert.text(message);
+      alert.addClass("infoAlert");
+      this.pushMessageLocal(alert);
+    },
     updateChatScroll: function(){
       $("#textWindow").scrollTop($("#textWindow").prop("scrollHeight"));
     },
     clearChat: function(){
       this.chatMessages = [];
       $("#textWindow").empty();
+    },
+    reloadChat: function(){
+      this.chatMessages = [];
+      PlayerData.playerChatroomRef.once('value', function(snapshot){
+        for(message in snapshot.val()){
+          ChatHandler.chatMessages.push(snapshot.val()[message]);
+        }
+        ChatHandler.populateChat();
+        ChatHandler.updateChatScroll();
+      })
     }
   }
   var InputHandler = {
-    commands: ['help', 'h', 'say', 's', 'map', 'm', 'travel', 't'],
+    commands: ['help', 'h', 'say', 's', 'map', 'm', 'travel', 't', 'clear', 'c', 'reload', 'r'],
     parseText: function(input) {
       input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       var currentCommand = '';
@@ -137,6 +152,12 @@
         }
       });
     },
+    clear: function(text){
+      ChatHandler.clearChat();
+    },
+    reload: function(text){
+      ChatHandler.reloadChat();
+    },
     //Shortcut commands.
     t: function(text){
       this.travel(text);
@@ -149,6 +170,12 @@
     },
     h: function(text) {
       this.help(text);
+    },
+    c: function(text){
+      this.clear(text);
+    },
+    r: function(text){
+      this.reload(text);
     }
   };
   PlayerData.initPlayer();
