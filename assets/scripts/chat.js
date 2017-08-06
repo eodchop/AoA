@@ -19,6 +19,15 @@
           ChatHandler.pushMessageLocal(snapshot.val());
         })
       });
+    },
+    getSurroundingLocations: function(callback) {
+      database.ref()
+        .child('location_rooms')
+        .child('locations')
+        .child(PlayerData.playerLocation)
+        .once('value', function(snapshot) {
+          callback(snapshot.val());
+        });
     }
   }
   var ChatHandler = {
@@ -29,22 +38,27 @@
         $('#textWindow').append(this.chatMessages[message]);
       }
     },
-    showScroll: function(){
-      $("#textWindow").css('overflow-y','overlay');
+    showScroll: function() {
+      $("#textWindow").css('overflow-y', 'overlay');
     },
-    hideScroll: function(){
-      $("#textWindow").css('overflow-y','hidden');
+    hideScroll: function() {
+      $("#textWindow").css('overflow-y', 'hidden');
     },
     pushMessageLocal: function(message) {
       this.chatMessages.push(message);
       this.populateChat();
+      this.updateChatScroll();
     },
     pushMessagePublic: function(message) {
       PlayerData.playerChatroomRef.push(message);
+      this.updateChatScroll();
+    },
+    updateChatScroll: function(){
+      $("#textWindow").scrollTop($("#textWindow").prop("scrollHeight"));
     }
   }
   var InputHandler = {
-    commands: ['help', 'h', 'say', 's'],
+    commands: ['help', 'h', 'say', 's', 'map', 'm', 'travel', 't'],
     parseText: function(input) {
       input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       var currentCommand = '';
@@ -78,7 +92,26 @@
     help: function(text) {
       ChatHandler.pushMessageLocal("TODO: Fill in help message.<br>");
     },
+    map: function(text) {
+      var messageP = $("<p>")
+      messageP.text("Locations surrounding " + Utils.locationDataReformat(PlayerData.playerLocation) + ": ")
+        .append("<br>");
+      PlayerData.getSurroundingLocations(function(data) {
+        for (loc in data) {
+          var locationS = $("<span>");
+          loc = Utils.locationDataReformat(loc);
+          locationS.text("[-] " + loc)
+            .prepend("&emsp;")
+            .append("<br>");;
+          messageP.append(locationS);
+        }
+        ChatHandler.pushMessageLocal(messageP);
+      });
+    },
     //Shortcut commands.
+    m: function(text) {
+      this.map(text);
+    },
     s: function(text) {
       this.say(text);
     },
@@ -94,9 +127,9 @@
       InputHandler.parseText($('#commandInput').val().trim());
       $('#commandInput').val('');
     })
-    $("#textWindow").on("mouseenter", function(){
+    $("#textWindow").on("mouseenter", function() {
       ChatHandler.showScroll();
-    }).on("mouseleave", function(){
+    }).on("mouseleave", function() {
       ChatHandler.hideScroll();
     });
   });
