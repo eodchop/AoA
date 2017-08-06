@@ -35,7 +35,7 @@
     }
   }
   var InputHandler = {
-    commands: ['help','say','s'],
+    commands: ['help','h','say','s'],
     parseText: function(input) {
       input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       var currentCommand = '';
@@ -65,11 +65,15 @@
       message.append("<br>");
       PlayerData.playerChatroomRef.push(message.html());
     },
+    help: function(text){
+      ChatHandler.pushMessage("TODO: Fill in help message.<br>");
+    },
+    //Shortcut commands.
     s: function(text){
       this.say(text);
     },
-    help: function(text){
-      ChatHandler.pushMessage("TODO: Fill in help message.<br>");
+    h: function(text){
+      this.help(text);
     }
   };
   PlayerData.initPlayer();
