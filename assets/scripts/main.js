@@ -8,8 +8,7 @@ var config = {
   messagingSenderId: "550710539266"
 };
 firebase.initializeApp(config);
-var database = firebase.database();
-
+var database = firebase.database();;
 //A simple wrapper class to make ajax calls to the api's we use a little
 //bit easier.
 class AjaxCalls {
@@ -38,6 +37,17 @@ class AjaxCalls {
   }
 }
 
+//Utility functions that come in handy everywhere.
+var Utils = {
+  toTitleCase: function(str){
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  },
+  locationDataReformat: function(locationString){
+    locationString = locationString.replace("_", " ");
+    locationString = Utils.toTitleCase(locationString);
+    return locationString;
+  }
+}
 //---sorting out creating and storing characters
 
 var userCharacter = {
@@ -70,7 +80,8 @@ $(document).ready(function() {
     $("#descript").html(description);
     userCharacter.description=description;
     console.log(description);
-   characterClass =  $("#classSelector li:selected").val($(this).text());//----WTF?!
+   characterClass =  $('#classSelector option:selected').find(":selected").text();
+
    console.log(characterClass);
   });
 
