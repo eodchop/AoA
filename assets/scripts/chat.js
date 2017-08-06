@@ -51,7 +51,7 @@
         if (this.commands.includes(currentCommand)) {
           this[currentCommand](message);
         } else {
-          ChatHandler.pushMessage("You did not enter a correct command.");
+          ChatHandler.pushMessage("You did not enter a correct command.<br>");
         }
       }
     },
@@ -69,7 +69,7 @@
       this.say(text);
     },
     help: function(text){
-      ChatHandler.pushMessage("TODO: Fill in help message.");
+      ChatHandler.pushMessage("TODO: Fill in help message.<br>");
     }
   };
   PlayerData.initPlayer();
