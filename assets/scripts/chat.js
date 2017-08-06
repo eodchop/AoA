@@ -89,7 +89,7 @@
     },
     map: function(text) {
       var messageP = $("<p>")
-      messageP.text("Surrounding Locations: ")
+      messageP.text("Locations surrounding " + Utils.locationDataReformat(PlayerData.playerLocation) + ": ")
         .append("<br>");
       PlayerData.getSurroundingLocations(function(data) {
         for (loc in data) {
