@@ -23,7 +23,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
     <!-- Twitter Bootstrap -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <!-- Our own JavaScript-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rasterizehtml/1.2.4/rasterizeHTML.allinone.js"></script>
     <script type="text/javascript" src="./assets/scripts/main.js"></script>
     <script type="text/javascript" src="./assets/scripts/chat.js"></script>
     <!-- /JavaScript -->
@@ -43,7 +46,7 @@
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="mapPanel">
                 <div id="mapEnemyDisplay">
                     <div id="mapImage">
-                        <img src="assets/css/mapPlaceholder.png">
+                        <img src="assets/images/mapPlaceholder.png">
                     </div>
                     <form>
                         <div class="form-group">
@@ -61,12 +64,15 @@
                 <div id="mainWindow">
                     <div id="textWindow">
                     </div>
+                    <form id="chatForm">
+                      <input id="commandInput" type="text" placeholder="Enter commands here.">
+                    </form>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="charachterPanel">
                 <div id="playerContainer">
                     <div id="playerImage">
-                        <img src="assets/css/playerPLaceholder.jpg">
+                        <img src="assets/images/playerPLaceholder.jpg">
                     </div>
                     <form>
                         <div class="form-group">

@@ -10,5 +10,16 @@ img {
 #textWindow {
 	width:90%;
 	height:350px;
-	background-color:white;
+	background-color:black;
+  color: green;
+  overflow-y: scroll;
+  word-wrap: break-word;
+}
+
+#commandInput{
+  width: 90%;
+}
+
+.playerName{
+  color: red;
 }
