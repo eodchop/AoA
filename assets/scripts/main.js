@@ -8,8 +8,7 @@ var config = {
   messagingSenderId: "550710539266"
 };
 firebase.initializeApp(config);
-var database = firebase.database();
-
+var database = firebase.database();;
 //A simple wrapper class to make ajax calls to the api's we use a little
 //bit easier.
 class AjaxCalls {
