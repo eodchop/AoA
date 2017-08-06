@@ -8,8 +8,7 @@ var config = {
   messagingSenderId: "550710539266"
 };
 firebase.initializeApp(config);
-var database = firebase.database();
-
+var database = firebase.database();;
 //A simple wrapper class to make ajax calls to the api's we use a little
 //bit easier.
 class AjaxCalls {
@@ -38,6 +37,19 @@ class AjaxCalls {
   }
 }
 
+//Utility functions that come in handy everywhere.
+var Utils = {
+  toTitleCase: function(str) {
+    return str.replace(/\w\S*/g, function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+  },
+  locationDataReformat: function(locationString) {
+    locationString = locationString.replace("_", " ");
+    locationString = Utils.toTitleCase(locationString);
+    return locationString;
+  }
+}
 //---sorting out creating and storing characters
 
 var userCharacter = {
@@ -60,18 +72,27 @@ var userCharacter = {
 $(document).ready(function() {
 
 
-//---Recording Character name and Description and writing to game page--//
+  //---Recording Character name and Description and writing to game page--//
   $("#charLoadBtn").click(function() {
+
     name = $("#playerName").val().trim();
     $("#nameDisplay").html(name);
-    userCharacter.name=name;
+    userCharacter.name = name;
     console.log(name);
+
     description = $("#playerDescription").val().trim();
     $("#descript").html(description);
-    userCharacter.description=description;
+    userCharacter.description = description;
     console.log(description);
-   characterClass =  $("#classSelector li:selected").val($(this).text());//----WTF?!
-   console.log(characterClass);
+    //characterClass =  $('#classSelector li :selected').innerHTML;
+    //console.log(characterClass);
+  });
+
+  $("#classSelector li a").click(function() {
+    characterClass = $(this).text();
+    console.log(characterClass);
+    userCharacter.characterClass=characterClass;
+    $("#playerClass").html(characterClass);
   });
 
 });

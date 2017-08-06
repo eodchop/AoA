@@ -74,6 +74,7 @@
                     <div id="playerImage">
                         <img src="assets/images/playerPlaceholder.jpg">
                         <p id="nameDisplay">Charachter Name</p>
+                        <p id="playerClass">Class</p>
                         <p id="descript">Description</p>
                     </div>
                     <!-- Button trigger modal -->
@@ -86,7 +87,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="modal">Log In/ Create a New Character</h4>
+                                    <h4 class="modal-title" id="modalTitle">Log In/ Create a New Character</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
@@ -104,7 +105,7 @@
                                             Pick a Class
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="classSelector">
-                                          <li>  <a class="dropdown-item" href="#" value="warrior">Warrior</a></li>
+                                          <li>  <a class="dropdown-item" href="#" id="warrior">Warrior</a></li>
                                           <li>  <a class="dropdown-item" href="#" id="ranger">Ranger</a></li>
                                             <li><a class="dropdown-item" href="#" id="mage">Mage</a></li>
                                         </ul>
