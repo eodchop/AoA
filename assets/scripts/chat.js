@@ -19,6 +19,15 @@
           ChatHandler.pushMessageLocal(snapshot.val());
         })
       });
+    },
+    getSurroundingLocations: function(callback){
+      database.ref()
+        .child('location_rooms')
+        .child('locations')
+        .child(PlayerData.playerLocation)
+        .once('value',function(snapshot){
+          callback(snapshot.val());
+        });
     }
   }
   var ChatHandler = {
@@ -44,7 +53,7 @@
     }
   }
   var InputHandler = {
-    commands: ['help', 'h', 'say', 's'],
+    commands: ['help', 'h', 'say', 's', 'map', 'm'],
     parseText: function(input) {
       input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       var currentCommand = '';
@@ -78,7 +87,26 @@
     help: function(text) {
       ChatHandler.pushMessageLocal("TODO: Fill in help message.<br>");
     },
+    map: function(text){
+      var messageP = $("<p>")
+      messageP.text("Surrounding Locations: ")
+        .append("<br>");
+      PlayerData.getSurroundingLocations(function(data){
+        for(loc in data){
+          var locationS = $("<span>");
+          loc = Utils.locationDataReformat(loc);
+          locationS.text("[-] " + loc)
+          .prepend("&emsp;")
+          .append("<br>");;
+          messageP.append(locationS);
+        }
+        ChatHandler.pushMessageLocal(messageP);
+      });
+    },
     //Shortcut commands.
+    m: function(text){
+      this.map(text);
+    },
     s: function(text) {
       this.say(text);
     },
