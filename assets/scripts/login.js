@@ -18,9 +18,14 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
     // ...
 });
 
+
 firebase.auth().signOut().then(function() {
     // Sign-out successful.
 }).catch(function(error) {
     // An error happened.
 })
 
+
+const auth = firebase.auth();
+auth.signInWithEmailandPassword(email, password);
+auth.createUserWithEmailAndPassword(email, password)
