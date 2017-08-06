@@ -66,7 +66,6 @@ var userCharacter = {
   items: "",
 
 };
-<<<<<<< HEAD
 
 
 $(document).ready(function() {
@@ -88,5 +87,3 @@ $(document).ready(function() {
   });
 
 });
-=======
->>>>>>> 093ebffd6c6819b0a76a700de6503a2d2d36b4cd
