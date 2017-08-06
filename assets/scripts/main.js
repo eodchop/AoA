@@ -71,7 +71,6 @@ $(document).ready(function() {
     userCharacter.description=description;
     console.log(description);
    characterClass =  $('#classSelector option:selected').find(":selected").text();
-
    console.log(characterClass);
   });
 
