@@ -1,10 +1,4 @@
 
-var config = {
-    apiKey: "AIzaSyBhpg16Jjfu0asRXBKRhIzAPQFA7SsvYJQ",
-    authDomain: "another-online-adventure.firebaseapp.com",
-    databaseURL: "https://another-online-adventure.firebaseio.com/\n",
-};
-
 var provider = new firebase.auth.GoogleAuthProvider();
 
 firebase.auth().signInWithPopup(provider).then(function(result) {
