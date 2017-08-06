@@ -70,7 +70,7 @@ $(document).ready(function() {
     $("#descript").html(description);
     userCharacter.description=description;
     console.log(description);
-   characterClass =  $('#classSelector option:selected').find(":selected").text();
+   characterClass =  $("#classSelector li:selected").val($(this).text());//----WTF?!
    console.log(characterClass);
   });
 
