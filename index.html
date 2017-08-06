@@ -62,7 +62,7 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                 <div id="mainWindow">
-                    <div id="textWindow">
+                    <div id="textWindow" class="styleScroll">
                     </div>
                     <form id="chatForm">
                       <input id="commandInput" type="text" placeholder="Enter commands here.">
@@ -76,22 +76,22 @@
                     </div>
                     <form>
                         <div class="form-group">
-                            <label for="formGroupExampleInput">Character Name</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                            <label for="enterPlayerName">Character Name</label>
+                            <input type="text" class="form-control" id="enterPlayerName" placeholder="Example input"><button id="nameButton" type="button" class="btn btn-primary">Submit</button>
                         </div>
                         <div class="form-group">
-                            <label for="formGroupExampleInput2">Description</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                            <label for="enterPlayerDescrip">Description</label>
+                            <input type="text" class="form-control" id="enterPlayerDescrip" placeholder="Another input"><button id="descripButton" type="button" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Pick a Class
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Warrior</a>
-                            <a class="dropdown-item" href="#">Ranger</a>
-                            <a class="dropdown-item" href="#">Mage</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="classSelector">
+                            <a class="dropdown-item" href="#" id="warrior">Warrior</a>
+                            <a class="dropdown-item" href="#" id="ranger">Ranger</a>
+                            <a class="dropdown-item" href="#" id="mage">Mage</a>
                         </div>
                     </div>
                 </div>
