@@ -48,6 +48,11 @@ var Utils = {
     locationString = locationString.replace("_", " ");
     locationString = Utils.toTitleCase(locationString);
     return locationString;
+  },
+  reformatToLocationData: function(locationString){
+    locationString = locationString.toLowerCase();
+    locationString = locationString.replace(" ", "_");
+    return locationString;
   }
 }
 //---sorting out creating and storing characters
@@ -84,6 +89,7 @@ $(document).ready(function() {
     $("#descript").html(description);
     userCharacter.description = description;
     console.log(description);
+<<<<<<< HEAD
     //characterClass =  $('#classSelector li :selected').innerHTML;
     //console.log(characterClass);
   });
@@ -93,6 +99,11 @@ $(document).ready(function() {
     console.log(characterClass);
     userCharacter.characterClass=characterClass;
     $("#playerClass").html(characterClass);
+=======
+   characterClass =  $('#classSelector option:selected').find(":selected").text();
+
+   console.log(characterClass);
+>>>>>>> 121d40340b36da83e06d5ba1925bd1683423ddad
   });
 
 });

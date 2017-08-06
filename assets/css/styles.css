@@ -21,7 +21,9 @@ img {
   width: 100%;
   height: 200px;
 }
-
+.infoAlert{
+  color: #4ed2ed;
+}
 #textWindow {
   width: 100%;
   font-family: 'Aldrich', sans-serif;
