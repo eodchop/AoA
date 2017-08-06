@@ -15,8 +15,8 @@
           .child('location_chat')
           .child(PlayerData.playerLocation);
         PlayerData.playerName = snapshot.val().name;
-        PlayerData.playerChatroomRef.on('child_added',function(snapshot){
-          ChatHandler.pushMessage(snapshot.val());
+        PlayerData.playerChatroomRef.on('child_added', function(snapshot) {
+          ChatHandler.pushMessageLocal(snapshot.val());
         })
       });
     }
@@ -25,25 +25,34 @@
     chatMessages: [],
     populateChat: function() {
       $("#textWindow").empty();
-      for(message in this.chatMessages){
+      for (message in this.chatMessages) {
         $('#textWindow').append(this.chatMessages[message]);
       }
     },
-    pushMessage: function(message){
+    showScroll: function(){
+      $("#textWindow").css('overflow-y','overlay');
+    },
+    hideScroll: function(){
+      $("#textWindow").css('overflow-y','hidden');
+    },
+    pushMessageLocal: function(message) {
       this.chatMessages.push(message);
       this.populateChat();
+    },
+    pushMessagePublic: function(message) {
+      PlayerData.playerChatroomRef.push(message);
     }
   }
   var InputHandler = {
-    commands: ['help','say','s'],
+    commands: ['help', 'h', 'say', 's'],
     parseText: function(input) {
       input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       var currentCommand = '';
       var message = '';
       if (input.charAt(0) === '/') {
         input = input.slice(1);
-        if(input.includes(' ')){
-          currentCommand = input.substr(0,input.indexOf(' '));
+        if (input.includes(' ')) {
+          currentCommand = input.substr(0, input.indexOf(' '));
           message = input.substr(input.indexOf(' ') + 1);
         } else {
           currentCommand = input;
@@ -51,10 +60,11 @@
         if (this.commands.includes(currentCommand)) {
           this[currentCommand](message);
         } else {
-          ChatHandler.pushMessage("You did not enter a correct command.<br>");
+          ChatHandler.pushMessageLocal("You did not enter a correct command.<br>");
         }
       }
     },
+    //Commands
     say: function(text) {
       var playerName = $("<span>");
       var message = $("<p>");
@@ -63,13 +73,17 @@
       message.text(" says " + '"' + text + '"');
       message.prepend(playerName);
       message.append("<br>");
-      PlayerData.playerChatroomRef.push(message.html());
+      ChatHandler.pushMessagePublic(message.html());
     },
-    s: function(text){
+    help: function(text) {
+      ChatHandler.pushMessageLocal("TODO: Fill in help message.<br>");
+    },
+    //Shortcut commands.
+    s: function(text) {
       this.say(text);
     },
-    help: function(text){
-      ChatHandler.pushMessage("TODO: Fill in help message.<br>");
+    h: function(text) {
+      this.help(text);
     }
   };
   PlayerData.initPlayer();
@@ -80,5 +94,10 @@
       InputHandler.parseText($('#commandInput').val().trim());
       $('#commandInput').val('');
     })
+    $("#textWindow").on("mouseenter", function(){
+      ChatHandler.showScroll();
+    }).on("mouseleave", function(){
+      ChatHandler.hideScroll();
+    });
   });
 }())
