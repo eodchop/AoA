@@ -28,6 +28,21 @@
         .once('value', function(snapshot) {
           callback(snapshot.val());
         });
+    },
+    changeLocation: function(newLocation){
+      PlayerData.playerRef.update({location: newLocation});
+      ChatHandler.clearChat();
+      PlayerData.playerRef.once('value', function(snapshot){
+        PlayerData.playerLocation = snapshot.val().location;
+        PlayerData.playerChatroomRef = database.ref()
+          .child('location_rooms')
+          .child('location_chat')
+          .child(PlayerData.playerLocation);
+        PlayerData.playerChatroomRef.on('child_added', function(snapshot) {
+          ChatHandler.pushMessageLocal(snapshot.val());
+        })
+        ChatHandler.pushMessageLocal("<p>You have travled to "+ Utils.locationDataReformat(newLocation) +"</p>");
+      })
     }
   }
   var ChatHandler = {
@@ -55,6 +70,10 @@
     },
     updateChatScroll: function(){
       $("#textWindow").scrollTop($("#textWindow").prop("scrollHeight"));
+    },
+    clearChat: function(){
+      this.chatMessages = [];
+      $("#textWindow").empty();
     }
   }
   var InputHandler = {
@@ -108,7 +127,20 @@
         ChatHandler.pushMessageLocal(messageP);
       });
     },
+    travel: function(text){
+      var location = Utils.reformatToLocationData(text);
+      PlayerData.getSurroundingLocations(function(surrounding){
+        if(surrounding.hasOwnProperty(location)){
+          PlayerData.changeLocation(location);
+        } else {
+          ChatHandler.pushMessageLocal("<p>You did not enter a correct location.</p>");
+        }
+      });
+    },
     //Shortcut commands.
+    t: function(text){
+      this.travel(text);
+    },
     m: function(text) {
       this.map(text);
     },

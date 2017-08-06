@@ -47,6 +47,11 @@ var Utils = {
     locationString = locationString.replace("_", " ");
     locationString = Utils.toTitleCase(locationString);
     return locationString;
+  },
+  reformatToLocationData: function(locationString){
+    locationString = locationString.toLowerCase();
+    locationString = locationString.replace(" ", "_");
+    return locationString;
   }
 }
 //---sorting out creating and storing characters
