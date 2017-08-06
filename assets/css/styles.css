@@ -46,6 +46,12 @@ img {
   width: 90%;
 }
 
+#logInBtn {
+  font-size: 12px;
+  display:block;
+  margin: auto;
+}
+
 
 /*
 * Scrollbar style

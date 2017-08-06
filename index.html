@@ -11,7 +11,6 @@
     <!-- Twitter Bootstrap-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <!-- Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Our own css-->
@@ -28,7 +27,6 @@
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <!-- Our own JavaScript-->
     <script type="text/javascript" src="./assets/scripts/main.js"></script>
-    <script type="text/javascript" src="./assets/scripts/login.js"></script>
     <script type="text/javascript" src="./assets/scripts/chat.js"></script>
     <!-- /JavaScript -->
     <title>AoA</title>
@@ -66,7 +64,7 @@
                     <div id="textWindow" class="styleScroll">
                     </div>
                     <form id="chatForm">
-                      <input id="commandInput" type="text" placeholder="Enter commands here.">
+                        <input id="commandInput" type="text" placeholder="Enter commands here.">
                     </form>
                 </div>
             </div>
@@ -74,60 +72,64 @@
                 <div id="playerContainer">
                     <div id="playerImage">
                         <img src="assets/images/playerPlaceholder.jpg">
+                        <p id="nameDisplay">Charachter Name</p>
+                        <p id="desciptP">Description</p>
                     </div>
                     <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-                    <form>
-                        <div class="form-group">
-                            <label for="enterPlayerName">Character Name</label>
-                            <input type="text" class="form-control" id="enterPlayerName" placeholder="Example input"><button id="nameButton" type="button" class="btn btn-primary">Submit</button>
-                        </div>
-                        <div class="form-group">
-                            <label for="enterPlayerDescrip">Description</label>
-                            <input type="text" class="form-control" id="enterPlayerDescrip" placeholder="Another input"><button id="descripButton" type="button" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Pick a Class
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="classSelector">
-                            <a class="dropdown-item" href="#" id="warrior">Warrior</a>
-                            <a class="dropdown-item" href="#" id="ranger">Ranger</a>
-                            <a class="dropdown-item" href="#" id="mage">Mage</a>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="logInBtn">
+                        Log In/ New Character
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Log In/ Create a New Character</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="enterPlayerName">Character Name</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Enter character name">
+                                        </div>
+                                        <label for="enterPlayerDescrip">Description</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Enter a little about your character">
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Pick a Class
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="classSelector">
+                                            <a class="dropdown-item" href="#" id="warrior">Warrior</a>
+                                            <a class="dropdown-item" href="#" id="ranger">Ranger</a>
+                                            <a class="dropdown-item" href="#" id="mage">Mage</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <form>
+                </div>
+            </div>
+            <!-- This is a temparary link for submitting issues.-->
+            <div class="row">
+                <div class="col-12">
+                    <a href="https://github.com/eodchop/AoA/issues" target='_blank'>
+                        <button type="button" name="button" class="btn btn-danger btn-block">Submit issue</button>
+                    </a>
                 </div>
             </div>
         </div>
-        <!-- This is a temparary link for submitting issues.-->
-        <div class="row">
-          <div class="col-12">
-            <a href="https://github.com/eodchop/AoA/issues" target='_blank'><button type="button" name="button" class="btn btn-danger btn-block">Submit issue</button></a>
-          </div>
-        </div>
-    </div>
 </body>
+
+</html>
 
 </html>
