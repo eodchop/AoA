@@ -16,7 +16,7 @@
           .child(PlayerData.playerLocation);
         PlayerData.playerName = snapshot.val().name;
         PlayerData.playerChatroomRef.on('child_added',function(snapshot){
-          ChatHandler.pushMessage(snapshot.val());
+          ChatHandler.pushMessageLocal(snapshot.val());
         })
       });
     }
@@ -29,9 +29,12 @@
         $('#textWindow').append(this.chatMessages[message]);
       }
     },
-    pushMessage: function(message){
+    pushMessageLocal: function(message){
       this.chatMessages.push(message);
       this.populateChat();
+    },
+    pushMessagePublic: function(message){
+      PlayerData.playerChatroomRef.push(message);
     }
   }
   var InputHandler = {
@@ -51,10 +54,11 @@
         if (this.commands.includes(currentCommand)) {
           this[currentCommand](message);
         } else {
-          ChatHandler.pushMessage("You did not enter a correct command.<br>");
+          ChatHandler.pushMessageLocal("You did not enter a correct command.<br>");
         }
       }
     },
+    //Commands
     say: function(text) {
       var playerName = $("<span>");
       var message = $("<p>");
@@ -63,10 +67,10 @@
       message.text(" says " + '"' + text + '"');
       message.prepend(playerName);
       message.append("<br>");
-      PlayerData.playerChatroomRef.push(message.html());
+      ChatHandler.pushMessagePublic(message.html());
     },
     help: function(text){
-      ChatHandler.pushMessage("TODO: Fill in help message.<br>");
+      ChatHandler.pushMessageLocal("TODO: Fill in help message.<br>");
     },
     //Shortcut commands.
     s: function(text){
