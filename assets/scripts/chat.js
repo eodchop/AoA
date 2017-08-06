@@ -30,7 +30,7 @@
       }
     },
     showScroll: function(){
-      $("#textWindow").css('overflow-y','scroll');
+      $("#textWindow").css('overflow-y','overlay');
     },
     hideScroll: function(){
       $("#textWindow").css('overflow-y','hidden');
