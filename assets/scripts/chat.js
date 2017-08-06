@@ -47,9 +47,14 @@
     pushMessageLocal: function(message) {
       this.chatMessages.push(message);
       this.populateChat();
+      this.updateChatScroll();
     },
     pushMessagePublic: function(message) {
       PlayerData.playerChatroomRef.push(message);
+      this.updateChatScroll();
+    },
+    updateChatScroll: function(){
+      $("#textWindow").scrollTop($("#textWindow").prop("scrollHeight"));
     }
   }
   var InputHandler = {
