@@ -4,7 +4,7 @@ var config = {
     authDomain: "another-online-adventure.firebaseapp.com",
     databaseURL: "https://another-online-adventure.firebaseio.com/\n",
 };
-firebase.initializeApp(config);
+
 var provider = new firebase.auth.GoogleAuthProvider();
 
 firebase.auth().signInWithPopup(provider).then(function(result) {
