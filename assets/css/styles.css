@@ -1,79 +1,73 @@
-body{
+body {
   background-color: grey;
-  
 }
-
 
 @font-face {
-	font-family: 'aoaFont';
-	font-style: normal;
- 	font-weight: 400;
- 	src: local('aoaFont'), url("../images/aoaFont.ttf") format('truetype');
+  font-family: 'aoaFont';
+  font-style: normal;
+  font-weight: 400;
+  src: local('aoaFont'), url("../images/aoaFont.ttf") format('truetype');
 }
 
-
-#playerContainer, #mapEnemyDisplay, .page-header{
-	font-family: "aoaFont";
+#playerContainer, #mapEnemyDisplay, .page-header {
+  font-family: "aoaFont";
 }
 
-#titleHead{
-	margin-bottom:10px;
+#titleHead {
+  margin-bottom: 10px;
 }
 
 img {
-	width:100%;
-	height:200px;
+  width: 100%;
+  height: 200px;
 }
 
 #textWindow {
-	width:100%;
-	height:350px;
-	
+  width: 100%;
+  font-family: 'Aldrich', sans-serif;
 }
 
 #playerContainer, #mapEnemyDisplay {
-	padding:10px;
-	border: solid 1px black;
-	border-radius: 5px;
+  padding: 10px;
+  border: solid 1px black;
+  border-radius: 5px;
 }
 
 #textWindow {
-	width:90%;
-	height:350px;
-	background-color:black;
+  width: 90%;
+  height: 350px;
+  background-color: black;
   color: green;
   overflow-y: hidden;
   word-wrap: break-word;
 }
 
-#commandInput{
+#commandInput {
   width: 90%;
 }
+
 
 /*
 * Scrollbar style
 */
 
-.styleScroll::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+.styleScroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-	background-color: #000;
+  background-color: #000;
 }
 
-.styleScroll::-webkit-scrollbar
-{
-	width: 10px;
-	background-color: #000;
+.styleScroll::-webkit-scrollbar {
+  width: 10px;
+  background-color: #000;
 }
 
-.styleScroll::-webkit-scrollbar-thumb
-{
-	background-color: green;
-	border: 2px solid #555555;
+.styleScroll::-webkit-scrollbar-thumb {
+  background-color: green;
+  border: 2px solid #555555;
   border-radius: 10px;
 }
 
-.playerName{
+.playerName {
   color: red;
 }
