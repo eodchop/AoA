@@ -55,12 +55,12 @@ var Utils = {
     return locationString;
   },
   isEmptyObj: function(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key))
+        return false;
     }
     return true;
-}
+  }
 }
 //---sorting out creating and storing characters
 
@@ -74,7 +74,7 @@ var userCharacter = {
   str: 0,
   dex: 0,
   health: 0,
-  constitution:0,
+  constitution: 0,
 };
 
 
@@ -103,4 +103,31 @@ $(document).ready(function() {
     $("#playerClass").html(characterClass);
   });
 
+//  $("#commandBtn").click(function() {
+  //  $('#commandBox').animate({
+    //  left: endPos
+  //  }, 1000);
+//  });
+
 });
+
+
+
+
+//---building command object to append to user instruction modal---//
+
+var commands = {
+  say: {
+    syntax: "/say or /s",
+    description: "Used to say something in gobal chat"
+  },
+  map: {
+    syntax: "/map or /m",
+    description: "Used to display surrounding locations to travel"
+  },
+
+  inspect: {
+    syntax: "/inspect"
+    description: "Used to gather information on things in environment"
+  }
+}
