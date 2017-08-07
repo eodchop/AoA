@@ -7,6 +7,7 @@
     playerLocation: '',
     playerChatroomRef: {},
     playerLocationRef: {},
+    chatListener: {},
     initPlayer: function() {
       this.playerRef.once('value', function(snapshot) {
         PlayerData.playerLocation = snapshot.val().location;
@@ -15,9 +16,7 @@
           .child('location_chat')
           .child(PlayerData.playerLocation);
         PlayerData.playerName = snapshot.val().name;
-        PlayerData.playerChatroomRef.on('child_added', function(snapshot) {
-          ChatHandler.pushMessageLocal(snapshot.val());
-        })
+        PlayerData.updateChatroom();
       });
     },
     getSurroundingLocations: function(callback) {
@@ -29,18 +28,25 @@
           callback(snapshot.val());
         });
     },
-    changeLocation: function(newLocation){
-      PlayerData.playerRef.update({location: newLocation});
+    changeLocation: function(newLocation) {
+      PlayerData.playerRef.update({
+        location: newLocation
+      });
       ChatHandler.clearChat();
-      PlayerData.playerRef.once('value', function(snapshot){
+      PlayerData.playerRef.once('value', function(snapshot) {
         PlayerData.playerLocation = snapshot.val().location;
         PlayerData.playerChatroomRef = database.ref()
           .child('location_rooms')
           .child('location_chat')
           .child(PlayerData.playerLocation);
-        PlayerData.playerChatroomRef.on('child_added', function(snapshot) {
-          ChatHandler.pushMessageLocal(snapshot.val());
-        })
+        PlayerData.updateChatroom();
+      })
+    },
+    updateChatroom: function(){
+      PlayerData.playerChatroomRef.off('child_added');
+      PlayerData.chatListener = PlayerData.playerChatroomRef.on('child_added', function(snapshot) {
+        ChatHandler.pushMessageLocal(snapshot.val());
+        SoundManager.playMessagePopOnce();
       })
     }
   }
@@ -67,23 +73,49 @@
       PlayerData.playerChatroomRef.push(message);
       this.updateChatScroll();
     },
-    infoAlert: function(message){
+    infoAlert: function(message) {
       var alert = $("<p>");
       alert.text(message);
       alert.addClass("infoAlert");
       this.pushMessageLocal(alert);
     },
-    updateChatScroll: function(){
+    listItem: function(message) {
+      var newItem = $("<p>");
+      var itemIndi = $("<span>");
+      itemIndi.addClass('listItemIndicator');
+      newItem.addClass('listItem');
+      itemIndi.text("[-] ");
+      newItem.text(message);
+      newItem.prepend(itemIndi);
+      newItem.prepend("&emsp;");
+      this.pushMessageLocal(newItem);
+    },
+    playerMessage: function(message) {
+      var playerName = $("<span>");
+      var fullMessage = $("<p>");
+      var messageText = $("<span>");
+      playerName.addClass("playerName");
+      messageText.addClass("playerMessage");
+      playerName.text(PlayerData.playerName);
+      messageText.text(message);
+      fullMessage.append(' says  "');
+      fullMessage.append(messageText);
+      fullMessage.append('"');
+      fullMessage.prepend(playerName);
+      fullMessage.append("<br>");
+      ChatHandler.pushMessagePublic(fullMessage.html());
+    },
+    updateChatScroll: function() {
       $("#textWindow").scrollTop($("#textWindow").prop("scrollHeight"));
     },
-    clearChat: function(){
+    clearChat: function() {
       this.chatMessages = [];
       $("#textWindow").empty();
     },
-    reloadChat: function(){
+    reloadChat: function() {
       this.chatMessages = [];
-      PlayerData.playerChatroomRef.once('value', function(snapshot){
-        for(message in snapshot.val()){
+      PlayerData.playerChatroomRef.once('value', function(snapshot) {
+        for (message in snapshot.val()) {
           ChatHandler.chatMessages.push(snapshot.val()[message]);
         }
         ChatHandler.populateChat();
@@ -108,58 +140,46 @@
         if (this.commands.includes(currentCommand)) {
           this[currentCommand](message);
         } else {
-          ChatHandler.pushMessageLocal("You did not enter a correct command.<br>");
+          ChatHandler.infoAlert("You did not enter a correct command.");
         }
       }
     },
     //Commands
     say: function(text) {
-      var playerName = $("<span>");
-      var message = $("<p>");
-      playerName.addClass("playerName");
-      playerName.text(PlayerData.playerName);
-      message.text(" says " + '"' + text + '"');
-      message.prepend(playerName);
-      message.append("<br>");
-      ChatHandler.pushMessagePublic(message.html());
+      ChatHandler.playerMessage(text);
     },
     help: function(text) {
-      ChatHandler.pushMessageLocal("TODO: Fill in help message.<br>");
+      ChatHandler.infoAlert("TODO: Fill in help message.");
     },
     map: function(text) {
+      ChatHandler.infoAlert("Locations surrounding " + Utils.locationDataReformat(PlayerData.playerLocation) + ": ");
       var messageP = $("<p>")
-      messageP.text("Locations surrounding " + Utils.locationDataReformat(PlayerData.playerLocation) + ": ")
-        .append("<br>");
+
       PlayerData.getSurroundingLocations(function(data) {
         for (loc in data) {
-          var locationS = $("<span>");
-          loc = Utils.locationDataReformat(loc);
-          locationS.text("[-] " + loc)
-            .prepend("&emsp;")
-            .append("<br>");;
-          messageP.append(locationS);
+          ChatHandler.listItem(Utils.locationDataReformat(loc));
         }
-        ChatHandler.pushMessageLocal(messageP);
       });
     },
-    travel: function(text){
+    travel: function(text) {
       var location = Utils.reformatToLocationData(text);
-      PlayerData.getSurroundingLocations(function(surrounding){
-        if(surrounding.hasOwnProperty(location)){
+      PlayerData.getSurroundingLocations(function(surrounding) {
+        if (surrounding.hasOwnProperty(location)) {
           PlayerData.changeLocation(location);
         } else {
-          ChatHandler.pushMessageLocal("<p>You did not enter a correct location.</p>");
+          ChatHandler.infoAlert("You did not enter a correct location.");
+          InputHandler.map();
         }
       });
     },
-    clear: function(text){
+    clear: function(text) {
       ChatHandler.clearChat();
     },
-    reload: function(text){
+    reload: function(text) {
       ChatHandler.reloadChat();
     },
     //Shortcut commands.
-    t: function(text){
+    t: function(text) {
       this.travel(text);
     },
     m: function(text) {
@@ -171,10 +191,10 @@
     h: function(text) {
       this.help(text);
     },
-    c: function(text){
+    c: function(text) {
       this.clear(text);
     },
-    r: function(text){
+    r: function(text) {
       this.reload(text);
     }
   };

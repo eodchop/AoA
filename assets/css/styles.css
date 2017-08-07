@@ -21,9 +21,7 @@ img {
   width: 100%;
   height: 200px;
 }
-.infoAlert{
-  color: #4ed2ed;
-}
+
 #textWindow {
   width: 100%;
   font-family: 'Aldrich', sans-serif;
@@ -53,7 +51,22 @@ img {
   display:block;
   margin: auto;
 }
-
+/* CSS for chat area */
+.infoAlert{
+  color: #4ed2ed;
+}
+.listItem{
+  color: #f49b42;
+}
+.listItemIndicator{
+  color: #d15225;
+}
+.playerMessage{
+  color: #ffffff;
+}
+.playerName {
+  color: red;
+}
 /* Modal CSS */
 
 #modalTitle{
@@ -84,8 +97,4 @@ img {
   background-color: green;
   border: 2px solid #555555;
   border-radius: 10px;
-}
-
-.playerName {
-  color: red;
 }
