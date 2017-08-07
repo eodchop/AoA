@@ -81,18 +81,13 @@ var userCharacter = {
 
 $(document).ready(function() {
 
-
-
-    //---Recording Character name and Description and writing to game page--//
+   //---Recording Character name and Description and writing to game page--//
     $("#charLoadBtn").click(function() {
 
         name = $("#playerName").val().trim();
         $("#nameDisplay").html(name);
         userCharacter.name = name;
         console.log(name);
-
-
-
 
         description = $("#playerDescription").val().trim();
         $("#descript").html(description);
@@ -109,6 +104,7 @@ $(document).ready(function() {
     });
     //------------on click to generate command list on command Modal-----------//
     $("#commandBtn").click(function() {
+      $("#commandBox").empty();
         for (var i in commands) {
             if (commands.hasOwnProperty(i)) {
                 console.log(i + " -> " + commands[i].syntax + commands[i].description);
@@ -119,7 +115,6 @@ $(document).ready(function() {
         }
 
     });
-
 
 });
 
