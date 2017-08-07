@@ -42,7 +42,7 @@
         PlayerData.updateChatroom();
       })
     },
-    updateChatroom: function(){
+    updateChatroom: function() {
       PlayerData.playerChatroomRef.off('child_added');
       PlayerData.chatListener = PlayerData.playerChatroomRef.on('child_added', function(snapshot) {
         ChatHandler.pushMessageLocal(snapshot.val());
@@ -105,7 +105,7 @@
       fullMessage.append("<br>");
       ChatHandler.pushMessagePublic(fullMessage.html());
     },
-    doMessage: function(message){
+    doMessage: function(message) {
       var action = $("<p>");
       var playerMessage = $("<span>");
       var indicator = $("<span>")
@@ -115,7 +115,7 @@
       action.prepend("&emsp;");
       playerMessage.addClass('doAction');
       playerMessage.text(PlayerData.playerName + " " + message);
-      action.append(playerMessage );
+      action.append(playerMessage);
       action.append("<br>");
       ChatHandler.pushMessagePublic(action.html());
     },
@@ -136,31 +136,31 @@
         ChatHandler.updateChatScroll();
       })
     },
-    searchArea: function(area, callback){
+    searchArea: function(area, callback) {
       database.ref().child("location_rooms")
         .child("location_items")
         .child(area)
-        .once("value", function(locationItems){
+        .once("value", function(locationItems) {
           database.ref().child('items')
-            .once('value', function(items){
-              for(locItem in locationItems.val()){
-                if(locationItems.val()[locItem] in items.val()){
+            .once('value', function(items) {
+              for (locItem in locationItems.val()) {
+                if (locationItems.val()[locItem] in items.val()) {
                   callback(items.val()[locationItems.val()[locItem]]);
                 }
               }
             });
         })
     },
-    searchItem: function(area, item, callback){
+    searchItem: function(area, item, callback) {
       item = item.toLowerCase();
       database.ref().child("location_rooms")
         .child("location_items")
         .child(area)
-        .once("value", function(locationItems){
+        .once("value", function(locationItems) {
           database.ref().child('items')
-            .once('value', function(items){
-              if(locationItems.val().includes(item)){
-                if(items.val().hasOwnProperty(item)){
+            .once('value', function(items) {
+              if (locationItems.val().includes(item)) {
+                if (items.val().hasOwnProperty(item)) {
                   callback(items.val()[item]);
                 }
               } else {
@@ -172,8 +172,9 @@
   }
   var InputHandler = {
     commands: ['help', 'h', 'say', 's', 'map', 'm',
-     'travel', 't', 'clear', 'c', 'reload', 'r',
-      'do', 'inspect'],
+      'travel', 't', 'clear', 'c', 'reload', 'r',
+      'do', 'inspect'
+    ],
     parseText: function(input) {
       input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       var currentCommand = '';
@@ -191,6 +192,8 @@
         } else {
           ChatHandler.infoAlert("You did not enter a correct command.");
         }
+      } else {
+        this.say(input);
       }
     },
     //Commands
@@ -227,17 +230,17 @@
     reload: function(text) {
       ChatHandler.reloadChat();
     },
-    do: function(text){
+    do: function(text) {
       ChatHandler.doMessage(text);
     },
-    inspect: function(text){
-      if(text === ""){
+    inspect: function(text) {
+      if (text === "") {
         ChatHandler.infoAlert("You look around and see the following;");
-        ChatHandler.searchArea(PlayerData.playerLocation, function(data){
+        ChatHandler.searchArea(PlayerData.playerLocation, function(data) {
           ChatHandler.listItem(data.name);
         });
       } else {
-        ChatHandler.searchItem(PlayerData.playerLocation, text, function(data){
+        ChatHandler.searchItem(PlayerData.playerLocation, text, function(data) {
           $("#inspectName").text(data.name);
           $("#inspectDesc").text(data.description);
         });

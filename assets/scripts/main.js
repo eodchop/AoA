@@ -55,12 +55,12 @@ var Utils = {
     return locationString;
   },
   isEmptyObj: function(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key))
+        return false;
     }
     return true;
-}
+  }
 }
 //---sorting out creating and storing characters
 
@@ -84,35 +84,25 @@ var userCharacter = {
 $(document).ready(function() {
 
 
-  //---Recording Character name and Description and writing to game page--//
-  $("#charLoadBtn").click(function() {
+      //---Recording Character name and Description and writing to game page--//
+      $("#charLoadBtn").click(function() {
 
-    name = $("#playerName").val().trim();
-    $("#nameDisplay").html(name);
-    userCharacter.name = name;
-    console.log(name);
+        name = $("#playerName").val().trim();
+        $("#nameDisplay").html(name);
+        userCharacter.name = name;
+        console.log(name);
 
-    description = $("#playerDescription").val().trim();
-    $("#descript").html(description);
-    userCharacter.description = description;
-    console.log(description);
-<<<<<<< HEAD
+        description = $("#playerDescription").val().trim();
+        $("#descript").html(description);
+        userCharacter.description = description;
+        console.log(description);
 
-=======
-    //characterClass =  $('#classSelector li :selected').innerHTML;
-    //console.log(characterClass);
->>>>>>> 975ac3701c6c74486be8410be127240198858e87
-  });
+        $("#classSelector li a").click(function() {
+          characterClass = $(this).text();
+          console.log(characterClass);
+          userCharacter.characterClass = characterClass;
+          $("#playerClass").html(characterClass);
+        });
 
-  $("#classSelector li a").click(function() {
-    characterClass = $(this).text();
-    console.log(characterClass);
-    userCharacter.characterClass = characterClass;
-    $("#playerClass").html(characterClass);
-<<<<<<< HEAD
-=======
-
->>>>>>> 975ac3701c6c74486be8410be127240198858e87
-  });
-
-});
+      });
+})
