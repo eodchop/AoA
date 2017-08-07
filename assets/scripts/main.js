@@ -66,6 +66,7 @@ var Utils = {
 
 var userCharacter = {
 
+<<<<<<< HEAD
     name: "",
     location: "",
     description: "",
@@ -75,6 +76,17 @@ var userCharacter = {
     dex: 0,
     health: 0,
     constitution: 0,
+=======
+  name: "",
+  location: "",
+  description: "",
+  characterClass: "",
+  //example placeholder stats
+  str: 0,
+  dex: 0,
+  health: 0,
+  constitution:0,
+>>>>>>> e99af2181a457c71a6445d5d144c57b4ab7f8a07
 
 };
 
@@ -82,8 +94,19 @@ var userCharacter = {
 $(document).ready(function() {
 
 
+<<<<<<< HEAD
     //---Recording Character name and Description and writing to game page--//
     $("#charLoadBtn").click(function() {
+=======
+  //---Recording Character name and Description and writing to game page--//
+  $("#charLoadBtn").click(function() {
+
+    name = $("#playerName").val().trim();
+    $("#nameDisplay").html(name);
+    userCharacter.name = name;
+    console.log(name);
+
+>>>>>>> e99af2181a457c71a6445d5d144c57b4ab7f8a07
 
         name = $("#playerName").val().trim();
         $("#nameDisplay").html(name);
@@ -117,6 +140,7 @@ $(document).ready(function() {
 
     });
 
+<<<<<<< HEAD
 });
 
 
@@ -137,3 +161,22 @@ var commands = {
         description: "Used to gather information on things in environment"
     }
 };
+=======
+//---building command object to append to user instruction modal---//
+
+var commands = {
+  say: {
+    syntax: "/say or /s",
+    description: "Used to say something in gobal chat"
+  },
+  map: {
+    syntax: "/map or /m",
+    description: "Used to display surrounding locations to travel"
+  },
+
+  inspect: {
+    syntax: "/inspect",
+    description: "Used to gather information on things in environment"
+  }
+}
+>>>>>>> e99af2181a457c71a6445d5d144c57b4ab7f8a07
