@@ -7,6 +7,7 @@
     playerLocation: '',
     playerChatroomRef: {},
     playerLocationRef: {},
+    chatListener: {},
     initPlayer: function() {
       this.playerRef.once('value', function(snapshot) {
         PlayerData.playerLocation = snapshot.val().location;
@@ -15,9 +16,7 @@
           .child('location_chat')
           .child(PlayerData.playerLocation);
         PlayerData.playerName = snapshot.val().name;
-        PlayerData.playerChatroomRef.on('child_added', function(snapshot) {
-          ChatHandler.pushMessageLocal(snapshot.val());
-        })
+        PlayerData.updateChatroom();
       });
     },
     getSurroundingLocations: function(callback) {
@@ -40,9 +39,14 @@
           .child('location_rooms')
           .child('location_chat')
           .child(PlayerData.playerLocation);
-        PlayerData.playerChatroomRef.on('child_added', function(snapshot) {
-          ChatHandler.pushMessageLocal(snapshot.val());
-        })
+        PlayerData.updateChatroom();
+      })
+    },
+    updateChatroom: function(){
+      PlayerData.playerChatroomRef.off('child_added');
+      PlayerData.chatListener = PlayerData.playerChatroomRef.on('child_added', function(snapshot) {
+        ChatHandler.pushMessageLocal(snapshot.val());
+        SoundManager.playMessagePopOnce();
       })
     }
   }

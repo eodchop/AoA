@@ -53,7 +53,14 @@ var Utils = {
     locationString = locationString.toLowerCase();
     locationString = locationString.replace(" ", "_");
     return locationString;
-  }
+  },
+  isEmptyObj: function(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 }
 //---sorting out creating and storing characters
 
