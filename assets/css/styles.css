@@ -67,6 +67,9 @@ img {
 .playerName {
   color: red;
 }
+.doAction{
+  color: #d4d684;
+}
 /* Modal CSS */
 
 #modalTitle{

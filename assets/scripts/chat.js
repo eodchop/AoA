@@ -105,6 +105,20 @@
       fullMessage.append("<br>");
       ChatHandler.pushMessagePublic(fullMessage.html());
     },
+    doMessage: function(message){
+      var action = $("<p>");
+      var playerMessage = $("<span>");
+      var indicator = $("<span>")
+      indicator.text("~");
+      indicator.addClass("infoAlert");
+      action.prepend(indicator);
+      action.prepend("&emsp;");
+      playerMessage.addClass('doAction');
+      playerMessage.text(PlayerData.playerName + " " + message);
+      action.append(playerMessage );
+      action.append("<br>");
+      ChatHandler.pushMessagePublic(action.html());
+    },
     updateChatScroll: function() {
       $("#textWindow").scrollTop($("#textWindow").prop("scrollHeight"));
     },
@@ -121,10 +135,45 @@
         ChatHandler.populateChat();
         ChatHandler.updateChatScroll();
       })
+    },
+    searchArea: function(area, callback){
+      database.ref().child("location_rooms")
+        .child("location_items")
+        .child(area)
+        .once("value", function(locationItems){
+          database.ref().child('items')
+            .once('value', function(items){
+              for(locItem in locationItems.val()){
+                if(locationItems.val()[locItem] in items.val()){
+                  callback(items.val()[locationItems.val()[locItem]]);
+                }
+              }
+            });
+        })
+    },
+    searchItem: function(area, item, callback){
+      item = item.toLowerCase();
+      database.ref().child("location_rooms")
+        .child("location_items")
+        .child(area)
+        .once("value", function(locationItems){
+          database.ref().child('items')
+            .once('value', function(items){
+              if(locationItems.val().includes(item)){
+                if(items.val().hasOwnProperty(item)){
+                  callback(items.val()[item]);
+                }
+              } else {
+                ChatHandler.infoAlert("You must be looney, there is no such thing as a " + item + " around here.");
+              }
+            });
+        })
     }
   }
   var InputHandler = {
-    commands: ['help', 'h', 'say', 's', 'map', 'm', 'travel', 't', 'clear', 'c', 'reload', 'r'],
+    commands: ['help', 'h', 'say', 's', 'map', 'm',
+     'travel', 't', 'clear', 'c', 'reload', 'r',
+      'do', 'inspect'],
     parseText: function(input) {
       input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       var currentCommand = '';
@@ -177,6 +226,22 @@
     },
     reload: function(text) {
       ChatHandler.reloadChat();
+    },
+    do: function(text){
+      ChatHandler.doMessage(text);
+    },
+    inspect: function(text){
+      if(text === ""){
+        ChatHandler.infoAlert("You look around and see the following;");
+        ChatHandler.searchArea(PlayerData.playerLocation, function(data){
+          ChatHandler.listItem(data.name);
+        });
+      } else {
+        ChatHandler.searchItem(PlayerData.playerLocation, text, function(data){
+          $("#inspectName").text(data.name);
+          $("#inspectDesc").text(data.description);
+        });
+      }
     },
     //Shortcut commands.
     t: function(text) {
