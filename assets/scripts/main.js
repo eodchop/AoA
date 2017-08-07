@@ -55,12 +55,12 @@ var Utils = {
     return locationString;
   },
   isEmptyObj: function(obj) {
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key))
-        return false;
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
     }
     return true;
-  }
+}
 }
 //---sorting out creating and storing characters
 
@@ -74,7 +74,11 @@ var userCharacter = {
   str: 0,
   dex: 0,
   health: 0,
+<<<<<<< HEAD
   constitution: 0,
+=======
+  constitution:0,
+>>>>>>> 549322aa502aa3dbeb040defc647d386fa0a63d9
 };
 
 
@@ -88,6 +92,7 @@ $(document).ready(function() {
     $("#nameDisplay").html(name);
     userCharacter.name = name;
     console.log(name);
+<<<<<<< HEAD
 
     description = $("#playerDescription").val().trim();
     $("#descript").html(description);
@@ -131,3 +136,21 @@ var commands = {
     description: "Used to gather information on things in environment"
   }
 }
+=======
+
+    description = $("#playerDescription").val().trim();
+    $("#descript").html(description);
+    userCharacter.description = description;
+    console.log(description);
+
+  });
+
+  $("#classSelector li a").click(function() {
+    characterClass = $(this).text();
+    console.log(characterClass);
+    userCharacter.characterClass = characterClass;
+    $("#playerClass").html(characterClass);
+  });
+
+});
+>>>>>>> 549322aa502aa3dbeb040defc647d386fa0a63d9
