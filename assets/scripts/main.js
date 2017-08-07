@@ -122,6 +122,7 @@ $(document).ready(function() {
 //---building command object to append to user instruction modal---//
 
 var commands = {
+ 
     say: {
         syntax: "/say or /s",
         description: "Used to say something in gobal chat"
@@ -134,7 +135,33 @@ var commands = {
     inspect: {
         syntax: "/inspect",
         description: "Used to gather information on things in environment"
+    },
+
+    help: {
+      syntax: "/help or /h",
+      description: "Displays information or hints to current goal/area/objective"
+    },
+
+    travel: {
+      syntax:  "/travel or /t",
+      description: "Travels to locations available from current player area"
+    },
+
+    clear:{
+      syntax:"/clear",
+      description:"clears stuff"
+    },
+
+    reload:{
+      syntax: "/reload or /r",
+      description: "reloads the current area I think?"
+    },
+
+    do: {
+      syntax:"/do",
+      description:" do stuff?"
     }
+
 };
 
 //---building command object to append to user instruction modal---//

@@ -54,6 +54,10 @@ img {
 
 /*  Command Modal  */
 
+.modal-body{
+  overflow-y: auto;
+}
+
 
 
 /* CSS for chat area */
