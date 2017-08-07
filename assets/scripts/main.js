@@ -107,7 +107,7 @@ $(document).ready(function() {
       $("#commandBox").empty();
         for (var i in commands) {
             if (commands.hasOwnProperty(i)) {
-                console.log(i + " -> " + commands[i].syntax + commands[i].description);
+                //console.log(i + " -> " + commands[i].syntax + commands[i].description);
                 var commandEntry = $("<p class='commandText'>").html(commands[i].syntax + ": " + "<br>" + commands[i].description);
                 $("#commandBox").append(commandEntry);
                 event.preventDefault();
@@ -164,4 +164,3 @@ var commands = {
 
 };
 
-//---building command object to append to user instruction modal---//
