@@ -55,12 +55,12 @@ var Utils = {
     return locationString;
   },
   isEmptyObj: function(obj) {
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key))
-        return false;
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
     }
     return true;
-  }
+}
 }
 //---sorting out creating and storing characters
 
@@ -74,35 +74,33 @@ var userCharacter = {
   str: 0,
   dex: 0,
   health: 0,
-  //example gear if needed
-  weapon: "",
-  items: "",
-
+  constitution:0,
 };
 
 
 $(document).ready(function() {
 
 
-      //---Recording Character name and Description and writing to game page--//
-      $("#charLoadBtn").click(function() {
+  //---Recording Character name and Description and writing to game page--//
+  $("#charLoadBtn").click(function() {
 
-        name = $("#playerName").val().trim();
-        $("#nameDisplay").html(name);
-        userCharacter.name = name;
-        console.log(name);
+    name = $("#playerName").val().trim();
+    $("#nameDisplay").html(name);
+    userCharacter.name = name;
+    console.log(name);
 
-        description = $("#playerDescription").val().trim();
-        $("#descript").html(description);
-        userCharacter.description = description;
-        console.log(description);
+    description = $("#playerDescription").val().trim();
+    $("#descript").html(description);
+    userCharacter.description = description;
+    console.log(description);
 
-        $("#classSelector li a").click(function() {
-          characterClass = $(this).text();
-          console.log(characterClass);
-          userCharacter.characterClass = characterClass;
-          $("#playerClass").html(characterClass);
-        });
+  });
 
-      });
-})
+  $("#classSelector li a").click(function() {
+    characterClass = $(this).text();
+    console.log(characterClass);
+    userCharacter.characterClass = characterClass;
+    $("#playerClass").html(characterClass);
+  });
+
+});

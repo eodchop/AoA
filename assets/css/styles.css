@@ -46,7 +46,7 @@ img {
   width: 90%;
 }
 
-#logInBtn {
+#logInBtn, #commandBtn {
   font-size: 12px;
   display:block;
   margin: auto;
