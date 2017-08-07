@@ -52,12 +52,32 @@ img {
   margin: auto;
 }
 
-/*  Command Modal  */
 
-.modal-body{
-  overflow-y: auto;
+/* Modal CSS */
+
+.modal-title {
+  text-align:center;
 }
 
+.modal-body{
+  height:320px;
+   overflow-y: auto;
+}
+
+/*command modal only*/
+
+
+  .modal.left.fade .modal-dialog{
+    left: -320px;
+    -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+       -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+         -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+            transition: opacity 0.3s linear, left 0.3s ease-out;
+  }
+  
+  .modal.left.fade.in .modal-dialog{
+    left: 0;
+  }
 
 
 /* CSS for chat area */
@@ -78,15 +98,6 @@ img {
 }
 .doAction{
   color: #d4d684;
-}
-/* Modal CSS */
-
-.modal-title{
-  text-align:center;
-}
-
-.modal-body{
-  height:320px;
 }
 
 

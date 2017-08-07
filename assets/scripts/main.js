@@ -13,6 +13,8 @@ var database = firebase.database();;
 //bit easier.
 class AjaxCalls {
     //Used to return the stats of a monster from the dnd api by passing the name.
+
+    // Comic Vine API key:  11732e24163c8156a0f58620d431ff128c12be77
     static dndMonstersAPI(name, callback) {
         var baseURL = "http://www.dnd5eapi.co/api/";
         var optionsURL = "monsters/?name=" + name;
@@ -64,6 +66,7 @@ var Utils = {
 }
 //---sorting out creating and storing characters
 
+
 var userCharacter = {
 
     name: "",
@@ -107,7 +110,7 @@ $(document).ready(function() {
       $("#commandBox").empty();
         for (var i in commands) {
             if (commands.hasOwnProperty(i)) {
-                console.log(i + " -> " + commands[i].syntax + commands[i].description);
+                //console.log(i + " -> " + commands[i].syntax + commands[i].description);
                 var commandEntry = $("<p class='commandText'>").html(commands[i].syntax + ": " + "<br>" + commands[i].description);
                 $("#commandBox").append(commandEntry);
                 event.preventDefault();
@@ -164,4 +167,3 @@ var commands = {
 
 };
 
-//---building command object to append to user instruction modal---//
