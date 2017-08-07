@@ -105,6 +105,20 @@
       fullMessage.append("<br>");
       ChatHandler.pushMessagePublic(fullMessage.html());
     },
+    doMessage: function(message){
+      var action = $("<p>");
+      var playerMessage = $("<span>");
+      var indicator = $("<span>")
+      indicator.text("~");
+      indicator.addClass("infoAlert");
+      action.prepend(indicator);
+      action.prepend("&emsp;");
+      playerMessage.addClass('doAction');
+      playerMessage.text(PlayerData.playerName + " " + message);
+      action.append(playerMessage);
+      action.append("<br>");
+      ChatHandler.pushMessagePublic(action.html());
+    },
     updateChatScroll: function() {
       $("#textWindow").scrollTop($("#textWindow").prop("scrollHeight"));
     },
@@ -124,7 +138,9 @@
     }
   }
   var InputHandler = {
-    commands: ['help', 'h', 'say', 's', 'map', 'm', 'travel', 't', 'clear', 'c', 'reload', 'r'],
+    commands: ['help', 'h', 'say', 's', 'map', 'm',
+     'travel', 't', 'clear', 'c', 'reload', 'r',
+      'do'],
     parseText: function(input) {
       input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       var currentCommand = '';
@@ -177,6 +193,9 @@
     },
     reload: function(text) {
       ChatHandler.reloadChat();
+    },
+    do: function(text){
+      ChatHandler.doMessage(text);
     },
     //Shortcut commands.
     t: function(text) {
