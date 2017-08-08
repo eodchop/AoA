@@ -58,29 +58,16 @@
                         Inspection description.
                     </div>
                 </div>
-                <!--Command Modal Button-->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#commandModal" id="commandBtn">
-                    Command List
-                </button>
-                <!--Command Modal Popup-->
-                <div class="modal left fade" id="commandModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="commandModalTitle">Commands</h4>
-                            </div>
-                            <div class="modal-body" id="commandBox">
-                                <!--Where commands will generate-->
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="slideout-menu">
+                <h3>Command List</h3>
+                <div id="commandBox">
                 </div>
             </div>
-
             <!--Main Chat Window Section-->
-            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                 <div id="mainWindow">
+                    <button class="slideout-menu-toggle">Command List</button>
                     <div id="textWindow" class="styleScroll">
                     </div>
                     <form id="chatForm">
@@ -88,71 +75,68 @@
                     </form>
                 </div>
             </div>
-
-            <!--Character Panel-->
+        </div>
+        <!--Character Panel-->
+        <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="characterPanel">
-                <div id="playerContainer">
-                    <div id="playerImage">
-                        <img src="assets/images/playerPlaceholder.jpg">
-                        <p id="nameDisplay">Charachter Name</p>
-                        <p id="playerClass">Class</p>
-                        <p id="descript">Description</p>
-                    </div>
-                    <!-- Button trigger modal -->
-                    <div id="charCreation">
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="logInBtn">
-                            Create Character
-                        </button>
-                    </div>
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="modalTitle">Log In/ Create a New Character</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="enterPlayerName">Character Name</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Enter character name" id="playerName">
-                                        </div>
-                                        <label for="enterPlayerDescrip">Description</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Enter a little about your character" id="playerDescription">
-                                        </div>
+                <div id="playerImage">
+                    <img src="assets/images/playerPlaceholder.jpg">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" div id="characterInfo">
+                <p id="nameDisplay">Charachter Name</p>
+                <p id="playerClass">Class</p>
+                <p id="descript">Description</p>
+                <a href="https://github.com/eodchop/AoA/issues" target='_blank'>
+                    <button type="button" name="button" class="btn btn-primary btn-danger">Submit issue</button>
+                </a>
+                <!-- Button trigger modal -->
+                <div id="charCreation">
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="logInBtn">
+                        Create Character
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="modalTitle">Log In/ Create a New Character</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="enterPlayerName">Character Name</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Enter character name" id="playerName">
                                     </div>
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Pick a Class
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="classSelector">
-                                            <li> <a class="dropdown-item" href="#" id="warrior">Warrior</a></li>
-                                            <li> <a class="dropdown-item" href="#" id="ranger">Ranger</a></li>
-                                            <li><a class="dropdown-item" href="#" id="mage">Mage</a></li>
-                                        </ul>
+                                    <label for="enterPlayerDescrip">Description</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Enter a little about your character" id="playerDescription">
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="charLoadBtn">Save changes</button>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Pick a Class
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="classSelector">
+                                        <li> <a class="dropdown-item" href="#" id="warrior">Warrior</a></li>
+                                        <li> <a class="dropdown-item" href="#" id="ranger">Ranger</a></li>
+                                        <li><a class="dropdown-item" href="#" id="mage">Mage</a></li>
+                                    </ul>
                                 </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="charLoadBtn">Save changes</button>
                             </div>
                         </div>
                     </div>
-                    <form>
-                </div>
-            </div>
-            <!-- This is a temparary link for submitting issues.-->
-            <div class="row">
-                <div class="col-12">
-                    <a href="https://github.com/eodchop/AoA/issues" target='_blank'>
-                        <button type="button" name="button" class="btn btn-danger btn-block">Submit issue</button>
-                    </a>
                 </div>
             </div>
         </div>
+        <!-- This is a temparary link for submitting issues.-->
+    </div>
 </body>
 
 </html>

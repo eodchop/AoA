@@ -9,7 +9,7 @@ body {
   src: local('aoaFont'), url("../images/aoaFont.ttf") format('truetype');
 }
 
-#playerContainer, #mapEnemyDisplay, .page-header {
+.page-header {
   font-family: "aoaFont";
 }
 
@@ -27,15 +27,16 @@ img {
   font-family: 'Aldrich', sans-serif;
 }
 
-#playerContainer, #mapEnemyDisplay {
+#playerImage, #characterInfo {
   padding: 10px;
   border: solid 1px black;
   border-radius: 5px;
+  font-family: "aoaFont";
 }
 
 #textWindow {
   width: 90%;
-  height: 350px;
+  height: 300px;
   background-color: black;
   color: green;
   overflow-y: hidden;
@@ -44,6 +45,7 @@ img {
 
 #commandInput {
   width: 90%;
+  margin-bottom: 10px
 }
 
 #logInBtn, #commandBtn {
@@ -52,32 +54,76 @@ img {
   margin: auto;
 }
 
-
-/* Modal CSS */
-
-.modal-title {
-  text-align:center;
+.slideout-menu {
+  padding:10px;
+  color:white;
+  overflow-y: auto;
 }
 
-.modal-body{
-  height:320px;
-   overflow-y: auto;
+/*Sidenav Commands*/
+
+
+.slideout-menu {
+  position: fixed;
+  top: 0;
+  left: -335px;
+  width: 335px;
+  height: 100%;
+  background: #333;
+  z-index: 100;
 }
-
-/*command modal only*/
-
-
-  .modal.left.fade .modal-dialog{
-    left: -320px;
-    -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
-       -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
-         -o-transition: opacity 0.3s linear, left 0.3s ease-out;
-            transition: opacity 0.3s linear, left 0.3s ease-out;
-  }
-  
-  .modal.left.fade.in .modal-dialog{
-    left: 0;
-  }
+.slideout-menu h3 {
+  position: relative;
+  padding: 12px 10px;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 400;
+  border-bottom: 4px solid #222;
+}
+.slideout-menu .slideout-menu-toggle {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  display: inline-block;
+  padding: 6px 9px 5px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  line-height: 1;
+  background: #222;
+  color: #999;
+  text-decoration: none;
+  vertical-align: top;
+}
+.slideout-menu .slideout-menu-toggle:hover {
+  color: #fff;
+}
+.slideout-menu ul {
+  list-style: none;
+  font-weight: 300;
+  border-top: 1px solid #151515;
+  border-bottom: 1px solid #454545;
+}
+.slideout-menu ul li {
+  border-top: 1px solid #454545;
+  border-bottom: 1px solid #151515;
+}
+.slideout-menu ul li a {
+  position: relative;
+  display: block;
+  padding: 10px;
+  color: #999;
+  text-decoration: none;
+}
+.slideout-menu ul li a:hover {
+  background: #000;
+  color: #fff;
+}
+.slideout-menu ul li a i {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  opacity: .5;
+}
 
 
 /* CSS for chat area */

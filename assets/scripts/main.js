@@ -9,18 +9,18 @@ var config = {
 };
 firebase.initializeApp(config);
 var userInfo = {
-  displayName: {},
-  email: {},
-  emailVerified: {},
-  photoURL: {},
-  isAnonymous: {},
-  uid: {},
-  providerData: {},
-  clear: function(){
-    for(obj in this){
-      this[obj] = {}
+    displayName: {},
+    email: {},
+    emailVerified: {},
+    photoURL: {},
+    isAnonymous: {},
+    uid: {},
+    providerData: {},
+    clear: function() {
+        for (obj in this) {
+            this[obj] = {}
+        }
     }
-  }
 }
 var database = firebase.database();
 //A simple wrapper class to make ajax calls to the api's we use a little
@@ -97,7 +97,7 @@ var userCharacter = {
 
 $(document).ready(function() {
 
-   //---Recording Character name and Description and writing to game page--//
+    //---Recording Character name and Description and writing to game page--//
     $("#charLoadBtn").click(function() {
 
         name = $("#playerName").val().trim();
@@ -120,20 +120,45 @@ $(document).ready(function() {
     });
 
     //------------on click to generate command list on command Modal-----------//
-    $("#commandBtn").click(function() {
-      $("#commandBox").empty();
-        for (var i in commands) {
-            if (commands.hasOwnProperty(i)) {
-                //console.log(i + " -> " + commands[i].syntax + commands[i].description);
-                var commandEntry = $("<p class='commandText'>").html(commands[i].syntax + ": " + "<br>" + commands[i].description);
-                $("#commandBox").append(commandEntry);
-                event.preventDefault();
+    
+
+
+    $('.slideout-menu-toggle').on('click', function(event) {
+        event.preventDefault();
+        // create menu variables
+        var slideoutMenu = $('.slideout-menu');
+        var slideoutMenuWidth = $('.slideout-menu').width();
+
+        // toggle open class
+        slideoutMenu.toggleClass("open");
+
+
+        // slide menu
+        if (slideoutMenu.hasClass("open")) {
+            slideoutMenu.animate({
+                left: "0px"
+            });
+            $("#commandBox").empty();
+            for (var i in commands) {
+                if (commands.hasOwnProperty(i)) {
+                    //console.log(i + " -> " + commands[i].syntax + commands[i].description);
+                    var commandEntry = $("<p class='commandText'>").html(commands[i].syntax + ": " + "<br>" + commands[i].description);
+                    $("#commandBox").append(commandEntry);
+                    event.preventDefault();
+                }
             }
+
+
+        } else {
+            slideoutMenu.animate({
+                left: -slideoutMenuWidth
+            }, 250);
         }
-
     });
-
 });
+
+
+
 
 //---building command object to append to user instruction modal---//
 
@@ -154,49 +179,49 @@ var commands = {
     },
 
     help: {
-      syntax: "/help or /h",
-      description: "Displays information or hints to current goal/area/objective"
+        syntax: "/help or /h",
+        description: "Displays information or hints to current goal/area/objective"
     },
 
     travel: {
-      syntax:  "/travel or /t",
-      description: "Travels to locations available from current player area"
+        syntax: "/travel or /t",
+        description: "Travels to locations available from current player area"
     },
 
-    clear:{
-      syntax:"/clear",
-      description:"Clears current chat window"
+    clear: {
+        syntax: "/clear",
+        description: "Clears current chat window"
     },
 
-    reload:{
-      syntax: "/reload or /r",
-      description: "Reloads previous messages in current chat window"
+    reload: {
+        syntax: "/reload or /r",
+        description: "Reloads previous messages in current chat window"
     },
 
     do: {
-      syntax:"/do",
-      description:"Have your character complete an action of your choosing"
+        syntax: "/do",
+        description: "Have your character complete an action of your choosing"
     }
 
 };
 
 
 //-----------looking at basic weapons, these return link to weapon string with nested stats---//
-function getWeapon(){
+function getWeapon() {
 
-    var queryURL ="http://www.dnd5eapi.co/api/equipment/";
+    var queryURL = "http://www.dnd5eapi.co/api/equipment/";
 
     $.ajax({
         url: queryURL,
         method: 'GET'
-    }).done(function(response){
+    }).done(function(response) {
         console.log(response);
-        console.log(response.results[0].url);//----club
-        console.log(response.results[4].url);//----dagger
-        console.log(response.results[13].url);//------short bow
-        console.log(response.results[36].url);//----longbow
-        console.log(response.results[62].url);//---rod
-        console.log(response.results[64].url);//----wand
+        console.log(response.results[0].url); //----club
+        console.log(response.results[4].url); //----dagger
+        console.log(response.results[13].url); //------short bow
+        console.log(response.results[36].url); //----longbow
+        console.log(response.results[62].url); //---rod
+        console.log(response.results[64].url); //----wand
 
     });
 
