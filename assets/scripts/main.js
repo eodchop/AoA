@@ -19,7 +19,6 @@ var userInfo = {
   clear: function(){
     for(obj in this){
       this[obj] = {}
-      console.log(this.obj);
     }
   }
 }
