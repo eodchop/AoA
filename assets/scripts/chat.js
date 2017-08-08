@@ -54,6 +54,11 @@
         return false;
       }
       return true;
+    },
+    clearUserInfo: function(){
+      for(obj in userInfo){
+        userInfo[obj] = {};
+      }
     }
   }
   var ChatHandler = {
@@ -260,6 +265,7 @@
       Login.logoutUser(function(){
         ChatHandler.clearChat();
         ChatHandler.infoAlert("You are now logged out!");
+        PlayerData.clearUserInfo();
       });
     },
     inspect: function(text) {
