@@ -120,7 +120,7 @@ $(document).ready(function() {
     });
 
     //------------on click to generate command list on command Modal-----------//
-    
+
 
 
     $('.slideout-menu-toggle').on('click', function(event) {
@@ -144,6 +144,7 @@ $(document).ready(function() {
                     //console.log(i + " -> " + commands[i].syntax + commands[i].description);
                     var commandEntry = $("<p class='commandText'>").html(commands[i].syntax + ": " + "<br>" + commands[i].description);
                     $("#commandBox").append(commandEntry);
+                    $("#commandBtn").text("Hide Command List");
                     event.preventDefault();
                 }
             }
@@ -153,6 +154,7 @@ $(document).ready(function() {
             slideoutMenu.animate({
                 left: -slideoutMenuWidth
             }, 250);
+            $("#commandBtn").text("Show Command List");
         }
     });
 });
@@ -223,6 +225,20 @@ function getWeapon() {
         console.log(response.results[62].url); //---rod
         console.log(response.results[64].url); //----wand
 
+    });
+
+}
+
+function getGif() {
+
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=barbarian&limit=10&api_key=dc6zaTOxFJmzC";
+
+    $.ajax({
+        url: queryURL,
+        method: 'GET'
+    }).done(function(response) {
+        console.log(response);
+        console.log(response.data[0].url);
     });
 
 }
