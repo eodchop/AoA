@@ -5,13 +5,13 @@ var provider = new firebase.auth.GoogleAuthProvider();
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
-    var displayName = user.displayName;
-    var email = user.email;
-    var emailVerified = user.emailVerified;
-    var photoURL = user.photoURL;
-    var isAnonymous = user.isAnonymous;
-    var uid = user.uid;
-    var providerData = user.providerData;
+    userInfo.displayName = user.displayName;
+    userInfo.email = user.email;
+    userInfo.emailVerified = user.emailVerified;
+    userInfo.photoURL = user.photoURL;
+    userInfo.isAnonymous = user.isAnonymous;
+    userInfo.uid = user.uid;
+    userInfo.providerData = user.providerData;
     // ...
   } else {
       firebase.auth().signInWithPopup(provider).then(function(result) {

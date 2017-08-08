@@ -271,8 +271,11 @@
   $(function() {
     $('#chatForm').on('submit', function(event) {
       event.preventDefault();
-
-      InputHandler.parseText($('#commandInput').val().trim());
+      if(!$.isObejectEmpty(userInfo.displayName)){
+        InputHandler.parseText($('#commandInput').val().trim());
+      } else {
+        ChatHandler.infoAlert("Please log in!.");
+      }
       $('#commandInput').val('');
     })
     $("#textWindow").on("mouseenter", function() {
