@@ -48,6 +48,12 @@
         ChatHandler.pushMessageLocal(snapshot.val());
         SoundManager.playMessagePopOnce();
       })
+    },
+    isLoggedIn: function(){
+      if($.isEmptyObject(userInfo.displayName)){
+        return false;
+      }
+      return true;
     }
   }
   var ChatHandler = {
@@ -173,7 +179,7 @@
   var InputHandler = {
     commands: ['help', 'h', 'say', 's', 'map', 'm',
       'travel', 't', 'clear', 'c', 'reload', 'r',
-      'do', 'inspect'
+      'do', 'inspect', 'login', 'logout'
     ],
     parseText: function(input) {
       input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -188,12 +194,26 @@
           currentCommand = input;
         }
         if (this.commands.includes(currentCommand)) {
-          this[currentCommand](message);
+          if(!PlayerData.isLoggedIn()){
+            if(currentCommand === 'login'){
+              Login.loginUser(function(){
+                PlayerData.initPlayer();
+              });
+            } else {
+              ChatHandler.infoAlert("You are not logged in. Use /login (make sure popups are enabled)");
+            }
+          } else {
+            this[currentCommand](message);
+          }
         } else {
           ChatHandler.infoAlert("You did not enter a correct command.");
         }
       } else {
-        this.say(input);
+        if(PlayerData.isLoggedIn()){
+          this.say(input);
+        } else {
+          ChatHandler.infoAlert("You are not logged in. Use /login (make sure popups are enabled)");
+        }
       }
     },
     //Commands
@@ -233,6 +253,15 @@
     do: function(text) {
       ChatHandler.doMessage(text);
     },
+    login: function(text){
+      ChatHandler.infoAlert("You are already logged in.");
+    },
+    logout: function(text){
+      Login.logout(function(){
+        ChatHandler.clearChat();
+        ChatHandler.infoAlert("You are now logged out!");
+      });
+    },
     inspect: function(text) {
       if (text === "") {
         ChatHandler.infoAlert("You look around and see the following;");
@@ -266,16 +295,12 @@
       this.reload(text);
     }
   };
-  PlayerData.initPlayer();
+
   //jQuery on-ready.
   $(function() {
     $('#chatForm').on('submit', function(event) {
       event.preventDefault();
-      if(!$.isEmptyObject(userInfo.displayName)){
-        InputHandler.parseText($('#commandInput').val().trim());
-      } else {
-        ChatHandler.infoAlert("Please log in!.");
-      }
+      InputHandler.parseText($('#commandInput').val().trim());
       $('#commandInput').val('');
     })
     $("#textWindow").on("mouseenter", function() {
