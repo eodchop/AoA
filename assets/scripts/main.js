@@ -13,9 +13,9 @@ var userInfo = {
   email: {},
   emailVerified: {},
   photoURL: {},
-  isAnonymous: {};
-  uid: {};
-  providerData: {};
+  isAnonymous: {},
+  uid: {},
+  providerData: {}
 }
 var database = firebase.database();;
 //A simple wrapper class to make ajax calls to the api's we use a little
