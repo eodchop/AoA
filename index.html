@@ -2,156 +2,157 @@
 <html lang='en-us'>
 
 <head>
-  <meta charset="utf-8">
-  <!-- CSS -->
-  <!-- Meyer Reset-->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-  <!-- Tether -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
-  <!-- Twitter Bootstrap-->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-  <!-- Google Fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
-  <!-- Font Awesome-->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Our own css-->
-  <link rel="stylesheet" href="./assets/css/styles.css">
-  <!-- /CSS -->
-  <!-- JavaScript -->
-  <!-- jQuery -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- Tether -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-  <!-- Twitter Bootstrap -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-  <!-- Our own JavaScript-->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rasterizehtml/1.2.4/rasterizeHTML.allinone.js"></script>
-  <script type="text/javascript" src="./assets/scripts/main.js"></script>
-  <!-- Login tag-->
-  <script type="text/javascript" src="./assets/scripts/login.js"></script>
-  <script type="text/javascript" src="./assets/scripts/sounds.js"></script>
-  <script type="text/javascript" src="./assets/scripts/chat.js"></script>
-  <!-- /JavaScript -->
-  <title>AoA</title>
+    <meta charset="utf-8">
+    <!-- CSS -->
+    <!-- Meyer Reset-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <!-- Tether -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
+    <!-- Twitter Bootstrap-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <!-- Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Our own css-->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <!-- /CSS -->
+    <!-- JavaScript -->
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Tether -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <!-- Twitter Bootstrap -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <!-- Our own JavaScript-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rasterizehtml/1.2.4/rasterizeHTML.allinone.js"></script>
+    <script type="text/javascript" src="./assets/scripts/main.js"></script>
+    <!-- Login tag-->
+    <script type="text/javascript" src="./assets/scripts/login.js"></script>
+    <script type="text/javascript" src="./assets/scripts/sounds.js"></script>
+    <script type="text/javascript" src="./assets/scripts/chat.js"></script>
+    <!-- /JavaScript -->
+    <title>AoA</title>
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="page-header">
-          <h1>AoA </h1>
-          <h3><small> text based (Another online Adventure)</small></h3>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="mapPanel">
-        <div class="card">
-          <div class="card-header" id='inspectName'>
-            Inspection name..
-          </div>
-          <div class="card-body" id="inspectDesc">
-            Inspection description.
-          </div>
-        </div>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#commandModal" id="commandBtn">
-            Command List
-        </button>
-
-        <div class="modal left fade" id="commandModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="commandModalTitle">Commands</h4>
+    <div class="container">
+        <!--Inspection Panel-->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-header">
+                    <h1>AoA </h1>
+                    <h3><small> text based (Another online Adventure)</small></h3>
                 </div>
-
-                <div class="modal-body" id="commandBox">
-                    <p>
-                    </p>
-                </div>
-
             </div>
         </div>
-    </div>
-               
-    </div>
-    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-      <div id="mainWindow">
-        <div id="textWindow" class="styleScroll">
-        </div>
-        <form id="chatForm">
-          <input id="commandInput" type="text" placeholder="Enter commands here.">
-        </form>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="characterPanel">
-      <div id="playerContainer">
-        <div id="playerImage">
-          <img src="assets/images/playerPlaceholder.jpg">
-          <p id="nameDisplay">Charachter Name</p>
-          <p id="playerClass">Class</p>
-          <p id="descript">Description</p>
-        </div>
-        <!-- Button trigger modal -->
-        <div id="charCreation" >
-          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="logInBtn">
-                          Create Character
-                      </button>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="modalTitle">Log In/ Create a New Character</h4>
-              </div>
-              <div class="modal-body">
-                <div class="form-group">
-                  <label for="enterPlayerName">Character Name</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter character name" id="playerName">
-                  </div>
-                  <label for="enterPlayerDescrip">Description</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter a little about your character" id="playerDescription">
-                  </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="mapPanel">
+                <div class="card">
+                    <div class="card-header" id='inspectName'>
+                        Inspection name..
+                    </div>
+                    <div class="card-body" id="inspectDesc">
+                        Inspection description.
+                    </div>
                 </div>
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!--Command Modal Button-->
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#commandModal" id="commandBtn">
+                    Command List
+                </button>
+                <!--Command Modal Popup-->
+                <div class="modal left fade" id="commandModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="commandModalTitle">Commands</h4>
+                            </div>
+                            <div class="modal-body" id="commandBox">
+                                <!--Where commands will generate-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Main Chat Window Section-->
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div id="mainWindow">
+                    <div id="textWindow" class="styleScroll">
+                    </div>
+                    <form id="chatForm">
+                        <input id="commandInput" type="text" placeholder="Enter commands here.">
+                    </form>
+                </div>
+            </div>
+
+            <!--Character Panel-->
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="characterPanel">
+                <div id="playerContainer">
+                    <div id="playerImage">
+                        <img src="assets/images/playerPlaceholder.jpg">
+                        <p id="nameDisplay">Charachter Name</p>
+                        <p id="playerClass">Class</p>
+                        <p id="descript">Description</p>
+                    </div>
+                    <!-- Button trigger modal -->
+                    <div id="charCreation">
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="logInBtn">
+                            Create Character
+                        </button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="modalTitle">Log In/ Create a New Character</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="enterPlayerName">Character Name</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Enter character name" id="playerName">
+                                        </div>
+                                        <label for="enterPlayerDescrip">Description</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Enter a little about your character" id="playerDescription">
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Pick a Class
                                         </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="classSelector">
-                    <li> <a class="dropdown-item" href="#" id="warrior">Warrior</a></li>
-                    <li> <a class="dropdown-item" href="#" id="ranger">Ranger</a></li>
-                    <li><a class="dropdown-item" href="#" id="mage">Mage</a></li>
-                  </ul>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="classSelector">
+                                            <li> <a class="dropdown-item" href="#" id="warrior">Warrior</a></li>
+                                            <li> <a class="dropdown-item" href="#" id="ranger">Ranger</a></li>
+                                            <li><a class="dropdown-item" href="#" id="mage">Mage</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="charLoadBtn">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form>
                 </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="charLoadBtn">Save changes</button>
-              </div>
             </div>
-          </div>
-        </div>
-        <form>
-      </div>
-    </div>
-    <!-- This is a temparary link for submitting issues.-->
-    <div class="row">
-      <div class="col-12">
-        <a href="https://github.com/eodchop/AoA/issues" target='_blank'>
+            <!-- This is a temparary link for submitting issues.-->
+            <div class="row">
+                <div class="col-12">
+                    <a href="https://github.com/eodchop/AoA/issues" target='_blank'>
                         <button type="button" name="button" class="btn btn-danger btn-block">Submit issue</button>
                     </a>
-      </div>
-    </div>
-  </div>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
