@@ -8,6 +8,20 @@ var config = {
     messagingSenderId: "550710539266"
 };
 firebase.initializeApp(config);
+var userInfo = {
+  displayName: {},
+  email: {},
+  emailVerified: {},
+  photoURL: {},
+  isAnonymous: {},
+  uid: {},
+  providerData: {},
+  clear: function(){
+    for(obj in this){
+      this[obj] = {}
+    }
+  }
+}
 var database = firebase.database();;
 //A simple wrapper class to make ajax calls to the api's we use a little
 //bit easier.
@@ -125,7 +139,7 @@ $(document).ready(function() {
 //---building command object to append to user instruction modal---//
 
 var commands = {
- 
+
     say: {
         syntax: "/say or /s",
         description: "Used to say something in gobal chat"
@@ -166,4 +180,7 @@ var commands = {
     }
 
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 58e30a99bff5ec621b301c875fbe88b5028d443c
