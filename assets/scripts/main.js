@@ -15,7 +15,13 @@ var userInfo = {
   photoURL: {},
   isAnonymous: {},
   uid: {},
-  providerData: {}
+  providerData: {},
+  clear: function(){
+    for(obj in this){
+      this[obj] = {}
+      console.log(this.obj);
+    }
+  }
 }
 var database = firebase.database();;
 //A simple wrapper class to make ajax calls to the api's we use a little
