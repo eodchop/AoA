@@ -2,13 +2,14 @@
 (function() {
   var PlayerData = {
     //A static test player that will be dynamic later on.
-    playerRef: database.ref().child('players').child('test_player'),
+    playerRef: {},
     playerName: '',
     playerLocation: '',
     playerChatroomRef: {},
     playerLocationRef: {},
     chatListener: {},
     initPlayer: function() {
+      this.playerRef = database.ref().child('players').child(userInfo.uid);
       this.playerRef.once('value', function(snapshot) {
         PlayerData.playerLocation = snapshot.val().location;
         PlayerData.playerChatroomRef = database.ref()
@@ -54,6 +55,26 @@
         return false;
       }
       return true;
+    },
+    characterExist: function(uid, callback){
+      var usersRef = database.ref().child("players");
+      usersRef.child(userInfo.uid).once('value', function(snapshot) {
+        var exists = (snapshot.val() !== null);
+        callback(exists);
+      });
+    },
+    createCharacter: function(charName, charDesc, charClass){
+      if(PlayerData.isLoggedIn()){
+        var charRef = database.ref().child('players');
+        charRef.update({
+          [userInfo.uid]: {
+            name: charName,
+            description: charDesc,
+            playerClass: charClass,
+            location: 'hammerhelm_tavern'
+          }
+        });
+      }
     }
   }
   var ChatHandler = {
@@ -197,7 +218,14 @@
           if (!PlayerData.isLoggedIn()) {
             if (currentCommand === 'login') {
               Login.loginUser(function() {
-                PlayerData.initPlayer();
+                PlayerData.characterExist(userInfo.uid, function(doesExsit){
+                  if(!doesExsit){
+                    $("#charCreation").toggle();
+                    ChatHandler.infoAlert("It seams you have not created a charcter. Please, do so now with the character create button.");
+                  } else {
+                    PlayerData.initPlayer();
+                  }
+                });
               });
             } else {
               ChatHandler.infoAlert("You are not logged in. Use /login (make sure popups are enabled)");
@@ -299,6 +327,7 @@
 
   //jQuery on-ready.
   $(function() {
+      $("#charCreation").toggle();
     $('#chatForm').on('submit', function(event) {
       event.preventDefault();
       InputHandler.parseText($('#commandInput').val().trim());
@@ -308,6 +337,16 @@
       ChatHandler.showScroll();
     }).on("mouseleave", function() {
       ChatHandler.hideScroll();
+    });
+    $("#charLoadBtn").on("click", function(){
+      var name = $("#playerName").val();
+      var desc = $("#playerDescription").val();
+      var charClass = "Placeholder";
+      if(PlayerData.isLoggedIn()){
+          PlayerData.createCharacter(name, desc, charClass);
+          PlayerData.initPlayer();
+          $("#charCreation").toggle();
+      }
     });
   });
 }())

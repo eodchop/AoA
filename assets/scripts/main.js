@@ -22,7 +22,7 @@ var userInfo = {
     }
   }
 }
-var database = firebase.database();;
+var database = firebase.database();
 //A simple wrapper class to make ajax calls to the api's we use a little
 //bit easier.
 class AjaxCalls {
