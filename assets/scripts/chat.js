@@ -271,6 +271,7 @@
   $(function() {
     $('#chatForm').on('submit', function(event) {
       event.preventDefault();
+
       InputHandler.parseText($('#commandInput').val().trim());
       $('#commandInput').val('');
     })
