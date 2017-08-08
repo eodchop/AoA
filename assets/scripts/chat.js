@@ -221,7 +221,7 @@
                 PlayerData.characterExist(userInfo.uid, function(doesExsit){
                   if(!doesExsit){
                     $("#charCreation").toggle();
-                    ChatHandler.infoAlert("It seams you have not created a charcter. Please, do so now with the character create button.");
+                    ChatHandler.infoAlert("It seems you have not created a character. Please, do so now with the character create button.");
                   } else {
                     PlayerData.initPlayer();
                   }

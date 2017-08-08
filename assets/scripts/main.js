@@ -27,6 +27,8 @@ var database = firebase.database();
 //bit easier.
 class AjaxCalls {
     //Used to return the stats of a monster from the dnd api by passing the name.
+
+    // Comic Vine API key:  11732e24163c8156a0f58620d431ff128c12be77
     static dndMonstersAPI(name, callback) {
         var baseURL = "http://www.dnd5eapi.co/api/";
         var optionsURL = "monsters/?name=" + name;
@@ -76,7 +78,7 @@ var Utils = {
         return true;
     }
 }
-//---sorting out creating and storing characters
+
 
 var userCharacter = {
 
@@ -116,6 +118,7 @@ $(document).ready(function() {
         userCharacter.characterClass = characterClass;
         $("#playerClass").html(characterClass);
     });
+
     //------------on click to generate command list on command Modal-----------//
     $("#commandBtn").click(function() {
       $("#commandBox").empty();
@@ -131,7 +134,6 @@ $(document).ready(function() {
     });
 
 });
-
 
 //---building command object to append to user instruction modal---//
 
@@ -163,17 +165,39 @@ var commands = {
 
     clear:{
       syntax:"/clear",
-      description:"clears stuff"
+      description:"Clears current chat window"
     },
 
     reload:{
       syntax: "/reload or /r",
-      description: "reloads the current area I think?"
+      description: "Reloads previous messages in current chat window"
     },
 
     do: {
       syntax:"/do",
-      description:" do stuff?"
+      description:"Have your character complete an action of your choosing"
     }
 
 };
+
+
+//-----------looking at basic weapons, these return link to weapon string with nested stats---//
+function getWeapon(){
+
+    var queryURL ="http://www.dnd5eapi.co/api/equipment/";
+
+    $.ajax({
+        url: queryURL,
+        method: 'GET'
+    }).done(function(response){
+        console.log(response);
+        console.log(response.results[0].url);//----club
+        console.log(response.results[4].url);//----dagger
+        console.log(response.results[13].url);//------short bow
+        console.log(response.results[36].url);//----longbow
+        console.log(response.results[62].url);//---rod
+        console.log(response.results[64].url);//----wand
+
+    });
+
+}
