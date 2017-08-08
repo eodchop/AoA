@@ -19,20 +19,20 @@ exports.respawnMonsters = functions.https.onRequest((request, response) => {
   var locationMonstersRef = databaseRef.child('location_rooms').child('location_monsters');
   var monstersRef = databaseRef.child('monsters');
   locationMonstersRef.once('value', function(snapshotLoc){
-    for(location in snapshotLoc.val()){
+    Object.keys(snapshotLoc.val()).forEach(function(location){
       var currentLocation = snapshotLoc.val()[location];
       var levelCap = currentLocation.level_cap;
       var enemiesList = currentLocation.list;
       var maxEnemies = currentLocation.max;
       if(Object.keys(enemiesList).length < maxEnemies){
         monstersRef.orderByChild('level').equalTo(levelCap).once('value', function(snapshotMon){
+          console.log(location);
           var monsters = snapshotMon.val();
           var newEnemy = getRandomProp(monsters);
-          console.log(location);
           locationMonstersRef.child(location).child('list').push(newEnemy);
         })
       }
-    }
+    });
   });
   response.status(200).send(`Success!`);
 });
