@@ -27,11 +27,16 @@ img {
   font-family: 'Aldrich', sans-serif;
 }
 
-#playerImage, #characterInfo {
+#playerImage, #characterInfo, #tbdPanel {
   padding: 10px;
   border: solid 1px black;
   border-radius: 5px;
   font-family: "aoaFont";
+  background:#333;
+  color:white;
+  border-top: 1px solid #454545;
+  border-bottom: 1px solid #151515;
+  margin:10px;l
 }
 
 #textWindow {
@@ -56,9 +61,8 @@ img {
 
 #commandBtn{
   font-size: 12px;
-  
-}
 
+}
 
 
 /*Sidenav Commands*/
@@ -79,7 +83,6 @@ img {
 .slideout-menu h3 {
   position: relative;
   padding: 12px 10px;
-  color: #fff;
   font-size: 1.2em;
   font-weight: 400;
   border-bottom: 4px solid #222;
@@ -93,14 +96,9 @@ img {
   font-family: Arial, sans-serif;
   font-weight: bold;
   line-height: 1;
-  background: #222;
-  color: #999;
-  text-decoration: none;
   vertical-align: top;
 }
-.slideout-menu .slideout-menu-toggle:hover {
-  color: #fff;
-}
+
 .slideout-menu ul {
   list-style: none;
   font-weight: 300;
@@ -115,8 +113,7 @@ img {
   position: relative;
   display: block;
   padding: 10px;
-  color: #999;
-  text-decoration: none;
+
 }
 .slideout-menu ul li a:hover {
   background: #000;
