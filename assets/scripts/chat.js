@@ -257,7 +257,7 @@
       ChatHandler.infoAlert("You are already logged in.");
     },
     logout: function(text){
-      Login.logout(function(){
+      Login.logoutUser(function(){
         ChatHandler.clearChat();
         ChatHandler.infoAlert("You are now logged out!");
       });
