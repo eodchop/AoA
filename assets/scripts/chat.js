@@ -271,7 +271,7 @@
   $(function() {
     $('#chatForm').on('submit', function(event) {
       event.preventDefault();
-      if(!$.isObejectEmpty(userInfo.displayName)){
+      if(!$.isEmptyObject(userInfo.displayName)){
         InputHandler.parseText($('#commandInput').val().trim());
       } else {
         ChatHandler.infoAlert("Please log in!.");
