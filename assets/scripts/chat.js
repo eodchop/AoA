@@ -49,8 +49,8 @@
         SoundManager.playMessagePopOnce();
       })
     },
-    isLoggedIn: function(){
-      if($.isEmptyObject(userInfo.displayName)){
+    isLoggedIn: function() {
+      if ($.isEmptyObject(userInfo.displayName)) {
         return false;
       }
       return true;
@@ -194,9 +194,9 @@
           currentCommand = input;
         }
         if (this.commands.includes(currentCommand)) {
-          if(!PlayerData.isLoggedIn()){
-            if(currentCommand === 'login'){
-              Login.loginUser(function(){
+          if (!PlayerData.isLoggedIn()) {
+            if (currentCommand === 'login') {
+              Login.loginUser(function() {
                 PlayerData.initPlayer();
               });
             } else {
@@ -209,7 +209,7 @@
           ChatHandler.infoAlert("You did not enter a correct command.");
         }
       } else {
-        if(PlayerData.isLoggedIn()){
+        if (PlayerData.isLoggedIn()) {
           this.say(input);
         } else {
           ChatHandler.infoAlert("You are not logged in. Use /login (make sure popups are enabled)");
@@ -253,11 +253,11 @@
     do: function(text) {
       ChatHandler.doMessage(text);
     },
-    login: function(text){
+    login: function(text) {
       ChatHandler.infoAlert("You are already logged in.");
     },
-    logout: function(text){
-      Login.logoutUser(function(){
+    logout: function(text) {
+      Login.logoutUser(function() {
         ChatHandler.clearChat();
         ChatHandler.infoAlert("You are now logged out!");
         userInfo.clear();
