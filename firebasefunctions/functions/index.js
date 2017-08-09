@@ -24,12 +24,19 @@ exports.respawnMonsters = functions.https.onRequest((request, response) => {
       var levelCap = currentLocation.level_cap;
       var enemiesList = currentLocation.list;
       var maxEnemies = currentLocation.max;
+      //Loop through all up to max and check if uniqe id exists, if not, add.
       if(Object.keys(enemiesList).length < maxEnemies){
         monstersRef.orderByChild('level').equalTo(levelCap).once('value', function(snapshotMon){
           console.log(location);
-          var monsters = snapshotMon.val();
-          var newEnemy = getRandomProp(monsters);
-          locationMonstersRef.child(location).child('list').push(newEnemy);
+          for(var i = 1; i <= maxEnemies; i++){
+            console.log(snapshotMon[i]);
+            if(snapshotMon[i] == null ){
+              console.log("is null");
+              var monsters = snapshotMon.val();
+              var newEnemy = getRandomProp(monsters);
+              locationMonstersRef.child(location).child('list').child(i).set(newEnemy);
+            }
+          }
         })
       }
     });

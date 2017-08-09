@@ -200,7 +200,8 @@
     var InputHandler = {
         commands: ['help', 'h', 'say', 's', 'map', 'm',
             'travel', 't', 'clear', 'c', 'reload', 'r',
-            'do', 'd', 'inspect', 'i', 'login', 'li', 'logout', 'lo', 'giggity', 'g'
+            'do', 'd', 'inspect', 'i', 'login', 'li', 'logout', 'lo', 'giggity',
+             'g', 'enemies', 'e', 'wipe', 'w'
         ],
         parseText: function (input) {
             input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -307,7 +308,29 @@
         giggity: function (text) {
             ChatHandler.infoAlert("Giggity, Giggity!")
         },
+        enemies: function (text){
+          database.ref().child('location_rooms')
+            .child('location_monsters')
+            .child(PlayerData.playerLocation)
+            .child('list')
+            .once('value', function(snapshot){
+              ChatHandler.infoAlert("You look for hostile beings and find...");
+              for(var monster in snapshot.val()){
+                ChatHandler.listItem(snapshot.val()[monster].name + " " + monster);
+              }
+            });
+        },
+        wipe: function(text){
+          this.clear();
+          this.reload();
+        },
         //Shortcut commands.
+        w: function(text){
+          this.wipe(text);
+        },
+        e: function(text){
+          this.enemies(text);
+        },
         t: function (text) {
             this.travel(text);
         },
