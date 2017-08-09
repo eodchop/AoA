@@ -9,12 +9,28 @@ body {
   src: local('aoaFont'), url("../images/aoaFont.ttf") format('truetype');
 }
 
-.page-header {
-  font-family: "aoaFont";
+.stone { 
+    
+    line-height: 60px;
+    font-family: "aoaFont", "Helvetica", sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 30px; 
+}
+
+.stone1 { 
+    color: #333;
+    background-color: #666;
+    text-shadow: 0px 1px 0px rgba(255,255,255,.5); /* 50% white from bottom */
 }
 
 #titleHead {
   margin-bottom: 10px;
+}
+
+#smallTitle{
+  float:left;
 }
 
 img {
@@ -36,12 +52,12 @@ img {
   color:white;
   border-top: 1px solid #454545;
   border-bottom: 1px solid #151515;
-  margin:10px;l
+  margin:10px;
 }
 
 #textWindow {
-  width: 90%;
-  height: 300px;
+  width: 100%;
+  height: 350px;
   background-color: black;
   color: green;
   overflow-y: hidden;
@@ -49,17 +65,17 @@ img {
 }
 
 #commandInput {
-  width: 90%;
+  width: 100%;
   margin-bottom: 10px
 }
 
-#logInBtn {
-  font-size: 12px;
-  display:block;
-  margin: auto;
+#hudButtons{
+  margin:0 auto;
+  text-align:center;
 }
 
-#commandBtn{
+
+#commandBtn, #logInBtn, {
   font-size: 12px;
 
 }
@@ -80,6 +96,7 @@ img {
   color:white;
   overflow-y: auto;
 }
+
 .slideout-menu h3 {
   position: relative;
   padding: 12px 10px;
@@ -87,6 +104,7 @@ img {
   font-weight: 400;
   border-bottom: 4px solid #222;
 }
+
 .slideout-menu .slideout-menu-toggle {
   position: absolute;
   top: 12px;
@@ -105,25 +123,21 @@ img {
   border-top: 1px solid #151515;
   border-bottom: 1px solid #454545;
 }
-.slideout-menu ul li {
-  border-top: 1px solid #454545;
-  border-bottom: 1px solid #151515;
-}
-.slideout-menu ul li a {
-  position: relative;
-  display: block;
-  padding: 10px;
 
-}
-.slideout-menu ul li a:hover {
-  background: #000;
-  color: #fff;
-}
-.slideout-menu ul li a i {
-  position: absolute;
-  top: 15px;
-  right: 10px;
-  opacity: .5;
+
+/*---right character panel---*/
+.slideout-menu-right {
+  position: fixed;
+  top: 0;
+  right: -335px;
+  width: 335px;
+  height: 100%;
+  background: #333;
+  z-index: 100;
+  padding:10px;
+  color:white;
+  overflow-y: auto;
+  font-family:"aoaFont";
 }
 
 

@@ -119,11 +119,10 @@ $(document).ready(function() {
         $("#playerClass").html(characterClass);
     });
 
-    //------------on click to generate command list on command Modal-----------//
-
-
+    //------------pulls command menu from left, populates from command object-----------//
 
     $('.slideout-menu-toggle').on('click', function(event) {
+        console.log("clicked");
         event.preventDefault();
         // create menu variables
         var slideoutMenu = $('.slideout-menu');
@@ -144,7 +143,6 @@ $(document).ready(function() {
                     //console.log(i + " -> " + commands[i].syntax + commands[i].description);
                     var commandEntry = $("<p class='commandText'>").html(commands[i].syntax + ": " + "<br>" + commands[i].description);
                     $("#commandBox").append(commandEntry);
-                    $("#commandBtn").text("Hide Command List");
                     event.preventDefault();
                 }
             }
@@ -152,15 +150,35 @@ $(document).ready(function() {
 
         } else {
             slideoutMenu.animate({
-                left: -slideoutMenuWidth
+                left:-350 //(-slideoutMenuWidth)
             }, 250);
-            $("#commandBtn").text("Show Command List");
         }
     });
+
+    $('.slideout-menu-right-toggle').on('click', function(event) {
+    console.log("clicked");
+    event.preventDefault();
+    // create menu variables
+    var slideoutMenu = $('.slideout-menu-right');
+    var slideoutMenuWidth = $('.slideout-menu-right').width();
+
+    // toggle open class
+    slideoutMenu.toggleClass("open");
+
+    // slide menu
+    if (slideoutMenu.hasClass("open")) {
+        slideoutMenu.animate({
+            right: "0px"
+        });
+
+
+    } else {
+        slideoutMenu.animate({
+            right:-350 //(-slideoutMenuWidth)
+        }, 250);
+    }
 });
-
-
-
+});
 
 //---building command object to append to user instruction modal---//
 
@@ -203,9 +221,18 @@ var commands = {
     do: {
         syntax: "/do",
         description: "Have your character complete an action of your choosing"
+    },
+
+    login: {
+        syntax: "/login",
+        description: "Returns your character back to the game world"
     }
 
 };
+
+
+
+
 
 
 //-----------looking at basic weapons, these return link to weapon string with nested stats---//
