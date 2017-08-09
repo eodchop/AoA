@@ -28,7 +28,6 @@ var database = firebase.database();
 class AjaxCalls {
     //Used to return the stats of a monster from the dnd api by passing the name.
 
-    // Comic Vine API key:  11732e24163c8156a0f58620d431ff128c12be77
     static dndMonstersAPI(name, callback) {
         var baseURL = "http://www.dnd5eapi.co/api/";
         var optionsURL = "monsters/?name=" + name;
@@ -79,7 +78,6 @@ var Utils = {
     }
 }
 
-
 var userCharacter = {
 
     name: "",
@@ -124,15 +122,12 @@ $(document).ready(function() {
     $('.slideout-menu-toggle').on('click', function(event) {
         console.log("clicked");
         event.preventDefault();
-        // create menu variables
+
         var slideoutMenu = $('.slideout-menu');
         var slideoutMenuWidth = $('.slideout-menu').width();
 
-        // toggle open class
         slideoutMenu.toggleClass("open");
 
-
-        // slide menu
         if (slideoutMenu.hasClass("open")) {
             slideoutMenu.animate({
                 left: "0px"
@@ -151,39 +146,43 @@ $(document).ready(function() {
 
         } else {
             slideoutMenu.animate({
-                left:-350 //(-slideoutMenuWidth)
+                left: -350 //(-slideoutMenuWidth)
             }, 250);
             $("#commandBtn").text("Show Command List");
         }
+
+
     });
 
     //--------------slide out right panel for character info-------//
 
     $('.slideout-menu-right-toggle').on('click', function(event) {
-    console.log("clicked");
-    event.preventDefault();
-    // create menu variables
-    var slideoutMenu = $('.slideout-menu-right');
-    var slideoutMenuWidth = $('.slideout-menu-right').width();
+        event.preventDefault();
 
-    // toggle open class
-    slideoutMenu.toggleClass("open");
+        var slideoutMenu = $('.slideout-menu-right');
+        var slideoutMenuWidth = $('.slideout-menu-right').width();
+        slideoutMenu.toggleClass("open");
 
-    // slide menu
-    if (slideoutMenu.hasClass("open")) {
-        slideoutMenu.animate({
-            right: "0px"
-        });
-        $("#characterBtn").text("Hide Character Panel");
+        if (slideoutMenu.hasClass("open")) {
+            slideoutMenu.animate({
+                right: "0px"
+            });
+            $("#characterBtn").text("Hide Character Panel");
 
+        } else {
+            slideoutMenu.animate({
+                right: -350 //(-slideoutMenuWidth)
+            }, 250);
+            $("#characterBtn").text("Show Character Panel");
+        }
+    });
+    //-----------------fullscreen functions--------------///
+    $('#eddieBtn').click(function(e) {
+        $('#mainWindow').toggleClass('fullscreen');
+        $('#textWindow').toggleClass('fullscreen');
 
-    } else {
-        slideoutMenu.animate({
-            right:-350 //(-slideoutMenuWidth)
-        }, 250);
-        $("#characterBtn").text("Show Character Panel");
-    }
-});
+    });
+
 });
 
 //---building command object to append to user instruction modal---//
@@ -235,11 +234,9 @@ var commands = {
     }
 
 };
+//--------------API testing--------------------------//
 
-
-
-
-
+  // Comic Vine API key:  11732e24163c8156a0f58620d431ff128c12be77
 
 //-----------looking at basic weapons, these return link to weapon string with nested stats---//
 function getWeapon() {
