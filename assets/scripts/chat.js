@@ -9,8 +9,8 @@
         playerLocationRef: {},
         chatListener: {},
         initPlayer: function () {
-            this.playerRef = database.ref().child('players').child(userInfo.uid);
-            this.playerRef.once('value', function (snapshot) {
+            PlayerData.playerRef = database.ref().child('players').child(userInfo.uid);
+            PlayerData.playerRef.once('value', function (snapshot) {
                 PlayerData.playerLocation = snapshot.val().location;
                 PlayerData.playerChatroomRef = database.ref()
                     .child('location_rooms')
