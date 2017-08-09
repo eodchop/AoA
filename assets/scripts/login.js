@@ -49,4 +49,3 @@ var Login = {
     })
   }
 }
-Login.pageLoad();

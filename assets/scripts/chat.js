@@ -45,7 +45,7 @@
         },
         updateChatroom: function () {
             PlayerData.playerChatroomRef.off('child_added');
-            PlayerData.chatListener = PlayerData.playerChatroomRef.on('child_added', function (snapshot) {
+            PlayerData.chatListener = PlayerData.playerChatroomRef.limitToLast(50).on('child_added', function (snapshot) {
                 ChatHandler.pushMessageLocal(snapshot.val());
                 SoundManager.playMessagePopOnce();
             })
@@ -216,7 +216,7 @@
                 }
                 if (this.commands.includes(currentCommand)) {
                     if (!PlayerData.isLoggedIn()) {
-                        if (currentCommand === 'login') {
+                        if (currentCommand === 'login' || currentCommand === 'li') {
                             Login.loginUser(function () {
                                 PlayerData.characterExist(userInfo.uid, function (doesExsit) {
                                     if (!doesExsit) {
@@ -345,6 +345,7 @@
 
     //jQuery on-ready.
     $(function () {
+        Login.pageLoad(PlayerData.initPlayer);
         $("#charCreation").toggle();
         $('#chatForm').on('submit', function (event) {
             event.preventDefault();
