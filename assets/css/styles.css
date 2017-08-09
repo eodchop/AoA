@@ -1,5 +1,5 @@
 body {
-  background-color: grey;
+  background-color: #666;
 }
 
 @font-face {
@@ -19,19 +19,17 @@ body {
     margin-left: 30px; 
 }
 
-.stone1 { 
+.stone1, { 
     color: #333;
     background-color: #666;
+    font-weight:bold;
     text-shadow: 0px 1px 0px rgba(255,255,255,.5); /* 50% white from bottom */
 }
 
-#titleHead {
-  margin-bottom: 10px;
+.page-header{
+  font-weight:bold;
 }
 
-#smallTitle{
-  float:left;
-}
 
 img {
   width: 100%;
@@ -77,6 +75,15 @@ img {
 
 #commandBtn, #logInBtn, {
   font-size: 12px;
+
+}
+
+/*--Modal CSS---*/
+.modal-content {
+font-family: "aoaFont";
+color:white;
+background-color: #666;
+text-shadow: 0px 1px 0px rgba(255,255,255,.5);
 
 }
 
@@ -126,6 +133,7 @@ img {
 
 
 /*---right character panel---*/
+
 .slideout-menu-right {
   position: fixed;
   top: 0;
