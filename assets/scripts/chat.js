@@ -106,12 +106,13 @@
             alert.addClass("infoAlert");
             this.pushMessageLocal(alert);
         },
-        listItem: function (message) {
+        listItem: function (message, indi) {
+            indi = indi || "~";
             var newItem = $("<p>");
             var itemIndi = $("<span>");
             itemIndi.addClass('listItemIndicator');
             newItem.addClass('listItem');
-            itemIndi.text("[-] ");
+            itemIndi.text("[" + indi + "] ");
             newItem.text(message);
             newItem.prepend(itemIndi);
             newItem.prepend("&emsp;");
@@ -315,9 +316,24 @@
             .child('list')
             .once('value', function(snapshot){
               ChatHandler.infoAlert("You look for hostile beings and find...");
-              for(var monster in snapshot.val()){
-                ChatHandler.listItem(snapshot.val()[monster].name + " " + monster);
-              }
+              Utils.asyncLoop(snapshot.val().length ,function(loop){
+                var monster = loop.iteration();
+                if(snapshot.val()[monster].name == 'unnamed'){
+                  AjaxCalls.getRandomName(function(newName){
+                    database.ref().child('location_rooms')
+                      .child('location_monsters')
+                      .child(PlayerData.playerLocation)
+                      .child('list')
+                      .child(monster).update({
+                        name: newName
+                      });
+                     ChatHandler.listItem((snapshot.val()[monster].type + ' - ' + newName), monster);
+                  });
+                } else {
+                  ChatHandler.listItem((snapshot.val()[monster].type + ' - ' + snapshot.val()[monster].name), monster);
+                }
+                loop.next();
+              });
             });
         },
         wipe: function(text){
