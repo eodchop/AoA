@@ -327,7 +327,8 @@
 
   //jQuery on-ready.
   $(function() {
-      $("#charCreation").toggle();
+    Login.pageLoad(PlayerData.initPlayer);
+    $("#charCreation").toggle();
     $('#chatForm').on('submit', function(event) {
       event.preventDefault();
       InputHandler.parseText($('#commandInput').val().trim());
