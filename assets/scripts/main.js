@@ -144,6 +144,7 @@ $(document).ready(function() {
                     var commandEntry = $("<p class='commandText'>").html(commands[i].syntax + ": " + "<br>" + commands[i].description);
                     $("#commandBox").append(commandEntry);
                     event.preventDefault();
+                    $("#commandBtn").text("Hide Command List");
                 }
             }
 
@@ -152,8 +153,11 @@ $(document).ready(function() {
             slideoutMenu.animate({
                 left:-350 //(-slideoutMenuWidth)
             }, 250);
+            $("#commandBtn").text("Show Command List");
         }
     });
+
+    //--------------slide out right panel for character info-------//
 
     $('.slideout-menu-right-toggle').on('click', function(event) {
     console.log("clicked");
@@ -170,12 +174,14 @@ $(document).ready(function() {
         slideoutMenu.animate({
             right: "0px"
         });
+        $("#characterBtn").text("Hide Character Panel");
 
 
     } else {
         slideoutMenu.animate({
             right:-350 //(-slideoutMenuWidth)
         }, 250);
+        $("#characterBtn").text("Show Character Panel");
     }
 });
 });
