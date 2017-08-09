@@ -18,10 +18,10 @@ var userInfo = {
     providerData: {},
     clear: function() {
         for (obj in this) {
-            this[obj] = {}
+            this[obj] = {};
         }
     }
-}
+};
 var database = firebase.database();
 //Utility functions that come in handy everywhere.
 var Utils = {
@@ -49,44 +49,43 @@ var Utils = {
     },
     xmlToJson: function(xml) {
 
-    	// Create the return object
-    	var obj = {};
+        // Create the return object
+        var obj = {};
 
-    	if (xml.nodeType == 1) { // element
-    		// do attributes
-    		if (xml.attributes.length > 0) {
-    		obj["@attributes"] = {};
-    			for (var j = 0; j < xml.attributes.length; j++) {
-    				var attribute = xml.attributes.item(j);
-    				obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
-    			}
-    		}
-    	} else if (xml.nodeType == 3) { // text
-    		obj = xml.nodeValue;
-    	}
+        if (xml.nodeType == 1) { // element
+            // do attributes
+            if (xml.attributes.length > 0) {
+                obj["@attributes"] = {};
+                for (var j = 0; j < xml.attributes.length; j++) {
+                    var attribute = xml.attributes.item(j);
+                    obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+                }
+            }
+        } else if (xml.nodeType == 3) { // text
+            obj = xml.nodeValue;
+        }
 
-    	// do children
-    	// If just one text node inside
-    	if (xml.hasChildNodes() && xml.childNodes.length === 1 && xml.childNodes[0].nodeType === 3) {
-    		obj = xml.childNodes[0].nodeValue;
-    	}
-    	else if (xml.hasChildNodes()) {
-    		for(var i = 0; i < xml.childNodes.length; i++) {
-    			var item = xml.childNodes.item(i);
-    			var nodeName = item.nodeName;
-    			if (typeof(obj[nodeName]) == "undefined") {
-    				obj[nodeName] = this.xmlToJson(item);
-    			} else {
-    				if (typeof(obj[nodeName].push) == "undefined") {
-    					var old = obj[nodeName];
-    					obj[nodeName] = [];
-    					obj[nodeName].push(old);
-    				}
-    				obj[nodeName].push(this.xmlToJson(item));
-    			}
-    		}
-    	}
-    	return obj;
+        // do children
+        // If just one text node inside
+        if (xml.hasChildNodes() && xml.childNodes.length === 1 && xml.childNodes[0].nodeType === 3) {
+            obj = xml.childNodes[0].nodeValue;
+        } else if (xml.hasChildNodes()) {
+            for (var i = 0; i < xml.childNodes.length; i++) {
+                var item = xml.childNodes.item(i);
+                var nodeName = item.nodeName;
+                if (typeof(obj[nodeName]) == "undefined") {
+                    obj[nodeName] = this.xmlToJson(item);
+                } else {
+                    if (typeof(obj[nodeName].push) == "undefined") {
+                        var old = obj[nodeName];
+                        obj[nodeName] = [];
+                        obj[nodeName].push(old);
+                    }
+                    obj[nodeName].push(this.xmlToJson(item));
+                }
+            }
+        }
+        return obj;
     },
     asyncLoop: function(iterations, func) {
         var index = 0;
@@ -117,7 +116,7 @@ var Utils = {
         loop.next();
         return loop;
     }
-}
+};
 //A simple wrapper class to make ajax calls to the api's we use a little
 //bit easier.
 class AjaxCalls {
@@ -133,20 +132,20 @@ class AjaxCalls {
             dataType: 'json'
         }).done(function(data) {
             AjaxCalls.dndByURLAPI(data.results[0].url, callback);
-        })
+        });
     }
 
-    static getRandomName(callback){
-      var baseURL = "https://www.behindthename.com/api/random.php?number=2&gender=both&surname=&all=no&usage_fntsy=1&key=cg465520?number=2&gender=both&surname=&all=no&usage_fntsy=1&key=cg465520";
+    static getRandomName(callback) {
+        var baseURL = "https://www.behindthename.com/api/random.php?number=2&gender=both&surname=&all=no&usage_fntsy=1&key=cg465520?number=2&gender=both&surname=&all=no&usage_fntsy=1&key=cg465520";
 
-      $.ajax({
-          url: baseURL,
-          type: 'GET',
-          dataType: 'xml'
-      }).done(function(data) {
-        var newName = Utils.xmlToJson(data).response.names.name;
-        callback(newName[0] + " " + newName[1]);
-      })
+        $.ajax({
+            url: baseURL,
+            type: 'GET',
+            dataType: 'xml'
+        }).done(function(data) {
+            var newName = Utils.xmlToJson(data).response.names.name;
+            callback(newName[0] + " " + newName[1]);
+        });
     }
 
     static dndByURLAPI(urlToUse, callback) {
@@ -156,7 +155,7 @@ class AjaxCalls {
             dataType: 'json'
         }).done(function(data) {
             callback(data);
-        })
+        });
     }
 }
 
@@ -184,7 +183,7 @@ var Utils = {
         }
         return true;
     }
-}
+};
 
 var userCharacter = {
 
@@ -262,7 +261,7 @@ $(document).ready(function() {
 
 
     });
-});
+
 
     //--------------slide out right panel for character info-------//
 
@@ -286,6 +285,7 @@ $(document).ready(function() {
             $("#characterBtn").text("Show Character Panel");
         }
     });
+
     //-----------------fullscreen functions--------------///
     $('#eddieBtn').click(function(e) {
         $('#mainWindow').toggleClass('fullscreen');
@@ -341,7 +341,7 @@ var commands = {
 };
 //--------------API testing--------------------------//
 
-  // Comic Vine API key:  11732e24163c8156a0f58620d431ff128c12be77
+// Comic Vine API key:  11732e24163c8156a0f58620d431ff128c12be77
 
 //-----------looking at basic weapons, these return link to weapon string with nested stats---//
 function getWeapon() {
