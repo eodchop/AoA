@@ -9,8 +9,8 @@
         playerLocationRef: {},
         chatListener: {},
         initPlayer: function () {
-            this.playerRef = database.ref().child('players').child(userInfo.uid);
-            this.playerRef.once('value', function (snapshot) {
+            PlayerData.playerRef = database.ref().child('players').child(userInfo.uid);
+            PlayerData.playerRef.once('value', function (snapshot) {
                 PlayerData.playerLocation = snapshot.val().location;
                 PlayerData.playerChatroomRef = database.ref()
                     .child('location_rooms')
@@ -45,7 +45,7 @@
         },
         updateChatroom: function () {
             PlayerData.playerChatroomRef.off('child_added');
-            PlayerData.chatListener = PlayerData.playerChatroomRef.on('child_added', function (snapshot) {
+            PlayerData.chatListener = PlayerData.playerChatroomRef.limitToLast(50).on('child_added', function (snapshot) {
                 ChatHandler.pushMessageLocal(snapshot.val());
                 SoundManager.playMessagePopOnce();
             })
@@ -106,12 +106,13 @@
             alert.addClass("infoAlert");
             this.pushMessageLocal(alert);
         },
-        listItem: function (message) {
+        listItem: function (message, indi) {
+            indi = indi || "~";
             var newItem = $("<p>");
             var itemIndi = $("<span>");
             itemIndi.addClass('listItemIndicator');
             newItem.addClass('listItem');
-            itemIndi.text("[-] ");
+            itemIndi.text("[" + indi + "] ");
             newItem.text(message);
             newItem.prepend(itemIndi);
             newItem.prepend("&emsp;");
@@ -200,7 +201,8 @@
     var InputHandler = {
         commands: ['help', 'h', 'say', 's', 'map', 'm',
             'travel', 't', 'clear', 'c', 'reload', 'r',
-            'do', 'd', 'inspect', 'i', 'login', 'li', 'logout', 'lo', 'giggity', 'g'
+            'do', 'd', 'inspect', 'i', 'login', 'li', 'logout', 'lo', 'giggity',
+             'g', 'enemies', 'e', 'wipe', 'w'
         ],
         parseText: function (input) {
             input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -216,7 +218,7 @@
                 }
                 if (this.commands.includes(currentCommand)) {
                     if (!PlayerData.isLoggedIn()) {
-                        if (currentCommand === 'login') {
+                        if (currentCommand === 'login' || currentCommand === 'li') {
                             Login.loginUser(function () {
                                 PlayerData.characterExist(userInfo.uid, function (doesExsit) {
                                     if (!doesExsit) {
@@ -307,7 +309,44 @@
         giggity: function (text) {
             ChatHandler.infoAlert("Giggity, Giggity!")
         },
+        enemies: function (text){
+          database.ref().child('location_rooms')
+            .child('location_monsters')
+            .child(PlayerData.playerLocation)
+            .child('list')
+            .once('value', function(snapshot){
+              ChatHandler.infoAlert("You look for hostile beings and find...");
+              Utils.asyncLoop(snapshot.val().length ,function(loop){
+                var monster = loop.iteration();
+                if(snapshot.val()[monster].name == 'unnamed'){
+                  AjaxCalls.getRandomName(function(newName){
+                    database.ref().child('location_rooms')
+                      .child('location_monsters')
+                      .child(PlayerData.playerLocation)
+                      .child('list')
+                      .child(monster).update({
+                        name: newName
+                      });
+                     ChatHandler.listItem((snapshot.val()[monster].type + ' - ' + newName), monster);
+                  });
+                } else {
+                  ChatHandler.listItem((snapshot.val()[monster].type + ' - ' + snapshot.val()[monster].name), monster);
+                }
+                loop.next();
+              });
+            });
+        },
+        wipe: function(text){
+          this.clear();
+          this.reload();
+        },
         //Shortcut commands.
+        w: function(text){
+          this.wipe(text);
+        },
+        e: function(text){
+          this.enemies(text);
+        },
         t: function (text) {
             this.travel(text);
         },
@@ -345,6 +384,7 @@
 
     //jQuery on-ready.
     $(function () {
+        Login.pageLoad(PlayerData.initPlayer);
         $("#charCreation").toggle();
         $('#chatForm').on('submit', function (event) {
             event.preventDefault();

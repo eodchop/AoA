@@ -2,8 +2,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 const databaseRef = admin.database().ref();
-// Create and Deploy Your First Cloud Functions
-// https://firebase.google.com/docs/functions/write-firebase-functions
+
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -24,12 +23,17 @@ exports.respawnMonsters = functions.https.onRequest((request, response) => {
       var levelCap = currentLocation.level_cap;
       var enemiesList = currentLocation.list;
       var maxEnemies = currentLocation.max;
+      //Loop through all up to max and check if uniqe id exists, if not, add.
       if(Object.keys(enemiesList).length < maxEnemies){
         monstersRef.orderByChild('level').equalTo(levelCap).once('value', function(snapshotMon){
-          console.log(location);
-          var monsters = snapshotMon.val();
-          var newEnemy = getRandomProp(monsters);
-          locationMonstersRef.child(location).child('list').push(newEnemy);
+          for(var i = 1; i <= maxEnemies; i++){
+            if(enemiesList[i] == null){
+              var monsters = snapshotMon.val();
+              var newEnemy = getRandomProp(monsters);
+              newEnemy.name = 'unnamed';
+              locationMonstersRef.child(location).child('list').child(i).set(newEnemy);
+            }
+          }
         })
       }
     });

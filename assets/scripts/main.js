@@ -23,6 +23,101 @@ var userInfo = {
     }
 }
 var database = firebase.database();
+//Utility functions that come in handy everywhere.
+var Utils = {
+    toTitleCase: function(str) {
+        return str.replace(/\w\S*/g, function(txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    },
+    locationDataReformat: function(locationString) {
+        locationString = locationString.replace("_", " ");
+        locationString = Utils.toTitleCase(locationString);
+        return locationString;
+    },
+    reformatToLocationData: function(locationString) {
+        locationString = locationString.toLowerCase();
+        locationString = locationString.replace(" ", "_");
+        return locationString;
+    },
+    isEmptyObj: function(obj) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    },
+    xmlToJson: function(xml) {
+
+    	// Create the return object
+    	var obj = {};
+
+    	if (xml.nodeType == 1) { // element
+    		// do attributes
+    		if (xml.attributes.length > 0) {
+    		obj["@attributes"] = {};
+    			for (var j = 0; j < xml.attributes.length; j++) {
+    				var attribute = xml.attributes.item(j);
+    				obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+    			}
+    		}
+    	} else if (xml.nodeType == 3) { // text
+    		obj = xml.nodeValue;
+    	}
+
+    	// do children
+    	// If just one text node inside
+    	if (xml.hasChildNodes() && xml.childNodes.length === 1 && xml.childNodes[0].nodeType === 3) {
+    		obj = xml.childNodes[0].nodeValue;
+    	}
+    	else if (xml.hasChildNodes()) {
+    		for(var i = 0; i < xml.childNodes.length; i++) {
+    			var item = xml.childNodes.item(i);
+    			var nodeName = item.nodeName;
+    			if (typeof(obj[nodeName]) == "undefined") {
+    				obj[nodeName] = this.xmlToJson(item);
+    			} else {
+    				if (typeof(obj[nodeName].push) == "undefined") {
+    					var old = obj[nodeName];
+    					obj[nodeName] = [];
+    					obj[nodeName].push(old);
+    				}
+    				obj[nodeName].push(this.xmlToJson(item));
+    			}
+    		}
+    	}
+    	return obj;
+    },
+    asyncLoop: function(iterations, func) {
+        var index = 0;
+        var done = false;
+        var loop = {
+            next: function() {
+                if (done) {
+                    return;
+                }
+
+                if (index < iterations) {
+                    index++;
+                    func(loop);
+
+                } else {
+                    done = true;
+                }
+            },
+
+            iteration: function() {
+                return index;
+            },
+
+            break: function() {
+                done = true;
+            }
+        };
+        loop.next();
+        return loop;
+    }
+}
 //A simple wrapper class to make ajax calls to the api's we use a little
 //bit easier.
 class AjaxCalls {
@@ -39,6 +134,19 @@ class AjaxCalls {
         }).done(function(data) {
             AjaxCalls.dndByURLAPI(data.results[0].url, callback);
         })
+    }
+
+    static getRandomName(callback){
+      var baseURL = "https://www.behindthename.com/api/random.php?number=2&gender=both&surname=&all=no&usage_fntsy=1&key=cg465520?number=2&gender=both&surname=&all=no&usage_fntsy=1&key=cg465520";
+
+      $.ajax({
+          url: baseURL,
+          type: 'GET',
+          dataType: 'xml'
+      }).done(function(data) {
+        var newName = Utils.xmlToJson(data).response.names.name;
+        callback(newName[0] + " " + newName[1]);
+      })
     }
 
     static dndByURLAPI(urlToUse, callback) {
@@ -117,10 +225,11 @@ $(document).ready(function() {
         $("#playerClass").html(characterClass);
     });
 
-    //------------pulls command menu from left, populates from command object-----------//
+    //------------on click to generate command list on command Modal-----------//
+
+
 
     $('.slideout-menu-toggle').on('click', function(event) {
-        console.log("clicked");
         event.preventDefault();
 
         var slideoutMenu = $('.slideout-menu');
@@ -138,8 +247,8 @@ $(document).ready(function() {
                     //console.log(i + " -> " + commands[i].syntax + commands[i].description);
                     var commandEntry = $("<p class='commandText'>").html(commands[i].syntax + ": " + "<br>" + commands[i].description);
                     $("#commandBox").append(commandEntry);
-                    event.preventDefault();
                     $("#commandBtn").text("Hide Command List");
+                    event.preventDefault();
                 }
             }
 
@@ -153,6 +262,7 @@ $(document).ready(function() {
 
 
     });
+});
 
     //--------------slide out right panel for character info-------//
 
@@ -226,11 +336,6 @@ var commands = {
     do: {
         syntax: "/do",
         description: "Have your character complete an action of your choosing"
-    },
-
-    login: {
-        syntax: "/login",
-        description: "Returns your character back to the game world"
     }
 
 };
