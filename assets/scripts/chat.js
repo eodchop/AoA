@@ -134,6 +134,10 @@
         playerWeaponRef.once("value", function(snapshotWeapon) {
           var weaponStats = snapshotWeapon.val();
           var playerDamage = PlayerData.calcDamage(playerStats, weaponStats.damage_mod);
+          ChatHandler.doMessage(" attacked " + monsterData.name + " with " + Utils.locationDataReformat(weaponStats.name) + " and did " + playerDamage + " damage!");
+          monsterLocationRef.update({
+            health: (monsterData.health - playerDamage)
+          });
           if ((monsterData.health - playerDamage) > 0) {
             ChatHandler.shout(' attacks ' + playerStats.name + ' back for ' + monsterData.power + " damage!", monsterData.name);
             if (playerStats.health - monsterData.power <= 0) {
@@ -145,10 +149,7 @@
               PlayerData.playerRef.update(playerStats);
             }
           } else {
-            ChatHandler.doMessage(" attacked " + monsterData.name + " with " + Utils.locationDataReformat(weaponStats.name) + " and did " + playerDamage + " damage!");
-            monsterLocationRef.update({
-              health: (monsterData.health - playerDamage)
-            });
+            ChatHandler.doMessage(" had defeated " + monster.name! + "!");
           }
         })
 
