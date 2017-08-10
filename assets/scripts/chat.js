@@ -134,12 +134,12 @@
         playerWeaponRef.once("value", function(snapshotWeapon) {
           var weaponStats = snapshotWeapon.val();
           var playerDamage = PlayerData.calcDamage(playerStats, weaponStats.damage_mod);
-          ChatHandler.doMessage(" attacked " + monsterData.name + " with " + Utils.locationDataReformat(weaponStats.name) + " and did " + playerDamage + " damage!");
+          ChatHandler.listItem("You attacked " + monsterData.name + " with " + Utils.locationDataReformat(weaponStats.name) + " and did " + playerDamage + " damage!","->");
           monsterLocationRef.update({
             health: (monsterData.health - playerDamage)
           });
           if ((monsterData.health - playerDamage) > 0) {
-            ChatHandler.shout(' attacks ' + playerStats.name + ' back for ' + monsterData.power + " damage!", monsterData.name);
+            ChatHandler.listItem(monsterData.name + ' attacks ' + playerStats.name + ' back for ' + monsterData.power + " damage!", "<-");
             if (playerStats.health - monsterData.power <= 0) {
               PlayerData.createCharacter(playerStats.name, playerStats.description, playerStats.playerClass);
               PlayerData.changeLocation('hammerhelm_tavern');
@@ -411,8 +411,8 @@
         .child(PlayerData.playerLocation)
         .child('list')
         .once('value', function(snapshot) {
-          ChatHandler.infoAlert("You look for hostile beings and find...");
           if (snapshot.val()) {
+            ChatHandler.infoAlert("You look for hostile beings and find...");
             Utils.asyncLoop(snapshot.val().length, function(loop) {
               var monster = loop.iteration();
               if (snapshot.val()[monster]) {
