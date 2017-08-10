@@ -149,7 +149,7 @@
               PlayerData.playerRef.update(playerStats);
             }
           } else {
-            ChatHandler.doMessage(" had defeated " + monster.name! + "!");
+            ChatHandler.doMessage(" had defeated " + monsterData.name + "!");
           }
         })
 
