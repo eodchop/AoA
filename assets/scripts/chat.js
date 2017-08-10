@@ -8,6 +8,7 @@
         playerChatroomRef: {},
         playerLocationRef: {},
         chatListener: {},
+<<<<<<< HEAD
         initPlayer: function() {
             PlayerData.playerRef = database.ref().child('players').child(userInfo.uid);
             PlayerData.playerRef.once('value', function(snapshot) {
@@ -19,6 +20,27 @@
                 PlayerData.playerName = snapshot.val().name;
                 PlayerData.updateChatroom();
             });
+=======
+        initPlayer: function () {
+          PlayerData.characterExist(userInfo.uid, function (doesExsit) {
+              if (!doesExsit) {
+                  $("#charCreation").toggle();
+                  ChatHandler.infoAlert("It seems you have not created a character. Please, do so now with the character create button.");
+              } else {
+                PlayerData.playerRef = database.ref().child('players').child(userInfo.uid);
+                PlayerData.playerRef.once('value', function (snapshot) {
+                    PlayerData.playerLocation = snapshot.val().location;
+                    PlayerData.playerChatroomRef = database.ref()
+                        .child('location_rooms')
+                        .child('location_chat')
+                        .child(PlayerData.playerLocation);
+                    PlayerData.playerName = snapshot.val().name;
+                    PlayerData.updateChatroom();
+                });
+              }
+          });
+
+>>>>>>> 272cb88c1808fcb545135547654c3381c87837fe
         },
         getSurroundingLocations: function(callback) {
             database.ref()
@@ -220,6 +242,7 @@
                 if (this.commands.includes(currentCommand)) {
                     if (!PlayerData.isLoggedIn()) {
                         if (currentCommand === 'login' || currentCommand === 'li') {
+<<<<<<< HEAD
                             Login.loginUser(function() {
                                 PlayerData.characterExist(userInfo.uid, function(doesExsit) {
                                     if (!doesExsit) {
@@ -229,6 +252,10 @@
                                         PlayerData.initPlayer();
                                     }
                                 });
+=======
+                            Login.loginUser(function () {
+                              PlayerData.initPlayer();
+>>>>>>> 272cb88c1808fcb545135547654c3381c87837fe
                             });
                         } else {
                             ChatHandler.infoAlert("You are not logged in. Use /login (make sure popups are enabled)");
@@ -241,15 +268,27 @@
                 }
             } else {
                 if (PlayerData.isLoggedIn()) {
-                    this.say(input);
+                  PlayerData.characterExist(userInfo.uid, function(doesExsit){
+                    if(doesExsit){
+                      InputHandler.say(input);
+                    } else {
+                      ChatHandler.infoAlert("It seems you have not created a character. Please, do so now with the character create button.");
+                    }
+                  });
                 } else {
                     ChatHandler.infoAlert("You are not logged in. Use /login (make sure popups are enabled)");
                 }
             }
         },
         //Commands
+<<<<<<< HEAD
         say: function(text) {
+=======
+        say: function (text) {
+          if(text !== ''){
+>>>>>>> 272cb88c1808fcb545135547654c3381c87837fe
             ChatHandler.playerMessage(text);
+          }  
         },
         help: function(text) {
             ChatHandler.infoAlert("TODO: Fill in help message.");

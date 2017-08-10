@@ -2,6 +2,8 @@
 var provider = new firebase.auth.GoogleAuthProvider();
 var Login = {
   pageLoad: function(callback){
+    console.log("Page Load");
+    console.log(userInfo);
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
@@ -38,6 +40,8 @@ var Login = {
     });
   },
   loginUser: function(callback) {
+    console.log("Login User");
+    console.log(userInfo);
     firebase.auth().signInWithRedirect(provider);
     callback();
   },
