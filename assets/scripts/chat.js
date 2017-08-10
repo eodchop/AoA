@@ -1,5 +1,5 @@
 //Wrapper function to hide variables.
-(function () {
+(function() {
     var PlayerData = {
         //A static test player that will be dynamic later on.
         playerRef: {},
@@ -8,9 +8,9 @@
         playerChatroomRef: {},
         playerLocationRef: {},
         chatListener: {},
-        initPlayer: function () {
+        initPlayer: function() {
             PlayerData.playerRef = database.ref().child('players').child(userInfo.uid);
-            PlayerData.playerRef.once('value', function (snapshot) {
+            PlayerData.playerRef.once('value', function(snapshot) {
                 PlayerData.playerLocation = snapshot.val().location;
                 PlayerData.playerChatroomRef = database.ref()
                     .child('location_rooms')
@@ -20,21 +20,21 @@
                 PlayerData.updateChatroom();
             });
         },
-        getSurroundingLocations: function (callback) {
+        getSurroundingLocations: function(callback) {
             database.ref()
                 .child('location_rooms')
                 .child('locations')
                 .child(PlayerData.playerLocation)
-                .once('value', function (snapshot) {
+                .once('value', function(snapshot) {
                     callback(snapshot.val());
                 });
         },
-        changeLocation: function (newLocation) {
+        changeLocation: function(newLocation) {
             PlayerData.playerRef.update({
                 location: newLocation
             });
             ChatHandler.clearChat();
-            PlayerData.playerRef.once('value', function (snapshot) {
+            PlayerData.playerRef.once('value', function(snapshot) {
                 PlayerData.playerLocation = snapshot.val().location;
                 PlayerData.playerChatroomRef = database.ref()
                     .child('location_rooms')
@@ -43,27 +43,27 @@
                 PlayerData.updateChatroom();
             })
         },
-        updateChatroom: function () {
+        updateChatroom: function() {
             PlayerData.playerChatroomRef.off('child_added');
-            PlayerData.chatListener = PlayerData.playerChatroomRef.limitToLast(50).on('child_added', function (snapshot) {
+            PlayerData.chatListener = PlayerData.playerChatroomRef.limitToLast(50).on('child_added', function(snapshot) {
                 ChatHandler.pushMessageLocal(snapshot.val());
                 SoundManager.playMessagePopOnce();
             })
         },
-        isLoggedIn: function () {
+        isLoggedIn: function() {
             if ($.isEmptyObject(userInfo.displayName)) {
                 return false;
             }
             return true;
         },
-        characterExist: function (uid, callback) {
+        characterExist: function(uid, callback) {
             var usersRef = database.ref().child("players");
-            usersRef.child(userInfo.uid).once('value', function (snapshot) {
+            usersRef.child(userInfo.uid).once('value', function(snapshot) {
                 var exists = (snapshot.val() !== null);
                 callback(exists);
             });
         },
-        createCharacter: function (charName, charDesc, charClass) {
+        createCharacter: function(charName, charDesc, charClass) {
             if (PlayerData.isLoggedIn()) {
                 var charRef = database.ref().child('players');
                 charRef.update({
@@ -76,37 +76,38 @@
                 });
             }
         }
+
     }
     var ChatHandler = {
         chatMessages: [],
-        populateChat: function () {
+        populateChat: function() {
             $("#textWindow").empty();
             for (message in this.chatMessages) {
                 $('#textWindow').append(this.chatMessages[message]);
             }
         },
-        showScroll: function () {
+        showScroll: function() {
             $("#textWindow").css('overflow-y', 'overlay');
         },
-        hideScroll: function () {
+        hideScroll: function() {
             $("#textWindow").css('overflow-y', 'hidden');
         },
-        pushMessageLocal: function (message) {
+        pushMessageLocal: function(message) {
             this.chatMessages.push(message);
             this.populateChat();
             this.updateChatScroll();
         },
-        pushMessagePublic: function (message) {
+        pushMessagePublic: function(message) {
             PlayerData.playerChatroomRef.push(message);
             this.updateChatScroll();
         },
-        infoAlert: function (message) {
+        infoAlert: function(message) {
             var alert = $("<p>");
             alert.text(message);
             alert.addClass("infoAlert");
             this.pushMessageLocal(alert);
         },
-        listItem: function (message, indi) {
+        listItem: function(message, indi) {
             indi = indi || "~";
             var newItem = $("<p>");
             var itemIndi = $("<span>");
@@ -118,7 +119,7 @@
             newItem.prepend("&emsp;");
             this.pushMessageLocal(newItem);
         },
-        playerMessage: function (message) {
+        playerMessage: function(message) {
             var playerName = $("<span>");
             var fullMessage = $("<p>");
             var messageText = $("<span>");
@@ -133,7 +134,7 @@
             fullMessage.append("<br>");
             ChatHandler.pushMessagePublic(fullMessage.html());
         },
-        doMessage: function (message) {
+        doMessage: function(message) {
             var action = $("<p>");
             var playerMessage = $("<span>");
             var indicator = $("<span>")
@@ -147,16 +148,16 @@
             action.append("<br>");
             ChatHandler.pushMessagePublic(action.html());
         },
-        updateChatScroll: function () {
+        updateChatScroll: function() {
             $("#textWindow").scrollTop($("#textWindow").prop("scrollHeight"));
         },
-        clearChat: function () {
+        clearChat: function() {
             this.chatMessages = [];
             $("#textWindow").empty();
         },
-        reloadChat: function () {
+        reloadChat: function() {
             this.chatMessages = [];
-            PlayerData.playerChatroomRef.once('value', function (snapshot) {
+            PlayerData.playerChatroomRef.once('value', function(snapshot) {
                 for (message in snapshot.val()) {
                     ChatHandler.chatMessages.push(snapshot.val()[message]);
                 }
@@ -164,13 +165,13 @@
                 ChatHandler.updateChatScroll();
             })
         },
-        searchArea: function (area, callback) {
+        searchArea: function(area, callback) {
             database.ref().child("location_rooms")
                 .child("location_items")
                 .child(area)
-                .once("value", function (locationItems) {
+                .once("value", function(locationItems) {
                     database.ref().child('items')
-                        .once('value', function (items) {
+                        .once('value', function(items) {
                             for (locItem in locationItems.val()) {
                                 if (locationItems.val()[locItem] in items.val()) {
                                     callback(items.val()[locationItems.val()[locItem]]);
@@ -179,14 +180,14 @@
                         });
                 })
         },
-        searchItem: function (area, item, callback) {
+        searchItem: function(area, item, callback) {
             item = item.toLowerCase();
             database.ref().child("location_rooms")
                 .child("location_items")
                 .child(area)
-                .once("value", function (locationItems) {
+                .once("value", function(locationItems) {
                     database.ref().child('items')
-                        .once('value', function (items) {
+                        .once('value', function(items) {
                             if (locationItems.val().includes(item)) {
                                 if (items.val().hasOwnProperty(item)) {
                                     callback(items.val()[item]);
@@ -202,9 +203,9 @@
         commands: ['help', 'h', 'say', 's', 'map', 'm',
             'travel', 't', 'clear', 'c', 'reload', 'r',
             'do', 'd', 'inspect', 'i', 'login', 'li', 'logout', 'lo', 'giggity',
-             'g', 'enemies', 'e', 'wipe', 'w'
+            'g', 'enemies', 'e', 'wipe', 'w', 'players'
         ],
-        parseText: function (input) {
+        parseText: function(input) {
             input = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
             var currentCommand = '';
             var message = '';
@@ -219,8 +220,8 @@
                 if (this.commands.includes(currentCommand)) {
                     if (!PlayerData.isLoggedIn()) {
                         if (currentCommand === 'login' || currentCommand === 'li') {
-                            Login.loginUser(function () {
-                                PlayerData.characterExist(userInfo.uid, function (doesExsit) {
+                            Login.loginUser(function() {
+                                PlayerData.characterExist(userInfo.uid, function(doesExsit) {
                                     if (!doesExsit) {
                                         $("#charCreation").toggle();
                                         ChatHandler.infoAlert("It seems you have not created a character. Please, do so now with the character create button.");
@@ -247,25 +248,36 @@
             }
         },
         //Commands
-        say: function (text) {
+        say: function(text) {
             ChatHandler.playerMessage(text);
         },
-        help: function (text) {
+        help: function(text) {
             ChatHandler.infoAlert("TODO: Fill in help message.");
         },
-        map: function (text) {
+        map: function(text) {
             ChatHandler.infoAlert("Locations surrounding " + Utils.locationDataReformat(PlayerData.playerLocation) + ": ");
             var messageP = $("<p>")
 
-            PlayerData.getSurroundingLocations(function (data) {
+            PlayerData.getSurroundingLocations(function(data) {
                 for (loc in data) {
                     ChatHandler.listItem(Utils.locationDataReformat(loc));
                 }
             });
         },
-        travel: function (text) {
+        players: function(text) {
+            ChatHandler.infoAlert("Players at " + Utils.locationDataReformat(PlayerData.playerLocation) + ": ");
+            var messageP = $("<p>")
+
+            PlayerData.getNearPlayers(function(data) {
+                for (loc in data) {
+                    ChatHandler.listItem(Utils.locationDataReformat(loc));
+                }
+            });
+        },
+
+        travel: function(text) {
             var location = Utils.reformatToLocationData(text);
-            PlayerData.getSurroundingLocations(function (surrounding) {
+            PlayerData.getSurroundingLocations(function(surrounding) {
                 if (surrounding.hasOwnProperty(location)) {
                     PlayerData.changeLocation(location);
                 } else {
@@ -274,129 +286,129 @@
                 }
             });
         },
-        clear: function (text) {
+        clear: function(text) {
             ChatHandler.clearChat();
         },
-        reload: function (text) {
+        reload: function(text) {
             ChatHandler.reloadChat();
         },
-        do: function (text) {
+        do: function(text) {
             ChatHandler.doMessage(text);
         },
-        login: function (text) {
+        login: function(text) {
             ChatHandler.infoAlert("You are already logged in.");
         },
-        logout: function (text) {
-            Login.logoutUser(function () {
+        logout: function(text) {
+            Login.logoutUser(function() {
                 ChatHandler.clearChat();
                 ChatHandler.infoAlert("You are now logged out!");
                 userInfo.clear();
             });
         },
-        inspect: function (text) {
+        inspect: function(text) {
             if (text === "") {
                 ChatHandler.infoAlert("You look around and see the following;");
-                ChatHandler.searchArea(PlayerData.playerLocation, function (data) {
+                ChatHandler.searchArea(PlayerData.playerLocation, function(data) {
                     ChatHandler.listItem(data.name);
                 });
             } else {
-                ChatHandler.searchItem(PlayerData.playerLocation, text, function (data) {
+                ChatHandler.searchItem(PlayerData.playerLocation, text, function(data) {
                     $("#inspectName").text(data.name);
                     $("#inspectDesc").text(data.description);
                 });
             }
         },
-        giggity: function (text) {
+        giggity: function(text) {
             ChatHandler.infoAlert("Giggity, Giggity!")
         },
-        enemies: function (text){
-          database.ref().child('location_rooms')
-            .child('location_monsters')
-            .child(PlayerData.playerLocation)
-            .child('list')
-            .once('value', function(snapshot){
-              ChatHandler.infoAlert("You look for hostile beings and find...");
-              Utils.asyncLoop(snapshot.val().length ,function(loop){
-                var monster = loop.iteration();
-                if(snapshot.val()[monster].name == 'unnamed'){
-                  AjaxCalls.getRandomName(function(newName){
-                    database.ref().child('location_rooms')
-                      .child('location_monsters')
-                      .child(PlayerData.playerLocation)
-                      .child('list')
-                      .child(monster).update({
-                        name: newName
-                      });
-                     ChatHandler.listItem((snapshot.val()[monster].type + ' - ' + newName), monster);
-                  });
-                } else {
-                  ChatHandler.listItem((snapshot.val()[monster].type + ' - ' + snapshot.val()[monster].name), monster);
-                }
-                loop.next();
-              });
-            });
+        enemies: function(text) {
+            database.ref().child('location_rooms')
+                .child('location_monsters')
+                .child(PlayerData.playerLocation)
+                .child('list')
+                .once('value', function(snapshot) {
+                    ChatHandler.infoAlert("You look for hostile beings and find...");
+                    Utils.asyncLoop(snapshot.val().length, function(loop) {
+                        var monster = loop.iteration();
+                        if (snapshot.val()[monster].name == 'unnamed') {
+                            AjaxCalls.getRandomName(function(newName) {
+                                database.ref().child('location_rooms')
+                                    .child('location_monsters')
+                                    .child(PlayerData.playerLocation)
+                                    .child('list')
+                                    .child(monster).update({
+                                        name: newName
+                                    });
+                                ChatHandler.listItem((snapshot.val()[monster].type + ' - ' + newName), monster);
+                            });
+                        } else {
+                            ChatHandler.listItem((snapshot.val()[monster].type + ' - ' + snapshot.val()[monster].name), monster);
+                        }
+                        loop.next();
+                    });
+                });
         },
-        wipe: function(text){
-          this.clear();
-          this.reload();
+        wipe: function(text) {
+            this.clear();
+            this.reload();
         },
         //Shortcut commands.
-        w: function(text){
-          this.wipe(text);
+        w: function(text) {
+            this.wipe(text);
         },
-        e: function(text){
-          this.enemies(text);
+        e: function(text) {
+            this.enemies(text);
         },
-        t: function (text) {
+        t: function(text) {
             this.travel(text);
         },
-        m: function (text) {
+        m: function(text) {
             this.map(text);
         },
-        s: function (text) {
+        s: function(text) {
             this.say(text);
         },
-        h: function (text) {
+        h: function(text) {
             this.help(text);
         },
-        c: function (text) {
+        c: function(text) {
             this.clear(text);
         },
-        r: function (text) {
+        r: function(text) {
             this.reload(text);
         },
-        d: function (text) {
+        d: function(text) {
             this.do(text);
         },
-        i: function (text) {
+        i: function(text) {
             this.inspect(text);
         },
-        li: function (text) {
+        li: function(text) {
             this.login(text);
         },
-        lo: function (text) {
+        lo: function(text) {
             this.logout(text);
         },
-        g: function (text) {
+        g: function(text) {
             this.giggity(text);
         }
     };
 
     //jQuery on-ready.
-    $(function () {
+    $(function() {
         Login.pageLoad(PlayerData.initPlayer);
         $("#charCreation").toggle();
-        $('#chatForm').on('submit', function (event) {
+        $('#chatForm').on('submit', function(event) {
             event.preventDefault();
             InputHandler.parseText($('#commandInput').val().trim());
             $('#commandInput').val('');
         })
-        $("#textWindow").on("mouseenter", function () {
+        $("#textWindow").on("mouseenter", function() {
             ChatHandler.showScroll();
-        }).on("mouseleave", function () {
+        }).on("mouseleave", function() {
             ChatHandler.hideScroll();
         });
-        $("#charLoadBtn").on("click", function () {
+        $("#charLoadBtn").on("click", function() {
             var name = $("#playerName").val();
             var desc = $("#playerDescription").val();
             var charClass = "Placeholder";

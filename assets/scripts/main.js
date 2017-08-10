@@ -267,11 +267,19 @@ $(document).ready(function() {
 
     });
 
+
+    //-----------mute chat-----------------//
+
 });
 
 //---building command object to append to user instruction modal---//
 
 var commands = {
+
+    login: {
+        syntax: "/login or /l",
+        description: "Use to log into game if you've created a character"
+    },
 
     say: {
         syntax: "/say or /s",
@@ -310,6 +318,11 @@ var commands = {
     do: {
         syntax: "/do",
         description: "Have your character complete an action of your choosing"
+    },
+
+    players: {
+        syntax:"/players",
+        description:"Displays a list of players in the same location"
     }
 
 };
@@ -340,7 +353,7 @@ function getWeapon() {
 
 function getGif() {
 
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=barbarian&limit=10&api_key=dc6zaTOxFJmzC";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=conan&limit=10&api_key=dc6zaTOxFJmzC";
 
     $.ajax({
         url: queryURL,
