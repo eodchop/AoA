@@ -159,32 +159,6 @@ class AjaxCalls {
     }
 }
 
-//Utility functions that come in handy everywhere.
-var Utils = {
-    toTitleCase: function(str) {
-        return str.replace(/\w\S*/g, function(txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        });
-    },
-    locationDataReformat: function(locationString) {
-        locationString = locationString.replace("_", " ");
-        locationString = Utils.toTitleCase(locationString);
-        return locationString;
-    },
-    reformatToLocationData: function(locationString) {
-        locationString = locationString.toLowerCase();
-        locationString = locationString.replace(" ", "_");
-        return locationString;
-    },
-    isEmptyObj: function(obj) {
-        for (var key in obj) {
-            if (obj.hasOwnProperty(key))
-                return false;
-        }
-        return true;
-    }
-};
-
 var userCharacter = {
 
     name: "",
