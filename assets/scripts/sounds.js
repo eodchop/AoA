@@ -3,7 +3,7 @@ var SoundManager = {
   playMessagePopOnce: function(){
     if(SoundManager.messagePop.paused){
       SoundManager.messagePop.currentTime = 0;
-      SoundManager.messagePop.play();
+      //SoundManager.messagePop.play();
     } else {
       SoundManager.messagePop.pause();
     }

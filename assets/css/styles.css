@@ -9,21 +9,21 @@ body {
   src: local('aoaFont'), url("../images/aoaFont.ttf") format('truetype');
 }
 
-.stone { 
-    
+.stone {
+
     line-height: 60px;
     font-family: "aoaFont", "Helvetica", sans-serif;
     font-size: 50px;
     font-weight: bold;
     text-align: center;
-    margin-left: 30px; 
+    margin-left: 30px;
 }
 
-.stone1 { 
+.stone1 {
     color: #333;
     background-color: #666;
     font-weight:bold;
-    text-shadow: 0px 1px 0px rgba(255,255,255,.5); 
+    text-shadow: 0px 1px 0px rgba(255,255,255,.5);
 }
 
 .page-header{
@@ -168,18 +168,21 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
 .doAction{
   color: #d4d684;
 }
+.shout{
+  color: #f48342;
+}
 
 /*fullscreen*/
 
 
 #mainWindow.fullscreen{
-    z-index: 10; 
-    width: 100%; 
-    height: 100%; 
-    position: fixed; 
-    top: 0; 
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
-    bottom:0; 
+    bottom:0;
     right:0;
  }
 

@@ -166,11 +166,6 @@ var userCharacter = {
     description: "",
     characterClass: "",
     //example placeholder stats
-    str: 0,
-    dex: 0,
-    health: 0,
-    constitution: 0,
-
 };
 
 

@@ -2,8 +2,6 @@
 var provider = new firebase.auth.GoogleAuthProvider();
 var Login = {
   pageLoad: function(callback){
-    console.log("Page Load");
-    console.log(userInfo);
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
