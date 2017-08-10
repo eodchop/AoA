@@ -8,19 +8,6 @@
         playerChatroomRef: {},
         playerLocationRef: {},
         chatListener: {},
-<<<<<<< HEAD
-        initPlayer: function() {
-            PlayerData.playerRef = database.ref().child('players').child(userInfo.uid);
-            PlayerData.playerRef.once('value', function(snapshot) {
-                PlayerData.playerLocation = snapshot.val().location;
-                PlayerData.playerChatroomRef = database.ref()
-                    .child('location_rooms')
-                    .child('location_chat')
-                    .child(PlayerData.playerLocation);
-                PlayerData.playerName = snapshot.val().name;
-                PlayerData.updateChatroom();
-            });
-=======
         initPlayer: function () {
           PlayerData.characterExist(userInfo.uid, function (doesExsit) {
               if (!doesExsit) {
@@ -40,7 +27,6 @@
               }
           });
 
->>>>>>> 272cb88c1808fcb545135547654c3381c87837fe
         },
         getSurroundingLocations: function(callback) {
             database.ref()
@@ -242,20 +228,8 @@
                 if (this.commands.includes(currentCommand)) {
                     if (!PlayerData.isLoggedIn()) {
                         if (currentCommand === 'login' || currentCommand === 'li') {
-<<<<<<< HEAD
-                            Login.loginUser(function() {
-                                PlayerData.characterExist(userInfo.uid, function(doesExsit) {
-                                    if (!doesExsit) {
-                                        $("#charCreation").toggle();
-                                        ChatHandler.infoAlert("It seems you have not created a character. Please, do so now with the character create button.");
-                                    } else {
-                                        PlayerData.initPlayer();
-                                    }
-                                });
-=======
                             Login.loginUser(function () {
                               PlayerData.initPlayer();
->>>>>>> 272cb88c1808fcb545135547654c3381c87837fe
                             });
                         } else {
                             ChatHandler.infoAlert("You are not logged in. Use /login (make sure popups are enabled)");
@@ -281,14 +255,10 @@
             }
         },
         //Commands
-<<<<<<< HEAD
-        say: function(text) {
-=======
         say: function (text) {
           if(text !== ''){
->>>>>>> 272cb88c1808fcb545135547654c3381c87837fe
             ChatHandler.playerMessage(text);
-          }  
+          }
         },
         help: function(text) {
             ChatHandler.infoAlert("TODO: Fill in help message.");
@@ -307,13 +277,11 @@
             ChatHandler.infoAlert("Players at " + Utils.locationDataReformat(PlayerData.playerLocation) + ": ");
             var messageP = $("<p>")
 
-            PlayerData.getNearPlayers(function(data) {
-                for (loc in data) {
-                    ChatHandler.listItem(Utils.locationDataReformat(loc));
-                }
-            });
-        },
+          players.orderByChild("name").val();
 
+         
+
+        },
         travel: function(text) {
             var location = Utils.reformatToLocationData(text);
             PlayerData.getSurroundingLocations(function(surrounding) {
