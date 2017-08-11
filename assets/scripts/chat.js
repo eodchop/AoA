@@ -443,8 +443,6 @@
                         $("#enemyType").text("Type: " + snapshot.val().type);
                         $("#enemyDescription").text(snapshot.val().description);
                         $("#enemyHealth").text("Health: " + snapshot.val().health);
-                      } else {
-                        ChatHandler.infoAlert("You did not enter a correct enemy.");
                       }
                     })
                     return;
