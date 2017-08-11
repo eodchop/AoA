@@ -371,7 +371,7 @@
       var location = Utils.reformatToLocationData(text);
       PlayerData.getSurroundingLocations(function(surrounding) {
         if (surrounding.hasOwnProperty(location)) {
-          ChatHandler.shout(" has travled to " + location, userInfo.name);
+          ChatHandler.shout(" has travled to " + Utils.locationDataReformat(location), userInfo.name);
           PlayerData.changeLocation(location);
         } else {
           ChatHandler.infoAlert("You did not enter a correct location.");
