@@ -28,6 +28,7 @@
     playerChatroomRef: {},
     playerLocationRef: {},
     lastEnemyRef: null,
+    lastPlayerRef: null,
     initPlayer: function() {
       PlayerData.characterExist(userInfo.uid, function(doesExsit) {
         if (!doesExsit) {
@@ -35,6 +36,9 @@
           ChatHandler.infoAlert("It seems you have not created a character. Please, do so now with the character create button.");
         } else {
           PlayerData.playerRef = database.ref().child('players').child(userInfo.uid);
+          PlayerData.playerRef.update({
+            isLoggedIn: true
+          })
           PlayerData.playerRef.once('value', function(snapshot) {
             PlayerData.playerLocation = snapshot.val().location;
             PlayerData.playerChatroomRef = database.ref()
@@ -137,7 +141,7 @@
         playerWeaponRef.once("value", function(snapshotWeapon) {
           var weaponStats = snapshotWeapon.val();
           var playerDamage = PlayerData.calcDamage(playerStats, weaponStats.damage_mod);
-          ChatHandler.listItem("You attacked " + monsterData.name + " with " + Utils.locationDataReformat(weaponStats.name) + " and did " + playerDamage + " damage!","->");
+          ChatHandler.listItem("You attacked " + monsterData.name + " with " + Utils.locationDataReformat(weaponStats.name) + " and did " + playerDamage + " damage!", "->");
           monsterLocationRef.update({
             health: (monsterData.health - playerDamage)
           });
@@ -301,7 +305,8 @@
     commands: ['help', 'h', 'say', 's', 'map', 'm',
       'travel', 't', 'clear', 'c', 'reload', 'r',
       'do', 'd', 'inspect', 'i', 'login', 'li', 'logout', 'lo', 'giggity',
-      'g', 'enemies', 'e', 'wipe', 'w', 'attack', 'atk', 'people', 'ppl'
+      'g', 'enemies', 'e', 'wipe', 'w', 'attack', 'atk', 'people', 'ppl',
+      'me'
     ],
     commandHistory: [],
     historyIndex: 0,
@@ -393,7 +398,9 @@
     },
     logout: function(text) {
       Login.logoutUser(function() {
-        PlayerData.playerRef.update({isLoggedIn: false});
+        PlayerData.playerRef.update({
+          isLoggedIn: false
+        });
         ChatHandler.clearChat();
         ChatHandler.infoAlert("You are now logged out!");
         userInfo.clear();
@@ -508,20 +515,41 @@
           }
         });
     },
-    people: function(text){
+    people: function(text) {
+      if (text) {
+        if(PlayerData.lastPlayerRef){
+          console.log(PlayerData.lastPlayerRef);
+          database.ref().child('players').off('value');
+        }
+        PlayerData.lastPlayerRef = database.ref().child('players').orderByChild('name').equalTo(text).on('value', function(snapshot) {
+          if (snapshot.val()) {
+            var player = snapshot.val()[Object.keys(snapshot.val())[0]];
+            $("#playerNameDisplay").text("Name: " + player.name);
+            $("#playerClass").text("Class: " + player.playerClass);
+            $("#playerDescriptionInspect").text(player.description);
+            $("#playerHealth").text("Health " + player.health);
+          } else {
+            ChatHandler.infoAlert( text + " doesn't seem to be a person in the area. Are you feeling okay?");
+          }
+        });
+      } else {
         ChatHandler.infoAlert("<People>");
-        database.ref().child('players').orderByChild('location').equalTo(PlayerData.playerLocation).once('value', function(snapshot){
-          if(snapshot.val()){
-            Object.keys(snapshot.val()).forEach(function (person){
-              if(snapshot.val()[person].isLoggedIn){
+        database.ref().child('players').orderByChild('location').equalTo(PlayerData.playerLocation).once('value', function(snapshot) {
+          if (snapshot.val()) {
+            Object.keys(snapshot.val()).forEach(function(person) {
+              if (snapshot.val()[person].isLoggedIn) {
                 ChatHandler.listItem(snapshot.val()[person].name);
               }
             })
           }
         });
+      }
     },
     //Shortcut commands.
-    ppl: function(text){
+    me: function(text){
+      this.ppl(PlayerData.playerName);
+    },
+    ppl: function(text) {
       this.people(text);
     },
     atk: function(text) {
@@ -592,24 +620,26 @@
         $("#charCreation").toggle();
       }
     });
-    $("#chatForm").on('keyup', function(event){
+    $("#chatForm").on('keyup', function(event) {
       var keycode = event.keyCode;
-      if(keycode === 40){
+      if (keycode === 40) {
         $("#commandInput").val(InputHandler.commandHistory[InputHandler.historyIndex]);
-        if(InputHandler.historyIndex < InputHandler.commandHistory.length){
+        if (InputHandler.historyIndex < InputHandler.commandHistory.length) {
           InputHandler.historyIndex++;
         }
       }
-      if(keycode === 38){
+      if (keycode === 38) {
         $("#commandInput").val(InputHandler.commandHistory[InputHandler.historyIndex]);
-        if(InputHandler.historyIndex > 0){
+        if (InputHandler.historyIndex > 0) {
           InputHandler.historyIndex--;
         }
       }
     });
-    $(window).on('unload', function(){
-      Login.logoutUser(function(){
-        PlayerData.playerRef.update({isLoggedIn: false});
+    $(window).on('unload', function() {
+      Login.logoutUser(function() {
+        PlayerData.playerRef.update({
+          isLoggedIn: false
+        });
       });
     });
   });
