@@ -600,6 +600,10 @@
   //jQuery on-ready.
   $(function() {
     Login.pageLoad(PlayerData.initPlayer);
+    SoundManager.playBackgroundMusicLoop();
+    $("#music").on('click', function(){
+      SoundManager.playBackgroundMusicLoop();
+    });
     $("#charCreation").toggle();
     $('#chatForm').on('submit', function(event) {
       event.preventDefault();

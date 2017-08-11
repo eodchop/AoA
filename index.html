@@ -28,15 +28,14 @@
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <!-- Our own JavaScript-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rasterizehtml/1.2.4/rasterizeHTML.allinone.js"></script>
-    <script type="text/javascript" src="./assets/scripts/main.js"></script>
-    <!-- Login tag-->
-    <script type="text/javascript" src="./assets/scripts/login.js"></script>
     <script type="text/javascript" src="./assets/scripts/sounds.js"></script>
+    <script type="text/javascript" src="./assets/scripts/main.js"></script>
+    <script type="text/javascript" src="./assets/scripts/login.js"></script>
+
     <script type="text/javascript" src="./assets/scripts/chat.js"></script>
     <!-- /JavaScript -->
-    <title>AoA (Another Online Adventure)</title>
+    <title>AoA</title>
 </head>
-
 <body>
     <div class="container">
         <!--Inspection Panel-->
@@ -44,28 +43,28 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div id="page-header" class="stone">
                     <h1 class="stone1" id="mainTitle">AoA</h1>
+                    <h3 class="stone1"> <small> (Another online Adventure) text based</small></h3>
                 </div>
             </div>
         </div>
         <div class="row">
             <!--Main Chat Window Section-->
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 offset-2">
-                <div id="gameBorder">
-                    <div id="mainWindow">
-                        <div id="textWindow" class="styleScroll">
-                        </div>
-                        <form id="chatForm">
-                            <input autocomplete="off" id="commandInput" type="text" placeholder="Enter commands here.">
-                        </form>
-                        <div id="hudButtons">
-                            <button class="slideout-menu-toggle" id="commandBtn">Show Command List</button>
-                            <button data-toggle="modal" data-target="#myModal" id="charCreation">
-                                Create Character
-                            </button>
-                            <button class="slideout-menu-right-toggle" id="characterBtn">Show Character Panel</button>
-                            <button type="button" id="eddieBtn">Screen Size</button>
-                            <button type="button" id="chatMute">Chat</button>
-                        </div>
+                <div id="mainWindow">
+                    <div id="textWindow" class="styleScroll">
+                    </div>
+                    <form id="chatForm">
+                        <input autocomplete="off" id="commandInput" type="text" placeholder="Enter commands here.">
+                    </form>
+                    <div id="hudButtons">
+                        <button class="slideout-menu-toggle" id="commandBtn">Show Command List</button>
+                        <button data-toggle="modal" data-target="#myModal" id="charCreation">
+                            Create Character
+                        </button>
+                        <button class="slideout-menu-right-toggle" id="characterBtn">Show Character Panel</button>
+                        <button type="button" id="eddieBtn">Screen Size</button>
+                        <button type="button" id="chatMute">Chat</button>
+                        <button type="button" id="music">Music</button>
                     </div>
                 </div>
             </div>
