@@ -272,58 +272,73 @@ $(document).ready(function() {
 var commands = {
 
     login: {
-        syntax: "/login or /l",
+        syntax: "'/login' or '/l'",
         description: "Use to log into game if you've created a character"
     },
 
     say: {
-        syntax: "/say or /s",
+        syntax: "'/say' or '/s'",
         description: "Used to say something in gobal chat"
     },
     map: {
-        syntax: "/map or /m",
+        syntax: "'/map' or '/m'",
         description: "Used to display surrounding locations to travel"
     },
 
     inspect: {
-        syntax: "/inspect",
+        syntax: "'/inspect'",
         description: "Used to gather information on things in environment"
     },
 
+    enemies: {
+        syntax: "'/enemies' or '/e'",
+        description: "Shows a list of enemies in the area which you can attack, to see information on a specific enemy, type '/e' + the number of the enemy in the command line"
+    },
+
+    attack: {
+        syntax:"'/atk' + the number of enemy you want to attack",
+        description: "Attacks the enemy corresponding to the number entered"
+    },
+
     help: {
-        syntax: "/help or /h",
+        syntax: "'/help' or '/h'",
         description: "Displays information or hints to current goal/area/objective"
     },
 
     travel: {
-        syntax: "/travel or /t",
+        syntax: "'/travel' or '/t'",
         description: "Travels to locations available from current player area"
     },
 
     clear: {
-        syntax: "/clear",
+        syntax: "'/clear'",
         description: "Clears current chat window"
     },
 
     reload: {
-        syntax: "/reload or /r",
+        syntax: "'/reload' or '/r'",
         description: "Reloads previous messages in current chat window"
     },
 
     do: {
-        syntax: "/do",
+        syntax: "'/do'",
         description: "Have your character complete an action of your choosing"
     },
 
     players: {
-        syntax:"/players",
+        syntax:"'/players'",
         description:"Displays a list of players in the same location"
+    },
+
+    wipe: {
+        syntax:"'/wipe'",
+        description:"Clears the user's local text field"
     }
 
 };
+
 //--------------API testing--------------------------//
 
-// Comic Vine API key:  11732e24163c8156a0f58620d431ff128c12be77
 
 //-----------looking at basic weapons, these return link to weapon string with nested stats---//
 function getWeapon() {
