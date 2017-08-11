@@ -13,6 +13,11 @@ body {
   src: local('aoaFont'), url("../images/aoaFont.ttf") format('truetype');
 }
 
+.small, small {
+    font-size: 40%;
+    font-weight: 300;
+}
+
 p{
   margin-bottom: 5px;
 }
