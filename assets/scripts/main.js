@@ -374,3 +374,18 @@ function getGif() {
     });
 
 }
+
+function getPic() {
+
+   // var queryURL = "https://api.flickr.com/services/feeds/photos_public.gne?tags=orc&limit=5";
+    //var queryURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=29d6f4ccf0b5c3ae814acdab08daad2b&format=json&nojsoncallback=1&text=orcs&extras=url_o";
+
+    $.ajax({
+        url: queryURL,
+        method: 'GET'
+    }).done(function(response) {
+        console.log(response);
+        
+    });
+
+}
