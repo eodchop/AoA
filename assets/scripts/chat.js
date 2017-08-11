@@ -398,6 +398,7 @@
     },
     logout: function(text) {
       Login.logoutUser(function() {
+        ChatHandler.shout(" has logged out!", userInfo.name);
         PlayerData.playerRef.update({
           isLoggedIn: false
         });
@@ -636,11 +637,7 @@
       }
     });
     $(window).on('unload', function() {
-      Login.logoutUser(function() {
-        PlayerData.playerRef.update({
-          isLoggedIn: false
-        });
-      });
+      InputHandler.logout();
     });
   });
 }())
