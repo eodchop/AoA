@@ -1,5 +1,9 @@
 body {
-  background-color: #666;
+  background-image:url("../images/bgtavern2.png");
+    -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
 }
 
 @font-face {
@@ -20,10 +24,10 @@ body {
 }
 
 .stone1 {
-    color: #333;
-    background-color: #666;
+    color: rgba(34,15,15,1);
     font-weight:bold;
-    text-shadow: 0px 1px 0px rgba(255,255,255,.5);
+    text-shadow: 0px 1px 0px #e4d1a3;
+    font-size:60px;
 }
 
 .page-header{
@@ -41,12 +45,20 @@ img {
   font-family: 'Aldrich', sans-serif;
 }
 
+#gameBorder{
+  padding: 2px;
+  border: 5px solid;
+  width:100%;
+  
+}
+
+
 #playerImage, #characterInfo, #tbdPanel {
   padding: 10px;
   border: solid 1px black;
   border-radius: 5px;
   font-family: "aoaFont";
-  background:#333;
+  background:rgba(51,51,51,0.9);
   color:white;
   border-top: 1px solid #454545;
   border-bottom: 1px solid #151515;
@@ -60,6 +72,12 @@ img {
   color: green;
   overflow-y: hidden;
   word-wrap: break-word;
+}
+
+button {
+  background:rgba(51,51,51,0.9);
+  color:#e4d1a3;
+
 }
 
 #commandInput {
@@ -82,7 +100,7 @@ img {
 .modal-content {
 font-family: "aoaFont";
 color:white;
-background-color: #333;
+background-color: rgba(51,51,51,0.9);
 text-shadow: 0px 1px 0px rgba(255,255,255,.5);
 
 }
@@ -97,7 +115,7 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
   left: -335px;
   width: 335px;
   height: 100%;
-  background: #333;
+  background: rgba(51,51,51,0.9);
   z-index: 100;
   padding:10px;
   color:white;
@@ -131,6 +149,11 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
   border-bottom: 1px solid #454545;
 }
 
+footer {
+  background-color: rgba(51,51,51,0.9);
+  width:100%;
+}
+
 
 /*---right character panel---*/
 
@@ -140,7 +163,7 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
   right: -335px;
   width: 335px;
   height: 100%;
-  background: #333;
+  background: rgba(51,51,51,0.9);
   z-index: 100;
   padding:10px;
   color:white;
@@ -151,6 +174,7 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
   background: black;
   color:white;
    border: none;
+   margin-bottom: 0;
 }
 
 /* CSS for chat area */
