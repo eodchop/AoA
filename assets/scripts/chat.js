@@ -575,14 +575,12 @@
     $("#chatForm").on('keyup', function(event){
       var keycode = event.keyCode;
       if(keycode === 40){
-        console.log('UP');
         $("#commandInput").val(InputHandler.commandHistory[InputHandler.historyIndex]);
         if(InputHandler.historyIndex < InputHandler.commandHistory.length){
           InputHandler.historyIndex++;
         }
       }
       if(keycode === 38){
-        console.log("DOWN")
         $("#commandInput").val(InputHandler.commandHistory[InputHandler.historyIndex]);
         if(InputHandler.historyIndex > 0){
           InputHandler.historyIndex--;
