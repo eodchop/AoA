@@ -38,8 +38,6 @@ var Login = {
     });
   },
   loginUser: function(callback) {
-    console.log("Login User");
-    console.log(userInfo);
     firebase.auth().signInWithRedirect(provider);
     callback();
   },
