@@ -65,13 +65,16 @@
                             <button class="slideout-menu-right-toggle" id="characterBtn">Show Character Panel</button>
                             <button type="button" id="eddieBtn">Screen Size</button>
                             <button type="button" id="chatMute">Chat</button>
+                            <a href="https://github.com/eodchop/AoA/issues" target='_blank'>
+                                <button type="button" id="submitBtn">Submit issue</button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 offset-2" id="mapPanel">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 offset-2" id="inspectPanel">
                 <div class="card">
                     <div class="card-header" id='inspectName'>
                         Inspection name...
@@ -130,22 +133,19 @@
         <!--     Working on right panel      -->
         <div class="slideout-menu-right">
             <div id="characterInfo">
+                <p id="playerNameDisplay">You have not inspected a player</p>
                 <div id="playerImage">
                     <img src="assets/images/playerPlaceholder.jpg">
                 </div>
-                <p id="playerNameDisplay">You have not inspected a player</p>
                 <p id="playerClass">Class: Unknown</p>
                 <p id="playerDescriptionInspect">Please type; /player [name]</p>
                 <p id="playerHealth">Health: ---</p>
-                <a href="https://github.com/eodchop/AoA/issues" target='_blank'>
-                    <button type="button" name="button" class="btn btn-primary btn-danger">Submit issue</button>
-                </a>
             </div>
             <div id="enemyInfo">
+                <p id="enemyNameDisplay">You have not inspected an enemy</p>
                 <div id="enemyImage">
                     <img src="assets/images/playerPlaceholder.jpg">
                 </div>
-                <p id="enemyNameDisplay">You have not inspected an enemy</p>
                 <p id="enemyType">Type: unknown</p>
                 <p id="enemyDescription">Please type; /enemy [index]</p>
                 <p id="enemyHealth">Health: ---</p>
