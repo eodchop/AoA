@@ -30,7 +30,7 @@ p{
 .stone1 {
     color: rgba(34,15,15,1);
     font-weight:bold;
-    text-shadow: 0px 1px 0px #e4d1a3;
+    text-shadow: 2px 2px 5px #e4d1a3;
     font-size:60px;
 }
 
@@ -57,20 +57,23 @@ img {
 
 .card {
   margin-top: 5px;
-  border-radius: 3px;
-  border: 1px solid transparent;
-  border-top: none;
-  border-bottom: 1px solid #DDD;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+  background-image: url("../images/parch3.jpg");
+  background-size: cover;
+   border: 5px solid;
+   font-family: 'Permanent Marker', cursive;
 }
 
+#inspectName, #inspectDesc{
+  padding:5px;
+  margin: 5px;
+}
 
 #playerImage, #characterInfo, #enemyInfo, #enemyImage {
   padding: 10px;
   border: solid 1px black;
   font-family: Helvetica, sans-serif;
   border-radius: 5px;
-  background:rgba(51,51,51,0.9);
+  background:rgba(51,51,51,0.5);
   color:white;
   border-top: 1px solid #454545;
   border-bottom: 1px solid #151515;
@@ -89,7 +92,10 @@ img {
 button {
   background:rgba(51,51,51,0.9);
   color:#e4d1a3;
+}
 
+#inspectName, #inspectDesc{
+ 
 }
 
 #commandInput {
@@ -127,7 +133,9 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
 
 }
 
-
+#commandBox{
+  font-size:18px;
+  }
 /*Sidenav Commands*/
 
 
@@ -137,11 +145,14 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
   left: -335px;
   width: 335px;
   height: 100%;
-  background: rgba(51,51,51,0.9);
+  background-image: url("../images/parch4.png");
+  background-size: cover;
   z-index: 100;
   padding:10px;
   color:white;
   overflow-y: auto;
+  text-shadow: -1px 0 black, 0 1px black,
+      1px 0 black, 0 -1px black
 }
 
 .slideout-menu h3 {
@@ -185,7 +196,8 @@ footer {
   right: -335px;
   width: 335px;
   height: 100%;
-  background: rgba(51,51,51,0.9);
+  background-image: url("../images/parch4.png");
+  background-size: cover;
   z-index: 100;
   padding:10px;
   color:white;
