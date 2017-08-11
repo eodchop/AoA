@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <!-- Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Our own css-->
@@ -50,29 +51,33 @@
         <div class="row">
             <!--Main Chat Window Section-->
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 offset-2">
-                <div id="mainWindow">
-                    <div id="textWindow" class="styleScroll">
-                    </div>
-                    <form id="chatForm">
-                        <input autocomplete="off" id="commandInput" type="text" placeholder="Enter commands here.">
-                    </form>
-                    <div id="hudButtons">
-                        <button class="slideout-menu-toggle" id="commandBtn">Show Command List</button>
-                        <button data-toggle="modal" data-target="#myModal" id="charCreation">
-                            Create Character
-                        </button>
-                        <button class="slideout-menu-right-toggle" id="characterBtn">Show Character Panel</button>
-                        <button type="button" id="eddieBtn">Screen Size</button>
-                        <button type="button" id="chatMute">Chat</button>
-                        <button type="button" id="music">Music</button>
+                <div id="gameBorder">
+                    <div id="mainWindow">
+                        <div id="textWindow" class="styleScroll">
+                        </div>
+                        <form id="chatForm">
+                            <input autocomplete="off" id="commandInput" type="text" placeholder="Enter commands here.">
+                        </form>
+                        <div id="hudButtons">
+                            <button class="slideout-menu-toggle" id="commandBtn">Show Command List</button>
+                            <button data-toggle="modal" data-target="#myModal" id="charCreation">
+                                Create Character
+                            </button>
+                            <button class="slideout-menu-right-toggle" id="characterBtn">Show Character Panel</button>
+                            <button type="button" id="eddieBtn">Screen Size</button>
+                            <button type="button" id="chatMute">Chat</button>
+                            <a href="https://github.com/eodchop/AoA/issues" target='_blank'>
+                                <button type="button" id="submitBtn">Submit issue</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 offset-2" id="mapPanel">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 offset-2" id="inspectPanel">
                 <div class="card">
-                    <div class="card-header" id='inspectName'>
+                    <div class="card-body" id='inspectName'>
                         Inspection name...
                     </div>
                     <div class="card-body" id="inspectDesc">
@@ -129,22 +134,19 @@
         <!--     Working on right panel      -->
         <div class="slideout-menu-right">
             <div id="characterInfo">
+                <p id="playerNameDisplay">You have not inspected a player</p>
                 <div id="playerImage">
                     <img src="assets/images/playerPlaceholder.jpg">
                 </div>
-                <p id="playerNameDisplay">You have not inspected a player</p>
                 <p id="playerClass">Class: Unknown</p>
                 <p id="playerDescriptionInspect">Please type; /player [name]</p>
                 <p id="playerHealth">Health: ---</p>
-                <a href="https://github.com/eodchop/AoA/issues" target='_blank'>
-                    <button type="button" name="button" class="btn btn-primary btn-danger">Submit issue</button>
-                </a>
             </div>
             <div id="enemyInfo">
+                <p id="enemyNameDisplay">You have not inspected an enemy</p>
                 <div id="enemyImage">
                     <img src="assets/images/playerPlaceholder.jpg">
                 </div>
-                <p id="enemyNameDisplay">You have not inspected an enemy</p>
                 <p id="enemyType">Type: unknown</p>
                 <p id="enemyDescription">Please type; /enemy [index]</p>
                 <p id="enemyHealth">Health: ---</p>

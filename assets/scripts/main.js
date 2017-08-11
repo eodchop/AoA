@@ -171,6 +171,8 @@ var userCharacter = {
 
 $(document).ready(function() {
 
+    $("#commandInput").focus();
+
     //---Recording Character name and Description and writing to game page--//
     $("#charLoadBtn").click(function() {
 

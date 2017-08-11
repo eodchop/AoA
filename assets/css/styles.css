@@ -13,6 +13,10 @@ body {
   src: local('aoaFont'), url("../images/aoaFont.ttf") format('truetype');
 }
 
+p{
+  margin-bottom: 5px;
+}
+
 .stone {
 
     line-height: 60px;
@@ -26,7 +30,7 @@ body {
 .stone1 {
     color: rgba(34,15,15,1);
     font-weight:bold;
-    text-shadow: 0px 1px 0px #e4d1a3;
+    text-shadow: 2px 2px 5px #e4d1a3;
     font-size:60px;
 }
 
@@ -37,7 +41,7 @@ body {
 
 img {
   width: 100%;
-  height: 200px;
+  height: 100%;
 }
 
 #textWindow {
@@ -49,20 +53,31 @@ img {
   padding: 2px;
   border: 5px solid;
   width:100%;
-  
 }
 
+.card {
+  margin-top: 5px;
+  background-image: url("../images/parch3.jpg");
+  background-size: cover;
+   border: 5px solid;
+   font-family: 'Permanent Marker', cursive;
+}
 
-#playerImage, #characterInfo, #tbdPanel {
+#inspectName, #inspectDesc{
+  padding:5px;
+  margin: 5px;
+}
+
+#playerImage, #characterInfo, #enemyInfo, #enemyImage {
   padding: 10px;
   border: solid 1px black;
+  font-family: Helvetica, sans-serif;
   border-radius: 5px;
-  font-family: "aoaFont";
-  background:rgba(51,51,51,0.9);
+  background:rgba(51,51,51,0.5);
   color:white;
   border-top: 1px solid #454545;
   border-bottom: 1px solid #151515;
-  margin:10px;
+  margin:5px;
 }
 
 #textWindow {
@@ -77,7 +92,10 @@ img {
 button {
   background:rgba(51,51,51,0.9);
   color:#e4d1a3;
+}
 
+#inspectName, #inspectDesc{
+ 
 }
 
 #commandInput {
@@ -85,11 +103,21 @@ button {
   margin-bottom: 10px
 }
 
+.commandText{
+  margin-bottom:10px;
+  border-bottom: 2px solid #222;
+  padding-bottom:5px;
+
+}
+
 #hudButtons{
   margin:0 auto;
   text-align:center;
 }
 
+#submitBtn{
+  color:red;
+}
 
 #commandBtn, #logInBtn, {
   font-size: 12px;
@@ -105,7 +133,9 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
 
 }
 
-
+#commandBox{
+  font-size:18px;
+  }
 /*Sidenav Commands*/
 
 
@@ -115,11 +145,14 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
   left: -335px;
   width: 335px;
   height: 100%;
-  background: rgba(51,51,51,0.9);
+  background-image: url("../images/parch4.png");
+  background-size: cover;
   z-index: 100;
   padding:10px;
   color:white;
   overflow-y: auto;
+  text-shadow: -1px 0 black, 0 1px black,
+      1px 0 black, 0 -1px black
 }
 
 .slideout-menu h3 {
@@ -163,7 +196,8 @@ footer {
   right: -335px;
   width: 335px;
   height: 100%;
-  background: rgba(51,51,51,0.9);
+  background-image: url("../images/parch4.png");
+  background-size: cover;
   z-index: 100;
   padding:10px;
   color:white;
