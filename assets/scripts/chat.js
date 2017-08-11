@@ -144,6 +144,7 @@
               PlayerData.createCharacter(playerStats.name, playerStats.description, playerStats.playerClass);
               PlayerData.changeLocation('hammerhelm_tavern');
               ChatHandler.shout(' had died and been reborn!');
+              InputHandler.wipe();
             } else {
               playerStats.health -= monsterData.power;
               PlayerData.playerRef.update(playerStats);
