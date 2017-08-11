@@ -28,7 +28,7 @@ exports.respawnMonsters = functions.https.onRequest((request, response) => {
       var maxEnemies = currentLocation.max;
       //Loop through all up to max and check if uniqe id exists, if not, add.
       if(Object.keys(enemiesList).length < maxEnemies){
-        monstersRef.orderByChild('level').equalTo(levelCap).once('value', function(snapshotMon){
+        monstersRef.orderByChild('level').endAt(levelCap).once('value', function(snapshotMon){
           for(var i = 1; i <= maxEnemies; i++){
             if(enemiesList[i] == null){
               var monsters = snapshotMon.val();
