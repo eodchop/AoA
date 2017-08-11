@@ -296,7 +296,7 @@ var commands = {
     },
 
     attack: {
-        syntax:"'/atk' + the number of enemy you want to attack",
+        syntax: "'/atk' + the number of enemy you want to attack",
         description: "Attacks the enemy corresponding to the number entered"
     },
 
@@ -326,13 +326,13 @@ var commands = {
     },
 
     players: {
-        syntax:"'/players'",
-        description:"Displays a list of players in the same location"
+        syntax: "'/players'",
+        description: "Displays a list of players in the same location"
     },
 
     wipe: {
-        syntax:"'/wipe'",
-        description:"Clears the user's local text field"
+        syntax: "'/wipe'",
+        description: "Clears the user's local text field"
     }
 
 };
@@ -377,15 +377,31 @@ function getGif() {
 
 function getPic() {
 
-   // var queryURL = "https://api.flickr.com/services/feeds/photos_public.gne?tags=orc&limit=5";
-    //var queryURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=29d6f4ccf0b5c3ae814acdab08daad2b&format=json&nojsoncallback=1&text=orcs&extras=url_o";
+    //var queryURL = "https://api.flickr.com/services/feeds/photos_public.gne?tags=orc&limit=5";
+    //var queryURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=29d6f4ccf0b5c3ae814acdab08daad2b&text=orcs";
+    var queryURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=29d6f4ccf0b5c3ae814acdab08daad2b&format=json&nojsoncallback=1&text=wizard&extras=url_o"
+    var apiKey = "29d6f4ccf0b5c3ae814acdab08daad2b";
 
     $.ajax({
         url: queryURL,
         method: 'GET'
     }).done(function(response) {
         console.log(response);
-        
+        console.log(response.photos.photo[0]);
+        console.log(response.photos.photo[0].farm);
+        console.log(response.photos.photo[0].server);
+        console.log(response.photos.photo[0].id);
+        console.log(response.photos.photo[0].secret);
+
+
+        var farmId = response.photos.photo[0].farm;
+        var serverId = response.photos.photo[0].server;
+        var id = response.photos.photo[0].id;
+        var secret = response.photos.photo[0].secret;
+
+        console.log("https://farm"+farmId+".staticflickr.com/"+serverId+"/"+id+"_"+secret+".jpg");
+        console.log(farmId + ", " + serverId + ", " + id + ", " + secret);
+
     });
 
 }
