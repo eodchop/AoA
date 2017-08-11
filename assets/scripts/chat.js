@@ -76,7 +76,9 @@
       PlayerData.playerChatroomRef.limitToLast(50).on('child_added', function(snapshot) {
         ChatHandler.pushMessageLocal(snapshot.val());
         SoundManager.playMessagePopOnce();
-      })
+      });
+      InputHandler.wipe();
+      ChatHandler.shout(" has arrived!", userInfo.name);
     },
     isLoggedIn: function() {
       if ($.isEmptyObject(userInfo.displayName)) {
@@ -97,6 +99,7 @@
         charRef.update({
           [userInfo.uid]: {
             name: charName,
+            isLoggedIn: true,
             description: charDesc,
             playerClass: charClass,
             exp: 0,
@@ -298,7 +301,7 @@
     commands: ['help', 'h', 'say', 's', 'map', 'm',
       'travel', 't', 'clear', 'c', 'reload', 'r',
       'do', 'd', 'inspect', 'i', 'login', 'li', 'logout', 'lo', 'giggity',
-      'g', 'enemies', 'e', 'wipe', 'w', 'attack', 'atk'
+      'g', 'enemies', 'e', 'wipe', 'w', 'attack', 'atk', 'people', 'ppl'
     ],
     commandHistory: [],
     historyIndex: 0,
@@ -368,6 +371,7 @@
       var location = Utils.reformatToLocationData(text);
       PlayerData.getSurroundingLocations(function(surrounding) {
         if (surrounding.hasOwnProperty(location)) {
+          ChatHandler.shout(" has travled to " + location, userInfo.name);
           PlayerData.changeLocation(location);
         } else {
           ChatHandler.infoAlert("You did not enter a correct location.");
@@ -389,6 +393,7 @@
     },
     logout: function(text) {
       Login.logoutUser(function() {
+        PlayerData.playerRef.update({isLoggedIn: false});
         ChatHandler.clearChat();
         ChatHandler.infoAlert("You are now logged out!");
         userInfo.clear();
@@ -503,7 +508,22 @@
           }
         });
     },
+    people: function(text){
+        ChatHandler.infoAlert("<People>");
+        database.ref().child('players').orderByChild('location').equalTo(PlayerData.playerLocation).once('value', function(snapshot){
+          if(snapshot.val()){
+            Object.keys(snapshot.val()).forEach(function (person){
+              if(snapshot.val()[person].isLoggedIn){
+                ChatHandler.listItem(snapshot.val()[person].name);
+              }
+            })
+          }
+        });
+    },
     //Shortcut commands.
+    ppl: function(text){
+      this.people(text);
+    },
     atk: function(text) {
       this.attack(text);
     },
@@ -586,6 +606,11 @@
           InputHandler.historyIndex--;
         }
       }
+    });
+    $(window).on('unload', function(){
+      Login.logoutUser(function(){
+        PlayerData.playerRef.update({isLoggedIn: false});
+      });
     });
   });
 }())
