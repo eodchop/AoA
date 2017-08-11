@@ -151,8 +151,7 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
   padding:10px;
   color:white;
   overflow-y: auto;
-  text-shadow: -1px 0 black, 0 1px black,
-      1px 0 black, 0 -1px black
+  text-shadow: 2px 2px 5px #cdd6b3;
 }
 
 .slideout-menu h3 {
