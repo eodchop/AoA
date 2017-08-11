@@ -59,6 +59,7 @@ img {
   padding: 2px;
   border: 5px solid;
   width:100%;
+  animation:pulse 1s infinite alternate;
 }
 
 .card {
@@ -285,8 +286,9 @@ footer {
    animation: 2s ease-out 0s 1 slideInFromBottom;     
 }
 
-#mainWindow {
+#mainWindow, .gameBorder {
    -webkit-animation: fadein 4s; 
+
 
 }
 
@@ -317,6 +319,11 @@ footer {
   100% {
     transform: translateX(0%);
   }
+}
+
+@keyframes pulse {
+  from { box-shadow:0px 0px 10px 3px #e4d1a3; }
+  to { box-shadow:0px 0px 20px 5px #e4d1a3; }
 }
 
 /*----animation end----*/
