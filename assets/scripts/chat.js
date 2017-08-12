@@ -1,19 +1,19 @@
 //Wrapper function to hide variables.
 (function() {
   var classBaseStats = {
-    warrior: {
+    Warrior: {
       strength: 6,
       intelligence: 2,
       dexterity: 4,
       constitution: 6
     },
-    ranger: {
+    Ranger: {
       strength: 4,
       intelligence: 4,
       dexterity: 6,
       constitution: 4
     },
-    mage: {
+    Mage: {
       strength: 2,
       intelligence: 8,
       dexterity: 4,
@@ -99,37 +99,42 @@
       });
     },
     createCharacter: function(charName, charDesc, charClass) {
-      if (PlayerData.isLoggedIn()) {
-        var charRef = database.ref().child('players');
-        charRef.update({
-          [userInfo.uid]: {
-            name: charName,
-            isLoggedIn: true,
-            description: charDesc,
-            playerClass: charClass,
-            exp: 0,
-            level: 1,
-            location: 'hammerhelm_tavern',
-            weapon: 'rusty_stick',
-            items: ['rusty_stick'],
-            stats: classBaseStats[charClass],
-            health: (classBaseStats[charClass].constitution * 5)
-          }
-        });
+      if (charName && charDesc && charClass) {
+        if (PlayerData.isLoggedIn()) {
+          var charRef = database.ref().child('players');
+          charRef.update({
+            [userInfo.uid]: {
+              name: charName,
+              isLoggedIn: true,
+              description: charDesc,
+              playerClass: charClass,
+              exp: 0,
+              level: 1,
+              location: 'hammerhelm_tavern',
+              weapon: 'rusty_stick',
+              items: ['rusty_stick'],
+              stats: classBaseStats[charClass],
+              health: (classBaseStats[charClass].constitution * 5)
+            }
+          });
+        }
+      } else {
+        ChatHandler.infoAlert("All fields are required.");
       }
     },
     calcDamage: function(playerData, weaponMod) {
       switch (playerData.playerClass) {
-        case 'warrior':
+        case 'Warrior':
           return (weaponMod * playerData.stats.strength);
           break;
-        case 'mage':
+        case 'Mage':
           return (weaponMod * playerData.stats.intelligence);
           break;
-        case 'ranger':
+        case 'Ranger':
           return (weaponMod * playerData.stats.dexterity);
           break;
         default:
+          ChatHandler.infoAlert("You did not choose a correct class.");
           break;
       }
       return 0;
@@ -520,7 +525,7 @@
     },
     people: function(text) {
       if (text) {
-        if(PlayerData.lastPlayerRef){
+        if (PlayerData.lastPlayerRef) {
           console.log(PlayerData.lastPlayerRef);
           database.ref().child('players').off('value');
         }
@@ -531,8 +536,11 @@
             $("#playerClass").text("Class: " + player.playerClass);
             $("#playerDescriptionInspect").text(player.description);
             $("#playerHealth").text("Health " + player.health);
+            $("#playerExp").text("Experince: " + player.exp);
+            $("#playerLvl").text("Level: " + player.level + " | Exp to next: " + ((player.level * 50) - player.exp));
+            $("#playerWeapon").text("Weapon: " + Utils.locationDataReformat(player.weapon));
           } else {
-            ChatHandler.infoAlert( text + " doesn't seem to be a person in the area. Are you feeling okay?");
+            ChatHandler.infoAlert(text + " doesn't seem to be a person in the area. Are you feeling okay?");
           }
         });
       } else {
@@ -549,7 +557,7 @@
       }
     },
     //Shortcut commands.
-    me: function(text){
+    me: function(text) {
       this.ppl(PlayerData.playerName);
     },
     ppl: function(text) {
@@ -601,10 +609,14 @@
 
   //jQuery on-ready.
   $(function() {
+    var characterClass = '';
     Login.pageLoad(PlayerData.initPlayer);
     SoundManager.playBackgroundMusicLoop();
-    $("#music").on('click', function(){
+    $("#music").on('click', function() {
       SoundManager.playBackgroundMusicLoop();
+    });
+    $("#classSelector li a").on("click", function() {
+      characterClass = $(this).text();
     });
     $("#charCreation").toggle();
     $('#chatForm').on('submit', function(event) {
@@ -620,9 +632,8 @@
     $("#charLoadBtn").on("click", function() {
       var name = $("#playerName").val();
       var desc = $("#playerDescription").val();
-      var charClass = "warrior";
       if (PlayerData.isLoggedIn()) {
-        PlayerData.createCharacter(name, desc, charClass);
+        PlayerData.createCharacter(name, desc, characterClass);
         PlayerData.initPlayer();
         $("#charCreation").toggle();
       }

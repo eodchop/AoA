@@ -192,17 +192,7 @@ $(document).ready(function() {
         console.log(description);
 
     });
-
-    $("#classSelector li a").click(function() {
-        characterClass = $(this).text();
-        console.log(characterClass);
-        userCharacter.characterClass = characterClass;
-        $("#playerClass").html(characterClass);
-    });
-
     //------------on click to generate command list on command Modal-----------//
-
-
 
     $('.slideout-menu-toggle').on('click', function(event) {
         event.preventDefault();
