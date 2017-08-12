@@ -196,9 +196,9 @@
                         }
                     } else {
                         PlayerData.removeDead();
-                        SoundManager.playDeathSound();
                         PlayerData.lootMonster(monsterData.exp, monsterData.drop_level, playerStats);
                         ChatHandler.doMessage(" has defeated " + monsterData.name + "!");
+                        SoundManager.playDeathSound();
                     }
                 })
 
