@@ -608,16 +608,13 @@
                         $("#playerNameDisplay").text("Name: " + player.name);
                         $("#playerClass").text("Class: " + player.playerClass);
                         $("#playerDescriptionInspect").text(player.description);
-<<<<<<< HEAD
                         $("#playerHealth").text("Health " + player.health);
                         $("#playerExp").text("Experience: " + player.exp);
-=======
                         $("#playerHealth").text(player.health + "/" + player.healthMax);
                         $('#playerHealth').attr('aria-valuenow', healthPerc).css('width', healthPerc + "%");
                         $("#playerMana").text(player.mana + "/" + player.manaMax);
                         $('#playerMana').attr('aria-valuenow', manaPerc).css('width', manaPerc + "%");
                         $("#playerExp").text("Experince: " + player.exp);
->>>>>>> 83f03b702f9af2fc1e4a78a3f99db95d433d2dee
                         $("#playerLvl").text("Level: " + player.level + " | Exp to next: " + ((player.level * 50) - player.exp));
                         $("#playerWeapon").text("Weapon: " + Utils.locationDataReformat(player.weapon));
                     } else {
