@@ -13,6 +13,7 @@
     },
     playBackgroundMusicLoop: function() {
       if (SoundManager.littleTown.paused) {
+        SoundManager.littleTown.volume = 0.3;
         SoundManager.littleTown.loop = true;
         SoundManager.littleTown.play();
       } else {

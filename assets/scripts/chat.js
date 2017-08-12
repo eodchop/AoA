@@ -52,6 +52,13 @@
             });
 
         },
+        getPlayerData: function(callback){
+          PlayerData.playerRef.once('value', function(snapshot){
+            if(snapshot.val()){
+              callback(snapshot.val());
+            }
+          })
+        },
         getSurroundingLocations: function(callback) {
             database.ref()
                 .child('location_rooms')
@@ -115,8 +122,12 @@
                             location: 'hammerhelm_tavern',
                             weapon: 'rusty_stick',
                             items: ['rusty_stick'],
+                            skills: ['sit'],
                             stats: classBaseStats[charClass],
-                            health: (classBaseStats[charClass].constitution * 5)
+                            healthMax: (classBaseStats[charClass].constitution * 5),
+                            health: (classBaseStats[charClass].constitution * 5),
+                            manaMax: (classBaseStats[charClass].intelligence * 5),
+                            mana: (classBaseStats[charClass].intelligence * 5)
                         }
                     });
                 }
@@ -160,14 +171,23 @@
             nextLevel = playerStats.level * 50;
             playerStats.exp += exp;
             if (playerStats.exp >= nextLevel) {
-                playerStats.exp = 0;
-                playerStats.level++;
-                ChatHandler.shout(' has reached level ' + playerStats.level + "!");
-                PlayerData.playerRef.update(playerStats);
+                PlayerData.levelUp(playerStats);
             } else {
                 ChatHandler.infoAlert("You gained " + exp + " experince.");
                 PlayerData.playerRef.update(playerStats);
             }
+        },
+        levelUp: function(playerStats){
+          playerStats.exp = 0;
+          playerStats.level++;
+          playerStats.stats.constitution += Utils.getRandomIntInclusive(1,2);
+          playerStats.stats.strength += Utils.getRandomIntInclusive(1,2);
+          playerStats.stats.intelligence += Utils.getRandomIntInclusive(1,2);
+          playerStats.stats.dexterity += Utils.getRandomIntInclusive(1,2);
+          playerStats.healthMax = (playerStats.stats.constitution * 5);
+          playerStats.health = playerStats.healthMax;
+          ChatHandler.shout(' has reached level ' + playerStats.level + "!");
+          PlayerData.playerRef.update(playerStats);
         },
         battle: function(monsterData, monsterLocationRef) {
             var playerStatsRef = database.ref().child('players').child(userInfo.uid);
@@ -356,7 +376,7 @@
             'travel', 't', 'clear', 'c', 'reload', 'r',
             'do', 'd', 'inspect', 'i', 'login', 'li', 'logout', 'lo', 'giggity',
             'g', 'enemies', 'e', 'wipe', 'w', 'attack', 'atk', 'people', 'ppl',
-            'me'
+            'me', 'skills'
         ],
         commandHistory: [],
         historyIndex: 0,
@@ -386,8 +406,10 @@
                     } else {
                         this[currentCommand](message);
                     }
+                } else if(Skills.skills.includes(currentCommand)){
+                  Skills.parseSkill(currentCommand, message);
                 } else {
-                    ChatHandler.infoAlert("You did not enter a correct command.");
+                    ChatHandler.infoAlert("You did not enter a correct command/skill.");
                 }
             } else {
                 if (PlayerData.isLoggedIn()) {
@@ -579,7 +601,8 @@
                         $("#playerNameDisplay").text("Name: " + player.name);
                         $("#playerClass").text("Class: " + player.playerClass);
                         $("#playerDescriptionInspect").text(player.description);
-                        $("#playerHealth").text("Health " + player.health);
+                        $("#playerHealth").text("Health " + player.health + "/" + player.healthMax);
+                        $("#playerMana").text("Health " + player.mana + "/" + player.manaMax);
                         $("#playerExp").text("Experince: " + player.exp);
                         $("#playerLvl").text("Level: " + player.level + " | Exp to next: " + ((player.level * 50) - player.exp));
                         $("#playerWeapon").text("Weapon: " + Utils.locationDataReformat(player.weapon));
@@ -599,6 +622,16 @@
                     }
                 });
             }
+        },
+        skills: function(text){
+          PlayerData.getPlayerData(function(playerInfo){
+            ChatHandler.infoAlert("<Skills>");
+            playerInfo.skills.forEach(function(skill){
+              Skills.hasSkill(skill, function(skillinfo){
+                ChatHandler.listItem(skillinfo.description, skillinfo.name);
+              });
+            })
+          });
         },
         //Shortcut commands.
         me: function(text) {
@@ -648,8 +681,48 @@
         },
         g: function(text) {
             this.giggity(text);
-        }
+        },
     };
+
+    var Skills = {
+      skills: ['sit'],
+      hasSkill: function(skill, callback){
+        PlayerData.playerRef.child('skills').once('value', function(snapshot){
+          if(snapshot.val().includes(skill)){
+            database.ref().child('skills').child(skill).once('value', function(skillSnap){
+              callback(skillSnap.val());
+            })
+          }
+        })
+      },
+      parseSkill: function(skill, target){
+        Skills.hasSkill(skill, function(skillInfo){
+          Skills[skill](target, skillInfo);
+        });
+      },
+      sit: function(target, skillInfo){
+        if(!target){
+          PlayerData.getPlayerData(function(playerInfo){
+            var newMana  = playerInfo.mana += 5;
+            var newHealth = playerInfo.health += 5;
+            if(newHealth <= playerInfo.healthMax){
+              playerInfo.health = newHealth;
+            } else {
+              playerInfo.health = playerInfo.healthMax;
+            }
+            if(newMana <= playerInfo.manaMax){
+              playerInfo.mana = newMana;
+            } else {
+              playerInfo.mana = playerInfo.manaMax;
+            }
+            PlayerData.playerRef.update(playerInfo);
+            ChatHandler.infoAlert("You gained some health and mana after taking a rest.");
+          })
+        } else {
+          ChatHandler.infoAlert("You cant make other people sit...");
+        }
+      }
+    }
 
     //jQuery on-ready.
     $(function() {
