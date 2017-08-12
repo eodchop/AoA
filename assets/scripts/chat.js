@@ -147,8 +147,10 @@
             Object.keys(monsterRoomsSnap.val()).forEach(function(mrKey){
               var monsterList = monsterRoomsSnap.val()[mrKey].list;
               for(var i = 1; i < monsterList.length; i++ ){
-                if(monsterList[i].health <= 0){
-                  monsterRoomsRef.child(mrKey).child('list').child(i).set({});
+                if(monsterList[i]){
+                  if(monsterList[i].health <= 0){
+                    monsterRoomsRef.child(mrKey).child('list').child(i).set({});
+                  }
                 }
               }
             })
@@ -481,6 +483,7 @@
                         ChatHandler.infoAlert("You look for hostile beings and find...");
                         Utils.asyncLoop(snapshot.val().length, function(loop) {
                             var monster = loop.iteration();
+                            console.log(monster);
                             if (snapshot.val()[monster]) {
                                 if (snapshot.val()[monster].name == 'unnamed') {
                                     AjaxCalls.getRandomName(function(newName) {
