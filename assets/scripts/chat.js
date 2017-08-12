@@ -93,9 +93,11 @@
     characterExist: function(uid, callback) {
       var usersRef = database.ref().child("players");
       usersRef.child(userInfo.uid).once('value', function(snapshot) {
-        var exists = snapshot.val().name;
-        console.log(exists);
-        callback(exists);
+        if(snapshot.val()){
+          callback(snapshot.val().name);
+        } else {
+          callback(null);
+        }
       });
     },
     createCharacter: function(charName, charDesc, charClass) {
