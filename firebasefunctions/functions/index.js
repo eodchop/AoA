@@ -43,7 +43,7 @@ exports.respawnMonsters = functions.https.onRequest((request, response) => {
   });
   response.status(200).send(`Success!`);
 });
-// 
+
 // exports.removeDead = functions.database.ref('/location_rooms/location_monsters').onWrite(function(event){
 //   var monsterRoomsRef = databaseRef.child('location_rooms').child('location_monsters');
 //   monsterRoomsRef.once('value', function(monsterRoomsSnap){
