@@ -33,7 +33,6 @@ exports.respawnMonsters = functions.https.onRequest((request, response) => {
             if(enemiesList[i] == null){
               var monsters = snapshotMon.val();
               var newEnemy = getRandomProp(monsters);
-              newEnemy.name = 'unnamed';
               locationMonstersRef.child(location).child('list').child(i).set(newEnemy);
             }
           }
@@ -44,17 +43,17 @@ exports.respawnMonsters = functions.https.onRequest((request, response) => {
   response.status(200).send(`Success!`);
 });
 
-exports.removeDead = functions.database.ref('/location_rooms/location_monsters').onUpdate(function(event){
-  var monsterRoomsRef = databaseRef.child('location_rooms').child('location_monsters');
-  monsterRoomsRef.once('value', function(monsterRoomsSnap){
-    Object.keys(monsterRoomsSnap.val()).forEach(function(mrKey){
-      var monsterList = monsterRoomsSnap.val()[mrKey].list;
-      for(var i = 1; i < monsterList.length; i++ ){
-        if(monsterList[i].health <= 0){
-          monsterRoomsRef.child(mrKey).child('list').child(i).set({});
-        }
-        console.log(monsterList[i]);
-      }
-    })
-  })
-});
+// exports.removeDead = functions.database.ref('/location_rooms/location_monsters').onWrite(function(event){
+//   var monsterRoomsRef = databaseRef.child('location_rooms').child('location_monsters');
+//   monsterRoomsRef.once('value', function(monsterRoomsSnap){
+//     Object.keys(monsterRoomsSnap.val()).forEach(function(mrKey){
+//       var monsterList = monsterRoomsSnap.val()[mrKey].list;
+//       for(var i = 1; i < monsterList.length; i++ ){
+//         if(monsterList[i].health <= 0){
+//           monsterRoomsRef.child(mrKey).child('list').child(i).set({});
+//         }
+//         console.log(monsterList[i]);
+//       }
+//     })
+//   })
+// });
