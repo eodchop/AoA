@@ -226,7 +226,13 @@
             var time = moment().format('LT');
             var date = moment().format('L').replace(new RegExp('[^\.]?' + moment().format('YYYY') + '.?'), '');
             var timeDisplay = date + "-" + time + " ";
-            PlayerData.playerChatroomRef.push(timeDisplay + message);
+            var timeShown =$("<p>");
+            var timeHold =$("<span>");
+            timeShown.addClass("infoAlert");
+            timeHold.addClass("infoAlert");
+            timeHold.text(timeDisplay);
+            timeShown.prepend(timeHold);
+            PlayerData.playerChatroomRef.push(timeShown.html() + message);
             this.updateChatScroll();
         },
         infoAlert: function(message) {
