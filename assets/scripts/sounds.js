@@ -26,13 +26,13 @@
       } else {
         SoundManager.deathTone.pause();
       }
-    },
-    playPlayerDeathSound: function() {
-      if (SoundManager.playerDeath.paused) {
-        SoundManager.playerDeath.currentTime = 0;
-        SoundManager.playerDeath.play();
-      } else {
-        SoundManager.PlayerDeah.pause();
-      }
-    },
+  },
+      playPlayerDeathSound: function () {
+          if (SoundManager.playerDeath.paused) {
+              SoundManager.playerDeath.currentTime = 0;
+              SoundManager.playerDeath.play();
+          } else {
+              SoundManager.playerDeath.pause();
+          }
+      },
   }
