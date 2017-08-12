@@ -1,19 +1,19 @@
 //Wrapper function to hide variables.
 (function() {
     var classBaseStats = {
-        warrior: {
+        Warrior: {
             strength: 6,
             intelligence: 2,
             dexterity: 4,
             constitution: 6
         },
-        ranger: {
+        Ranger: {
             strength: 4,
             intelligence: 4,
             dexterity: 6,
             constitution: 4
         },
-        mage: {
+        Mage: {
             strength: 2,
             intelligence: 8,
             dexterity: 4,
@@ -93,45 +93,66 @@
         characterExist: function(uid, callback) {
             var usersRef = database.ref().child("players");
             usersRef.child(userInfo.uid).once('value', function(snapshot) {
-                var exists = (snapshot.val() !== null);
-                callback(exists);
+                if (snapshot.val()) {
+                    callback(snapshot.val().name);
+                } else {
+                    callback(null);
+                }
             });
         },
         createCharacter: function(charName, charDesc, charClass) {
-            if (PlayerData.isLoggedIn()) {
-                var charRef = database.ref().child('players');
-                charRef.update({
-                    [userInfo.uid]: {
-                        name: charName,
-                        isLoggedIn: true,
-                        description: charDesc,
-                        playerClass: charClass,
-                        exp: 0,
-                        level: 1,
-                        location: 'hammerhelm_tavern',
-                        weapon: 'rusty_stick',
-                        items: ['rusty_stick'],
-                        stats: classBaseStats[charClass],
-                        health: (classBaseStats[charClass].constitution * 5)
-                    }
-                });
+            if (charName && charDesc && charClass) {
+                if (PlayerData.isLoggedIn()) {
+                    var charRef = database.ref().child('players');
+                    charRef.update({
+                        [userInfo.uid]: {
+                            name: charName,
+                            isLoggedIn: true,
+                            description: charDesc,
+                            playerClass: charClass,
+                            exp: 0,
+                            level: 1,
+                            location: 'hammerhelm_tavern',
+                            weapon: 'rusty_stick',
+                            items: ['rusty_stick'],
+                            stats: classBaseStats[charClass],
+                            health: (classBaseStats[charClass].constitution * 5)
+                        }
+                    });
+                }
+            } else {
+                ChatHandler.infoAlert("All fields are required.");
             }
         },
         calcDamage: function(playerData, weaponMod) {
             switch (playerData.playerClass) {
-                case 'warrior':
-                    return (weaponMod * playerData.stats.strength);
+                case 'Warrior':
+                    return Utils.getRandomIntInclusive(0, (weaponMod * playerData.stats.strength)) + playerData.level;;
                     break;
-                case 'mage':
-                    return (weaponMod * playerData.stats.intelligence);
+                case 'Mage':
+                    return Utils.getRandomIntInclusive(0, (weaponMod * playerData.stats.intelligence)) + playerData.level;
                     break;
-                case 'ranger':
-                    return (weaponMod * playerData.stats.dexterity);
+                case 'Ranger':
+                    return Utils.getRandomIntInclusive(0, (weaponMod * playerData.stats.dexterity)) + playerData.level;
                     break;
                 default:
+                    ChatHandler.infoAlert("You did not choose a correct class.");
                     break;
             }
             return 0;
+        },
+        lootMonster: function(exp, dropLevel, playerStats) {
+            nextLevel = playerStats.level * 50;
+            playerStats.exp += exp;
+            if (playerStats.exp >= nextLevel) {
+                playerStats.exp = 0;
+                playerStats.level++;
+                ChatHandler.shout(' has reached level ' + playerStats.level + "!");
+                PlayerData.playerRef.update(playerStats);
+            } else {
+                ChatHandler.infoAlert("You gained " + exp + " experince.");
+                PlayerData.playerRef.update(playerStats);
+            }
         },
         battle: function(monsterData, monsterLocationRef) {
             var playerStatsRef = database.ref().child('players').child(userInfo.uid);
@@ -146,17 +167,21 @@
                         health: (monsterData.health - playerDamage)
                     });
                     if ((monsterData.health - playerDamage) > 0) {
-                        ChatHandler.listItem(monsterData.name + ' attacks ' + playerStats.name + ' back for ' + monsterData.power + " damage!", "<-");
-                        if (playerStats.health - monsterData.power <= 0) {
+                        monsterDamage = Utils.getRandomIntInclusive(monsterData.power, (monsterData.power * monsterData.level));
+                        ChatHandler.listItem(monsterData.name + ' attacks ' + playerStats.name + ' back for ' + monsterDamage + " damage!", "<-");
+                        if (playerStats.health - monsterDamage <= 0) {
+                            SoundManager.playPlayerDeathSound();
                             PlayerData.createCharacter(playerStats.name, playerStats.description, playerStats.playerClass);
                             PlayerData.changeLocation('hammerhelm_tavern');
                             ChatHandler.shout(' had died and been reborn!');
                             InputHandler.wipe();
                         } else {
-                            playerStats.health -= monsterData.power;
+                            playerStats.health -= monsterDamage;
                             PlayerData.playerRef.update(playerStats);
                         }
                     } else {
+                        SoundManager.playDeathSound();
+                        PlayerData.lootMonster(monsterData.exp, monsterData.drop_level, playerStats);
                         ChatHandler.doMessage(" had defeated " + monsterData.name + "!");
                     }
                 })
@@ -184,10 +209,10 @@
             this.updateChatScroll();
         },
         pushMessagePublic: function(message) {
-            var time=moment().format('LT');  
-            var date=moment().format('L').replace(new RegExp('[^\.]?' + moment().format('YYYY') + '.?'), '')  
-            var timeDisplay= date+"-"+time+" ";
-            PlayerData.playerChatroomRef.push(timeDisplay+message);
+            var time = moment().format('LT');
+            var date = moment().format('L').replace(new RegExp('[^\.]?' + moment().format('YYYY') + '.?'), '')
+            var timeDisplay = date + "-" + time + " ";
+            PlayerData.playerChatroomRef.push(timeDisplay + message);
             this.updateChatScroll();
         },
         infoAlert: function(message) {
@@ -532,6 +557,9 @@
                         $("#playerClass").text("Class: " + player.playerClass);
                         $("#playerDescriptionInspect").text(player.description);
                         $("#playerHealth").text("Health " + player.health);
+                        $("#playerExp").text("Experince: " + player.exp);
+                        $("#playerLvl").text("Level: " + player.level + " | Exp to next: " + ((player.level * 50) - player.exp));
+                        $("#playerWeapon").text("Weapon: " + Utils.locationDataReformat(player.weapon));
                     } else {
                         ChatHandler.infoAlert(text + " doesn't seem to be a person in the area. Are you feeling okay?");
                     }
@@ -602,10 +630,14 @@
 
     //jQuery on-ready.
     $(function() {
+        var characterClass = '';
         Login.pageLoad(PlayerData.initPlayer);
         SoundManager.playBackgroundMusicLoop();
         $("#music").on('click', function() {
             SoundManager.playBackgroundMusicLoop();
+        });
+        $("#classSelector li a").on("click", function() {
+            characterClass = $(this).text();
         });
         $("#charCreation").toggle();
         $('#chatForm').on('submit', function(event) {
@@ -621,9 +653,8 @@
         $("#charLoadBtn").on("click", function() {
             var name = $("#playerName").val();
             var desc = $("#playerDescription").val();
-            var charClass = "warrior";
             if (PlayerData.isLoggedIn()) {
-                PlayerData.createCharacter(name, desc, charClass);
+                PlayerData.createCharacter(name, desc, characterClass);
                 PlayerData.initPlayer();
                 $("#charCreation").toggle();
             }

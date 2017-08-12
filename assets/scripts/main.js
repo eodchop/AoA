@@ -47,6 +47,11 @@ var Utils = {
         }
         return true;
     },
+    getRandomIntInclusive: function(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+    },
     xmlToJson: function(xml) {
 
         // Create the return object
@@ -187,17 +192,7 @@ $(document).ready(function() {
         console.log(description);
 
     });
-
-    $("#classSelector li a").click(function() {
-        characterClass = $(this).text();
-        console.log(characterClass);
-        userCharacter.characterClass = characterClass;
-        $("#playerClass").html(characterClass);
-    });
-
     //------------on click to generate command list on command Modal-----------//
-
-
 
     $('.slideout-menu-toggle').on('click', function(event) {
         event.preventDefault();
@@ -327,7 +322,7 @@ var commands = {
     },
 
     players: {
-        syntax: "'/pople' or '/ppl'",
+        syntax: "'/people' or '/ppl'",
         description: "Displays a list of players in the same location"
     },
 
