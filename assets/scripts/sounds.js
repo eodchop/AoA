@@ -32,7 +32,7 @@
               SoundManager.playerDeath.currentTime = 0;
               SoundManager.playerDeath.play();
           } else {
-              SoundManager.PlayerDeah.pause();
+              SoundManager.playerDeath.pause();
           }
       },
   }
