@@ -173,6 +173,7 @@
             }
           } else {
             PlayerData.lootMonster(monsterData.exp, monsterData.drop_level, playerStats);
+            SoundManager.playDeathSound();
             ChatHandler.doMessage(" had defeated " + monsterData.name + "!");
           }
         })

@@ -13,6 +13,11 @@ body {
   src: local('aoaFont'), url("../images/aoaFont.ttf") format('truetype');
 }
 
+.small, small {
+    font-size: 40%;
+    font-weight: 300;
+}
+
 p{
   margin-bottom: 5px;
 }
@@ -47,20 +52,22 @@ img {
 #textWindow {
   width: 100%;
   font-family: 'Aldrich', sans-serif;
+
 }
 
 #gameBorder{
   padding: 2px;
   border: 5px solid;
   width:100%;
+  animation:pulse 1s infinite alternate;
 }
 
 .card {
   margin-top: 5px;
   background-image: url("../images/parch3.jpg");
   background-size: cover;
-   border: 5px solid;
-   font-family: 'Permanent Marker', cursive;
+  border: 5px solid;
+  font-family: 'Permanent Marker', cursive;
 }
 
 #inspectName, #inspectDesc{
@@ -88,6 +95,7 @@ img {
   overflow-y: hidden;
   word-wrap: break-word;
 }
+
 
 button {
   background:rgba(51,51,51,0.9);
@@ -136,8 +144,9 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
 #commandBox{
   font-size:18px;
   }
-/*Sidenav Commands*/
 
+
+/*Sidenav Commands*/
 
 .slideout-menu {
   position: fixed;
@@ -151,7 +160,7 @@ text-shadow: 0px 1px 0px rgba(255,255,255,.5);
   padding:10px;
   color:white;
   overflow-y: auto;
-  text-shadow: 2px 2px 5px #cdd6b3;
+  text-shadow: 2px 2px 5px #b83050;
 }
 
 .slideout-menu h3 {
@@ -251,7 +260,6 @@ footer {
   height:85%;
  }
 
-
 /* Scrollbar style*/
 
 .styleScroll::-webkit-scrollbar-track {
@@ -270,3 +278,52 @@ footer {
   border: 2px solid #555555;
   border-radius: 10px;
 }
+
+/*------Animation----*/
+
+.card {
+   -webkit-animation: fadein 6s; 
+   animation: 2s ease-out 0s 1 slideInFromBottom;     
+}
+
+#mainWindow, .gameBorder {
+   -webkit-animation: fadein 4s; 
+
+
+}
+
+.stone1{
+  -webkit-animation: fadein 2s; 
+   animation: 1s ease-out 0s 1 slideInFromTop;
+}
+
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(300%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes pulse {
+  from { box-shadow:0px 0px 10px 3px #e4d1a3; }
+  to { box-shadow:0px 0px 20px 5px #e4d1a3; }
+}
+
+/*----animation end----*/
