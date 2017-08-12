@@ -121,32 +121,18 @@
     calcDamage: function(playerData, weaponMod) {
       switch (playerData.playerClass) {
         case 'warrior':
-          return Utils.getRandomIntInclusive(0,(weaponMod * playerData.stats.strength)) + playerData.level;
+          return (weaponMod * playerData.stats.strength);
           break;
         case 'mage':
-          return Utils.getRandomIntInclusive(0,(weaponMod * playerData.stats.intelligence)) + playerData.level;
+          return (weaponMod * playerData.stats.intelligence);
           break;
         case 'ranger':
-          return Utils.getRandomIntInclusive(0,(weaponMod * playerData.stats.dexterity)) + playerData.level;
+          return (weaponMod * playerData.stats.dexterity);
           break;
         default:
           break;
       }
       return 0;
-    },
-    lootMonster: function(exp, dropLevel, playerStats){
-      console.log(exp, dropLevel);
-      nextLevel = playerStats.level * 50;
-      playerStats.exp += exp;
-      if(playerStats.exp >= nextLevel){
-        playerStats.exp = 0;
-        playerStats.level++;
-        ChatHandler.shout(' has reached level ' + playerStats.level + "!");
-        PlayerData.playerRef.update(playerStats);
-      } else {
-        ChatHandler.infoAlert("You gained " + exp + " experince.");
-        PlayerData.playerRef.update(playerStats);
-      }
     },
     battle: function(monsterData, monsterLocationRef) {
       var playerStatsRef = database.ref().child('players').child(userInfo.uid);
@@ -161,19 +147,18 @@
             health: (monsterData.health - playerDamage)
           });
           if ((monsterData.health - playerDamage) > 0) {
-            monsterDamage = Utils.getRandomIntInclusive(monsterData.power, (monsterData.power*monsterData.level));
-            ChatHandler.listItem(monsterData.name + ' attacks ' + playerStats.name + ' back for ' + monsterDamage + " damage!", "<-");
-            if (playerStats.health - monsterDamage <= 0) {
+            ChatHandler.listItem(monsterData.name + ' attacks ' + playerStats.name + ' back for ' + monsterData.power + " damage!", "<-");
+            if (playerStats.health - monsterData.power <= 0) {
+              SoundManager.playPlayerDeathSound();
               PlayerData.createCharacter(playerStats.name, playerStats.description, playerStats.playerClass);
               PlayerData.changeLocation('hammerhelm_tavern');
               ChatHandler.shout(' had died and been reborn!');
               InputHandler.wipe();
             } else {
-              playerStats.health -= monsterDamage;
+              playerStats.health -= monsterData.power;
               PlayerData.playerRef.update(playerStats);
             }
           } else {
-            PlayerData.lootMonster(monsterData.exp, monsterData.drop_level, playerStats);
             SoundManager.playDeathSound();
             ChatHandler.doMessage(" had defeated " + monsterData.name + "!");
           }
@@ -546,10 +531,7 @@
             $("#playerNameDisplay").text("Name: " + player.name);
             $("#playerClass").text("Class: " + player.playerClass);
             $("#playerDescriptionInspect").text(player.description);
-            $("#playerHealth").text("Health: " + player.health);
-            $("#playerExp").text("Exp: " + player.exp);
-            $("#playerLvl").text("Level: " + player.level + " - XP to next: " + ((player.level * 50)-player.exp) );
-            $("#playerWeapon").text("Weapon: " + Utils.locationDataReformat(player.weapon));
+            $("#playerHealth").text("Health " + player.health);
           } else {
             ChatHandler.infoAlert( text + " doesn't seem to be a person in the area. Are you feeling okay?");
           }
