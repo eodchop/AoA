@@ -2,7 +2,7 @@
       messagePop: new Audio('./assets/sounds/messagePop.wav'),
       littleTown: new Audio('./assets/sounds/littleTown.ogg'),
       deathTone: new Audio('./assets/sounds/orc_die.ogg'),
-      playerDeath: new Audio('./assets/sounds/PlayerDyingSound.mp3')
+      playerDeath: new Audio('./assets/sounds/PlayerDyingSound.mp3'),
       playMessagePopOnce: function () {
       if (SoundManager.messagePop.paused) {
           SoundManager.messagePop.currentTime = 0;

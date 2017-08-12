@@ -149,6 +149,7 @@
           if ((monsterData.health - playerDamage) > 0) {
             ChatHandler.listItem(monsterData.name + ' attacks ' + playerStats.name + ' back for ' + monsterData.power + " damage!", "<-");
             if (playerStats.health - monsterData.power <= 0) {
+              SoundManager.playPlayerDeathSound();
               PlayerData.createCharacter(playerStats.name, playerStats.description, playerStats.playerClass);
               PlayerData.changeLocation('hammerhelm_tavern');
               ChatHandler.shout(' had died and been reborn!');
