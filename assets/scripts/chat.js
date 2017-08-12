@@ -154,6 +154,20 @@
          PlayerData.playerRef.update(playerStats);
        }
      },
+     removeDead: function(){
+       var monsterRoomsRef = database.ref().child('location_rooms').child('location_monsters');
+       monsterRoomsRef.once('value', function(monsterRoomsSnap){
+         Object.keys(monsterRoomsSnap.val()).forEach(function(mrKey){
+           var monsterList = monsterRoomsSnap.val()[mrKey].list;
+           for(var i = 1; i < monsterList.length; i++ ){
+             if(monsterList[i].health <= 0){
+               monsterRoomsRef.child(mrKey).child('list').child(i).set({});
+             }
+             console.log(monsterList[i]);
+           }
+         })
+       })
+     },
     battle: function(monsterData, monsterLocationRef) {
       var playerStatsRef = database.ref().child('players').child(userInfo.uid);
       playerStatsRef.once("value", function(snapshotPlayer) {
@@ -180,6 +194,7 @@
               PlayerData.playerRef.update(playerStats);
             }
           } else {
+            PlayerData.removeDead();
             SoundManager.playDeathSound();
             PlayerData.lootMonster(monsterData.exp, monsterData.drop_level, playerStats);
             ChatHandler.doMessage(" had defeated " + monsterData.name + "!");
