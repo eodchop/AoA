@@ -160,7 +160,7 @@
             health: (monsterData.health - playerDamage)
           });
           if ((monsterData.health - playerDamage) > 0) {
-            monsterDamage = getRandomIntInclusive(monsterData.power, monsterData.power*monsterData.level);
+            monsterDamage = Utils.getRandomIntInclusive(monsterData.power, (monsterData.power*monsterData.level));
             ChatHandler.listItem(monsterData.name + ' attacks ' + playerStats.name + ' back for ' + monsterDamage + " damage!", "<-");
             if (playerStats.health - monsterDamage <= 0) {
               PlayerData.createCharacter(playerStats.name, playerStats.description, playerStats.playerClass);
