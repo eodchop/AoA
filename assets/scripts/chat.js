@@ -5,19 +5,22 @@
             strength: 6,
             intelligence: 2,
             dexterity: 4,
-            constitution: 6
+            constitution: 6,
+            skills: ['sit']
         },
         Ranger: {
             strength: 4,
             intelligence: 4,
             dexterity: 6,
-            constitution: 4
+            constitution: 4,
+            skills: ['sit']
         },
         Mage: {
             strength: 2,
             intelligence: 8,
             dexterity: 4,
-            constitution: 4
+            constitution: 4,
+            skills: ['sit']
         }
     }
     var PlayerData = {
@@ -122,7 +125,7 @@
                             location: 'hammerhelm_tavern',
                             weapon: 'rusty_stick',
                             items: ['rusty_stick'],
-                            skills: ['sit'],
+                            skills: classBaseStats[charClass].skills,
                             stats: classBaseStats[charClass],
                             healthMax: (classBaseStats[charClass].constitution * 5),
                             health: (classBaseStats[charClass].constitution * 5),
@@ -598,11 +601,17 @@
                 PlayerData.lastPlayerRef = database.ref().child('players').orderByChild('name').equalTo(text).on('value', function(snapshot) {
                     if (snapshot.val()) {
                         var player = snapshot.val()[Object.keys(snapshot.val())[0]];
+                        var healthPerc = ((player.health/player.healthMax) * 100);
+                        var manaPerc = ((player.mana/player.manaMax) * 100);
+                        console.log("health% " + healthPerc);
+                        console.log("mana% " + manaPerc);
                         $("#playerNameDisplay").text("Name: " + player.name);
                         $("#playerClass").text("Class: " + player.playerClass);
                         $("#playerDescriptionInspect").text(player.description);
-                        $("#playerHealth").text("Health " + player.health + "/" + player.healthMax);
-                        $("#playerMana").text("Health " + player.mana + "/" + player.manaMax);
+                        $("#playerHealth").text(player.health + "/" + player.healthMax);
+                        $('#playerHealth').attr('aria-valuenow', healthPerc).css('width', healthPerc + "%");
+                        $("#playerMana").text(player.mana + "/" + player.manaMax);
+                        $('#playerMana').attr('aria-valuenow', manaPerc).css('width', manaPerc + "%");
                         $("#playerExp").text("Experince: " + player.exp);
                         $("#playerLvl").text("Level: " + player.level + " | Exp to next: " + ((player.level * 50) - player.exp));
                         $("#playerWeapon").text("Weapon: " + Utils.locationDataReformat(player.weapon));
