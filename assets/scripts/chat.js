@@ -210,7 +210,7 @@
         },
         pushMessagePublic: function(message) {
             var time = moment().format('LT');
-            var date = moment().format('L').replace(new RegExp('[^\.]?' + moment().format('YYYY') + '.?'), '')
+            var date = moment().format('L').replace(new RegExp('[^\.]?' + moment().format('YYYY') + '.?'), '');
             var timeDisplay = date + "-" + time + " ";
             PlayerData.playerChatroomRef.push(timeDisplay + message);
             this.updateChatScroll();
