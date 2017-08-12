@@ -33,7 +33,6 @@ exports.respawnMonsters = functions.https.onRequest((request, response) => {
             if(enemiesList[i] == null){
               var monsters = snapshotMon.val();
               var newEnemy = getRandomProp(monsters);
-              newEnemy.name = 'unnamed';
               locationMonstersRef.child(location).child('list').child(i).set(newEnemy);
             }
           }
