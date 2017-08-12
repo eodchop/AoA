@@ -157,6 +157,7 @@
               PlayerData.playerRef.update(playerStats);
             }
           } else {
+            SoundManager.playDeathSound();
             ChatHandler.doMessage(" had defeated " + monsterData.name + "!");
           }
         })
