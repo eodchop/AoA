@@ -563,7 +563,7 @@
                         $("#playerClass").text("Class: " + player.playerClass);
                         $("#playerDescriptionInspect").text(player.description);
                         $("#playerHealth").text("Health " + player.health);
-                        $("#playerExp").text("Experince: " + player.exp);
+                        $("#playerExp").text("Experience: " + player.exp);
                         $("#playerLvl").text("Level: " + player.level + " | Exp to next: " + ((player.level * 50) - player.exp));
                         $("#playerWeapon").text("Weapon: " + Utils.locationDataReformat(player.weapon));
                     } else {
