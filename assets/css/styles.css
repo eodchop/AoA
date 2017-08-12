@@ -297,12 +297,6 @@ footer {
    animation: 1s ease-out 0s 1 slideInFromTop;
 }
 
-
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
 @keyframes slideInFromTop {
   0% {
     transform: translateY(-100%);
@@ -319,6 +313,11 @@ footer {
   100% {
     transform: translateX(0%);
   }
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 @keyframes pulse {

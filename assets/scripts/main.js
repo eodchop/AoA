@@ -233,7 +233,6 @@ $(document).ready(function() {
 
     });
 
-
     //--------------slide out right panel for character info-------//
 
     $('.slideout-menu-right-toggle').on('click', function(event) {
@@ -328,7 +327,7 @@ var commands = {
     },
 
     players: {
-        syntax: "'/players'",
+        syntax: "'/pople' or '/ppl'",
         description: "Displays a list of players in the same location"
     },
 
