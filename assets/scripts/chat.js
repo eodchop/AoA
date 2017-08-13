@@ -619,6 +619,8 @@
                         $("#playerNameDisplay").text("Name: " + player.name);
                         $("#playerClass").text("Class: " + player.playerClass);
                         $("#playerDescriptionInspect").text(player.description);
+                        $("#playerHealth").text("Health " + player.health);
+                        $("#playerExp").text("Experience: " + player.exp);
                         $("#playerHealth").text(player.health + "/" + player.healthMax);
                         $('#playerHealth').attr('aria-valuenow', healthPerc).css('width', healthPerc + "%");
                         $("#playerMana").text(player.mana + "/" + player.manaMax);
