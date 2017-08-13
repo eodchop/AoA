@@ -48,9 +48,9 @@ var Utils = {
         return true;
     },
     getRandomIntInclusive: function(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
     },
     xmlToJson: function(xml) {
 
@@ -268,8 +268,13 @@ $(document).ready(function() {
 var commands = {
 
     login: {
-        syntax: "'/login' or '/l'",
+        syntax: "'/login' or '/li'",
         description: "Use to log into game if you've created a character"
+    },
+
+    me: {
+        syntax: "'/me'",
+        description: "Displays your character information on the right panel if 'Show Character' panel is open"
     },
 
     say: {
@@ -289,6 +294,11 @@ var commands = {
     enemies: {
         syntax: "'/enemies' or '/e'",
         description: "Shows a list of enemies in the area which you can attack, to see information on a specific enemy, type '/e' + the number of the enemy in the command line"
+    },
+
+    sit: {
+        syntax: "'/sit'",
+        description: "Use this to regain some lost health and mana"
     },
 
     attack: {
@@ -329,7 +339,12 @@ var commands = {
     wipe: {
         syntax: "'/wipe'",
         description: "Clears the user's local text field"
-    }
+    },
+
+    logout: {
+        syntax: "'/logout' or '/lo'",
+        description: "Use to log out of the game"
+    },
 
 };
 
@@ -395,7 +410,7 @@ function getPic() {
         var id = response.photos.photo[0].id;
         var secret = response.photos.photo[0].secret;
 
-        console.log("https://farm"+farmId+".staticflickr.com/"+serverId+"/"+id+"_"+secret+".jpg");
+        console.log("https://farm" + farmId + ".staticflickr.com/" + serverId + "/" + id + "_" + secret + ".jpg");
         console.log(farmId + ", " + serverId + ", " + id + ", " + secret);
 
     });
