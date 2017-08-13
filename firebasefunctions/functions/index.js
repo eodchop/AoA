@@ -26,14 +26,19 @@ exports.respawnMonsters = functions.https.onRequest((request, response) => {
         var enemiesList = currentLocation.list;
       }
       var maxEnemies = currentLocation.max;
-      //Loop through all up to max and check if uniqe id exists, if not, add.
+      //Need to grab a new list every time we add a new enemy to make sure we are not adding special enemies twice.
       if(Object.keys(enemiesList).length < maxEnemies){
         monstersRef.orderByChild('level').endAt(levelCap).once('value', function(snapshotMon){
           for(var i = 1; i <= maxEnemies; i++){
             if(enemiesList[i] == null){
               var monsters = snapshotMon.val();
               var newEnemy = getRandomProp(monsters);
-              locationMonstersRef.child(location).child('list').child(i).set(newEnemy);
+              if(newEnemy.name == 'unnamed'){
+                locationMonstersRef.child(location).child('list').child(i).set(newEnemy);
+              } else if(!enemiesList.includes(newEnemy)){
+                console.log(newEnemy.name);
+                locationMonstersRef.child(location).child('list').child(i).set(newEnemy);
+              }
             }
           }
         })

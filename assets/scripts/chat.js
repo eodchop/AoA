@@ -435,7 +435,18 @@
             }
         },
         help: function(text) {
-            ChatHandler.infoAlert("TODO: Fill in help message.");
+            ChatHandler.listItem('','------------------------------------------');
+            ChatHandler.infoAlert("All commands/skills begin with a '/'");
+            ChatHandler.listItem('','------------------------------------------');
+            ChatHandler.infoAlert("To display this command again type '/help'");
+            ChatHandler.listItem('','------------------------------------------');
+            ChatHandler.infoAlert("'/li' to login and create a character.")
+            ChatHandler.listItem('','------------------------------------------');
+            ChatHandler.infoAlert("Use the buttons located below the chat to display command information and character information.");
+            ChatHandler.listItem('','------------------------------------------');
+            ChatHandler.infoAlert("Fight monsters, level up, and work together!");
+
+
         },
         map: function(text) {
             ChatHandler.infoAlert("Locations surrounding " + Utils.locationDataReformat(PlayerData.playerLocation) + ": ");
@@ -737,6 +748,7 @@
     $(function() {
         var characterClass = '';
         Login.pageLoad(PlayerData.initPlayer);
+        InputHandler.help();
         SoundManager.playBackgroundMusicLoop();
         $("#music").on('click', function() {
             SoundManager.playBackgroundMusicLoop();

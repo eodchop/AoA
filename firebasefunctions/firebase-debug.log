@@ -1,0 +1,27 @@
+[debug] [2017-08-13T20:15:13.182Z] ----------------------------------------------------------------------
+[debug] [2017-08-13T20:15:13.185Z] Command:       E:\Program Files\NodeJS\node.exe C:\Users\caleb\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve --only functions
+[debug] [2017-08-13T20:15:13.185Z] CLI Version:   3.9.2
+[debug] [2017-08-13T20:15:13.185Z] Platform:      win32
+[debug] [2017-08-13T20:15:13.185Z] Node Version:  v6.11.1
+[debug] [2017-08-13T20:15:13.186Z] Time:          Sun Aug 13 2017 15:15:13 GMT-0500 (Central Daylight Time)
+[debug] [2017-08-13T20:15:13.186Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-08-13T20:15:13.197Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-08-13T20:15:13.197Z] > authorizing via signed-in user
+[debug] [2017-08-13T20:15:13.199Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/another-online-adventure  
+ Sun Aug 13 2017 15:15:13 GMT-0500 (Central Daylight Time)
+[debug] [2017-08-13T20:15:14.810Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-13T20:15:14.811Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/another-online-adventure/tokens  
+ Sun Aug 13 2017 15:15:14 GMT-0500 (Central Daylight Time)
+[debug] [2017-08-13T20:15:15.141Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'G:\github\AoA\firebasefunctions'...
+[info] 
+[info] i  functions: Preparing to emulate HTTPS functions. Support for other event types coming soon.
+[debug] [2017-08-13T20:15:15.578Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/another-online-adventure  
+ Sun Aug 13 2017 15:15:15 GMT-0500 (Central Daylight Time)
+[debug] [2017-08-13T20:15:15.579Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/another-online-adventure/apiKeys  
+ Sun Aug 13 2017 15:15:15 GMT-0500 (Central Daylight Time)
+[debug] [2017-08-13T20:15:16.194Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-13T20:15:16.273Z] <<< HTTP RESPONSE 200
+[info] +  functions: respawnMonsters: http://localhost:5000/another-online-adventure/us-central1/respawnMonsters
