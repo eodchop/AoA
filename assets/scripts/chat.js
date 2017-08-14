@@ -125,7 +125,6 @@
               location: 'hammerhelm_tavern',
               weapon: 'rusty_stick',
               items: ['rusty_stick'],
-              skills: classBaseStats[charClass].skills,
               stats: classBaseStats[charClass],
               healthMax: (classBaseStats[charClass].constitution * 5),
               health: (classBaseStats[charClass].constitution * 5),
@@ -181,8 +180,21 @@
         PlayerData.levelUp(playerStats);
       } else {
         ChatHandler.infoAlert("You gained " + exp + " experince.");
-        PlayerData.playerRef.update(playerStats);
       }
+      weaponsRef = database.ref().child('items').child('weapons').orderByChild('level').equalTo(dropLevel);
+      weaponsRef.once('value', function(snapshot){
+        var randomWeaponIndex = Utils.getRandomIntInclusive(0,Object.keys(snapshot.val()).length);
+        var randomWeapon = snapshot.val()[Object.keys(snapshot.val())[randomWeaponIndex]];
+        var randomWeaponName = Utils.reformatToLocationData(randomWeapon.name);
+        if(playerStats.items.includes(randomWeaponName)){
+          ChatHandler.infoAlert("The weapon " + randomWeapon.name + " was dropped. However, you already had that weapon.");
+        } else {
+          ChatHandler.listItem(randomWeapon.name,"! New Weapon !");
+          playerStats.items.push(randomWeaponName);
+          console.log(playerStats.items);
+        }
+        PlayerData.playerRef.update(playerStats);
+      });
     },
     levelUp: function(playerStats) {
       playerStats.exp = 0;
@@ -200,7 +212,7 @@
       var playerStatsRef = database.ref().child('players').child(userInfo.uid);
       playerStatsRef.once("value", function(snapshotPlayer) {
         var playerStats = snapshotPlayer.val();
-        var playerWeaponRef = database.ref().child('items').child(playerStats.weapon);
+        var playerWeaponRef = database.ref().child('items').child('weapons').child(playerStats.weapon);
         playerWeaponRef.once("value", function(snapshotWeapon) {
           var weaponStats = snapshotWeapon.val();
           var playerDamage = PlayerData.calcDamage(playerStats, weaponStats.damage_mod);
@@ -677,7 +689,11 @@
             $('#playerMana').attr('aria-valuenow', manaPerc).css('width', manaPerc + "%");
             $("#playerExp").text("Experince: " + player.exp);
             $("#playerLvl").text("Level: " + player.level + " | Exp to next: " + ((player.level * 50) - player.exp));
-            $("#playerWeapon").text("Weapon: " + Utils.locationDataReformat(player.weapon));
+            database.ref().child('items').child('weapons').child(player.weapon).once('value', function(snapshot){
+              $("#playerWeapon").text("Weapon: " + snapshot.val().name);
+              $("#playerDesc").text(snapshot.val().description);
+              $("#playerPower").text("Weapon Power: " + snapshot.val().damage_mod);
+            })
           } else {
             ChatHandler.infoAlert(text + " doesn't seem to be a person in the area. Are you feeling okay?");
           }
@@ -765,9 +781,9 @@
   var Skills = {
     skills: ['sit'],
     hasSkill: function(skill, callback) {
-      PlayerData.playerRef.child('skills').once('value', function(snapshot) {
+      PlayerData.playerRef.child('stats').child('skills').once('value', function(snapshot) {
         if (snapshot.val().includes(skill)) {
-          database.ref().child('skills').child(skill).once('value', function(skillSnap) {
+          database.ref().child('stats').child('skills').child(skill).once('value', function(skillSnap) {
             callback(skillSnap.val());
           })
         }
