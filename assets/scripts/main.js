@@ -386,7 +386,7 @@ function getGif() {
 
 }
 
-function getPic() {
+/*function getPic() {
 
     //var queryURL = "https://api.flickr.com/services/feeds/photos_public.gne?tags=orc&limit=5";
     //var queryURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=29d6f4ccf0b5c3ae814acdab08daad2b&text=orcs";
@@ -414,5 +414,20 @@ function getPic() {
         console.log(farmId + ", " + serverId + ", " + id + ", " + secret);
 
     });
+
+}*/
+
+function getPic() {
+
+    var queryURL = "https://us.api.battle.net/wow/boss/?locale=en_US&apikey=te9zrmmjjq9a77hfqwaef7jd6urxphjc"; 
+    var apiKey =
+
+        $.ajax({
+            url: queryURL,
+            method: 'GET'
+        }).done(function(response) {
+            console.log(response);
+
+        });
 
 }
