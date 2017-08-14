@@ -415,11 +415,11 @@ function getGif() {
 
     });
 
-}*/
+}
 
 function getPic() {
 
-    var queryURL = "https://us.api.battle.net/wow/boss/?locale=en_US&apikey=te9zrmmjjq9a77hfqwaef7jd6urxphjc"; 
+    var queryURL = "https://pixabay.com/api/?key=6164055-a12bf99fce60787bf61756a01&q=goblin&image_type=photo"
     var apiKey =
 
         $.ajax({
@@ -431,3 +431,18 @@ function getPic() {
         });
 
 }
+
+function getPic() {
+
+    var queryURL = "https://thegamesdb.net/api/GetGamesList.php?name=halo"
+    var apiKey =
+
+        $.ajax({
+            url: queryURL,
+            method: 'GET'
+        }).done(function(response) {
+            console.log(response);
+
+        });
+
+}*/
