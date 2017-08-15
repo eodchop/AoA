@@ -6,6 +6,7 @@
       intelligence: 2,
       dexterity: 4,
       constitution: 6,
+      imageURL: "assets/images/warrior.png",
       skills: ['sit']
     },
     Ranger: {
@@ -13,6 +14,7 @@
       intelligence: 4,
       dexterity: 6,
       constitution: 4,
+      imageURL: "assets/images/ranger.png",
       skills: ['sit']
     },
     Mage: {
@@ -20,6 +22,7 @@
       intelligence: 8,
       dexterity: 4,
       constitution: 4,
+      imageURL: "assets/images/mage.ico",
       skills: ['sit']
     }
   }
@@ -829,6 +832,13 @@
     });
     $("#classSelector li a").on("click", function() {
       characterClass = $(this).text();
+       if ($(this).text() == "Mage"){
+        $("#playerImage").attr('src','assets/images/mage.ico');
+      } else if ($(this).text() == "Warrior"){
+        $("#playerImage").attr('src','assets/images/warrior.png');
+      } else if ($(this).text() == "Ranger"){
+        $("#playerImage").attr('src','assets/images/ranger.png');
+    }
     });
     $("#charCreation").toggle();
     $('#chatForm').on('submit', function(event) {

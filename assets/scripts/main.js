@@ -279,7 +279,7 @@ var commands = {
 
     say: {
         syntax: "'/say' or '/s'",
-        description: "Used to say something in gobal chat"
+        description: "Used to say something in global chat"
     },
     map: {
         syntax: "'/map' or '/m'",
@@ -304,6 +304,16 @@ var commands = {
     attack: {
         syntax: "'/atk' + the number of enemy you want to attack",
         description: "Attacks the enemy corresponding to the number entered"
+    },
+
+     inventory: {
+        syntax: "'/inventory' or '/inv'",
+        description: "Displays a list of items in your character's inventory"
+    },
+
+     equip: {
+        syntax: "'/equip' or '/eqp'",
+        description: "Use to equip items found in '/inventory'"
     },
 
     help: {
