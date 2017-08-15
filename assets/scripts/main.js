@@ -386,7 +386,7 @@ function getGif() {
 
 }
 
-function getPic() {
+/*function getPic() {
 
     //var queryURL = "https://api.flickr.com/services/feeds/photos_public.gne?tags=orc&limit=5";
     //var queryURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=29d6f4ccf0b5c3ae814acdab08daad2b&text=orcs";
@@ -416,3 +416,33 @@ function getPic() {
     });
 
 }
+
+function getPic() {
+
+    var queryURL = "https://pixabay.com/api/?key=6164055-a12bf99fce60787bf61756a01&q=goblin&image_type=photo"
+    var apiKey =
+
+        $.ajax({
+            url: queryURL,
+            method: 'GET'
+        }).done(function(response) {
+            console.log(response);
+
+        });
+
+}
+
+function getPic() {
+
+    var queryURL = "https://thegamesdb.net/api/GetGamesList.php?name=halo"
+    var apiKey =
+
+        $.ajax({
+            url: queryURL,
+            method: 'GET'
+        }).done(function(response) {
+            console.log(response);
+
+        });
+
+}*/

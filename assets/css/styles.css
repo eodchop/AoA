@@ -75,7 +75,7 @@ img {
   margin: 5px;
 }
 
-#playerImage, #characterInfo, #enemyInfo, #enemyImage {
+#playerImage, #characterInfo, #enemyInfo, #enemyImage, #weaponInfo {
   padding: 10px;
   border: solid 1px black;
   font-family: Helvetica, sans-serif;
@@ -102,8 +102,13 @@ button {
   color:#e4d1a3;
 }
 
-#inspectName, #inspectDesc{
- 
+#playerNameDisplay{
+      font-size: 20px;
+    margin-left: 25px;
+}
+
+.progress{
+  margin:5px;
 }
 
 #commandInput {

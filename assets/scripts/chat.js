@@ -179,7 +179,7 @@
       if (playerStats.exp >= nextLevel) {
         PlayerData.levelUp(playerStats);
       } else {
-        ChatHandler.infoAlert("You gained " + exp + " experince.");
+        ChatHandler.infoAlert("You gained " + exp + " experience.");
       }
       weaponsRef = database.ref().child('items').child('weapons').orderByChild('level').equalTo(dropLevel);
       weaponsRef.once('value', function(snapshot){
@@ -687,7 +687,7 @@
             $('#playerHealth').attr('aria-valuenow', healthPerc).css('width', healthPerc + "%");
             $("#playerMana").text(player.mana + "/" + player.manaMax);
             $('#playerMana').attr('aria-valuenow', manaPerc).css('width', manaPerc + "%");
-            $("#playerExp").text("Experince: " + player.exp);
+            $("#playerExp").text("Experience: " + player.exp);
             $("#playerLvl").text("Level: " + player.level + " | Exp to next: " + ((player.level * 50) - player.exp));
             database.ref().child('items').child('weapons').child(player.weapon).once('value', function(snapshot){
               $("#playerWeapon").text("Weapon: " + snapshot.val().name);
