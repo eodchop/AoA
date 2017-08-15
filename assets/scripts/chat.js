@@ -6,7 +6,6 @@
       intelligence: 2,
       dexterity: 4,
       constitution: 6,
-      imageURL: "assets/images/warrior.png",
       skills: ['sit']
     },
     Ranger: {
@@ -14,7 +13,6 @@
       intelligence: 4,
       dexterity: 6,
       constitution: 4,
-      imageURL: "assets/images/ranger.png",
       skills: ['sit']
     },
     Mage: {
@@ -22,7 +20,6 @@
       intelligence: 8,
       dexterity: 4,
       constitution: 4,
-      imageURL: "assets/images/mage.ico",
       skills: ['sit']
     }
   }
@@ -182,17 +179,17 @@
       if (playerStats.exp >= nextLevel) {
         PlayerData.levelUp(playerStats);
       } else {
-        ChatHandler.infoAlert("You gained " + exp + " experience.");
+        ChatHandler.infoAlert("You gained " + exp + " experince.");
       }
       weaponsRef = database.ref().child('items').child('weapons').orderByChild('level').equalTo(dropLevel);
-      weaponsRef.once('value', function(snapshot){
-        var randomWeaponIndex = Utils.getRandomIntInclusive(0,Object.keys(snapshot.val()).length);
+      weaponsRef.once('value', function(snapshot) {
+        var randomWeaponIndex = Utils.getRandomIntInclusive(0, Object.keys(snapshot.val()).length);
         var randomWeapon = snapshot.val()[Object.keys(snapshot.val())[randomWeaponIndex]];
         var randomWeaponName = Utils.reformatToLocationData(randomWeapon.name);
-        if(playerStats.items.includes(randomWeaponName)){
+        if (playerStats.items.includes(randomWeaponName)) {
           ChatHandler.infoAlert("The weapon " + randomWeapon.name + " was dropped. However, you already had that weapon.");
         } else {
-          ChatHandler.listItem(randomWeapon.name,"! New Weapon !");
+          ChatHandler.listItem(randomWeapon.name, "! New Weapon !");
           playerStats.items.push(randomWeaponName);
           console.log(playerStats.items);
         }
@@ -468,20 +465,20 @@
 
     },
     inventory: function(text) {
-      PlayerData.getPlayerData(function(data){
+      PlayerData.getPlayerData(function(data) {
         ChatHandler.infoAlert("<Inventory>");
-        data.items.forEach(function(item){
+        data.items.forEach(function(item) {
           ChatHandler.listItem(Utils.locationDataReformat(item));
         })
       });
     },
-    drop: function(text){
+    drop: function(text) {
       var weaponUnformated = Utils.locationDataReformat(text);
       var weaponFormated = Utils.reformatToLocationData(text);
-      if(text){
-        PlayerData.getPlayerData(function(data){
-          if(data.items.includes(weaponFormated)){
-            if(data.weapon === weaponFormated){
+      if (text) {
+        PlayerData.getPlayerData(function(data) {
+          if (data.items.includes(weaponFormated)) {
+            if (data.weapon === weaponFormated) {
               ChatHandler.infoAlert("You cannot drop the weapon you are using!");
             } else {
               data.items.splice(data.items.indexOf(weaponFormated), 1);
@@ -499,9 +496,9 @@
     equip: function(text) {
       var weaponUnformated = Utils.locationDataReformat(text);
       var weaponFormated = Utils.reformatToLocationData(text);
-      if(text){
-        PlayerData.getPlayerData(function(data){
-          if(data.items.includes(weaponFormated)){
+      if (text) {
+        PlayerData.getPlayerData(function(data) {
+          if (data.items.includes(weaponFormated)) {
             data.weapon = weaponFormated;
             PlayerData.playerRef.update(data);
             ChatHandler.infoAlert("You equip " + weaponUnformated);
@@ -559,6 +556,7 @@
       });
     },
     inspect: function(text) {
+      text = Utils.reformatToLocationData(text);
       if (text === "") {
         ChatHandler.infoAlert("You look around and see the following;");
         ChatHandler.searchArea(PlayerData.playerLocation, function(data) {
@@ -690,9 +688,9 @@
             $('#playerHealth').attr('aria-valuenow', healthPerc).css('width', healthPerc + "%");
             $("#playerMana").text(player.mana + "/" + player.manaMax);
             $('#playerMana').attr('aria-valuenow', manaPerc).css('width', manaPerc + "%");
-            $("#playerExp").text("Experience: " + player.exp);
+            $("#playerExp").text("Experince: " + player.exp);
             $("#playerLvl").text("Level: " + player.level + " | Exp to next: " + ((player.level * 50) - player.exp));
-            database.ref().child('items').child('weapons').child(player.weapon).once('value', function(snapshot){
+            database.ref().child('items').child('weapons').child(player.weapon).once('value', function(snapshot) {
               $("#playerWeapon").text("Weapon: " + snapshot.val().name);
               $("#playerDesc").text(snapshot.val().description);
               $("#playerPower").text("Weapon Power: " + snapshot.val().damage_mod);
@@ -832,13 +830,6 @@
     });
     $("#classSelector li a").on("click", function() {
       characterClass = $(this).text();
-       if ($(this).text() == "Mage"){
-        $("#playerImage").attr('src','assets/images/mage.ico');
-      } else if ($(this).text() == "Warrior"){
-        $("#playerImage").attr('src','assets/images/warrior.png');
-      } else if ($(this).text() == "Ranger"){
-        $("#playerImage").attr('src','assets/images/ranger.png');
-    }
     });
     $("#charCreation").toggle();
     $('#chatForm').on('submit', function(event) {
