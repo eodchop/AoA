@@ -23,6 +23,9 @@ var userInfo = {
     }
 };
 var database = firebase.database();
+var storage = firebase.storage();
+var monsterImagesRef = storage.ref('monster_portraits');
+var characterImagesRef = storage.ref('character_portraits');
 //Utility functions that come in handy everywhere.
 var Utils = {
     toTitleCase: function(str) {
@@ -406,7 +409,7 @@ function getGif() {
     //var queryURL = "https://api.flickr.com/services/feeds/photos_public.gne?tags=orc&limit=5";
     //var queryURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&text=orcs";
 
-   
+
     $.ajax({
         url: queryURL,
         method: 'GET'
@@ -434,7 +437,7 @@ function getGif() {
 function getPic() {
 
     var queryURL = "https://pixabay.com/api/?key=6164055-a12bf99fce60787bf61756a01&q=goblin&image_type=photo"
-   
+
         $.ajax({
             url: queryURL,
             method: 'GET'

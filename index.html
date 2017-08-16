@@ -40,7 +40,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="chatArea">
         <!--Inspection Panel-->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -128,7 +128,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="charLoadBtn">Save changes</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="charLoadBtn" data-toggle="modal" data-target="#pcitureModal">Save changes</button>
                         </div>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                 <div class="progress">
                     <div id="playerHealth" class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-               
+
                 <div class="progress">
                     <div id="playerMana" class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
@@ -161,16 +161,19 @@
             </div>
             <div id="enemyInfo">
                 <p id="enemyNameDisplay">You have not inspected an enemy</p>
-                <div id="enemyImage">
-                    <img src="assets/images/enemyPlaceholder.jpg">
+                <div>
+                    <img src="assets/images/enemyPlaceholder.jpg" id="enemyImage">
                 </div>
                 <p id="enemyType">Type: unknown</p>
                 <p id="enemyDescription">Please type; /enemy [index]</p>
                 <p id="enemyHealth">Health: ---</p>
             </div>
         </div>
-        <!-- This is a temparary link for submitting issues.-->
-    </div>
+      </div>
+      <div class='container' id='imageSelect'>
+        <div class='row'><div class='col-12'><h1 class='stone stone1 text-center'>Choose An Image</h1></div></div>
+        <div class="row"  id="characterImages"></div>
+      </div>
 </body>
 
 </html>

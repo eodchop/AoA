@@ -1,5 +1,6 @@
 //Wrapper function to hide variables.
 (function() {
+
     var classBaseStats = {
       Warrior: {
         strength: 6,
@@ -110,7 +111,7 @@
           }
         });
       },
-      createCharacter: function(charName, charDesc, charClass) {
+      createCharacter: function(charName, charDesc, charClass, img) {
         if (charName && charDesc && charClass) {
           if (PlayerData.isLoggedIn()) {
             var charRef = database.ref().child('players');
@@ -123,6 +124,7 @@
                 exp: 0,
                 level: 1,
                 location: 'hammerhelm_tavern',
+                image: img,
                 weapon: 'rusty_stick',
                 items: ['rusty_stick'],
                 stats: classBaseStats[charClass],
@@ -609,6 +611,7 @@
                           $("#enemyType").text("Type: " + snapshot.val().type);
                           $("#enemyDescription").text(snapshot.val().description);
                           $("#enemyHealth").text("Health: " + snapshot.val().health);
+                          $("#enemyImage").attr('src',snapshot.val().image);
                         }
                       })
                       return;
@@ -674,6 +677,7 @@
               var player = snapshot.val()[Object.keys(snapshot.val())[0]];
               var healthPerc = ((player.health / player.healthMax) * 100);
               var manaPerc = ((player.mana / player.manaMax) * 100);
+              $("#playerImage").attr('src', player.image);
               $("#playerNameDisplay").text("Name: " + player.name);
               $("#playerClass").text("Class: " + player.playerClass);
               $("#playerDescriptionInspect").text(player.description);
@@ -955,14 +959,63 @@
           }
         }
       }
+      var imageManager = {
+         playerImages: [
+          'TCP Armored 1.jpg',
+          'TCP Armored 2.jpg',
+          'TCP Armored 3.jpg',
+          'TCP Cyberpunk 4.jpg',
+          'TCP Cyberpunk 5.jpg',
+          'TCP Cyberpunk 7.jpg',
+          'TCP Dwarf 4.jpg',
+          'TCP Dwarf 5.jpg',
+          'TCP Dwarf 6.jpg',
+          'TCP Elf 3.jpg',
+          'TCP Elf 4.jpg',
+          'TCP Elf 5.jpg',
+          'TCP Elf 6.jpg',
+          'TCP Elf 7.jpg',
+          'TCP Elf 8.jpg',
+          'TCP Elf 9.jpg',
+          'TCP Gnome 2.jpg',
+          'TCP Hero 1.jpg',
+          'TCP Hero 2.jpg',
+          'TCP Hero 3.jpg',
+          'TCP Human 4.jpg',
+          'TCP Human 5.jpg',
+          'TCP Pirate 3.jpg',
+          'TCP Pirate 4.jpg',
+          'TCP Pirate 7.jpg',
+          'TCP Robot 4.jpg'
+        ],
+        loadImages: function(callback){
+          $("#characterImages").empty();
+          this.playerImages.forEach(function(image,index){
+            characterImagesRef.child(image).getDownloadURL().then(function(url) {
+              var newImage = $("<img>");
+              newImage.addClass('img-thumbnail col-2');
+              newImage.attr('width', '50px')
+              newImage.attr('src', url);
+              newImage.attr('id',"selectedImage"+index)
+              $("#characterImages").append(newImage);
+              $("#selectedImage" + index).on('click',function(){
+                callback($(this).attr('src'));
 
+              })
+            });
+          })
+        }
+      }
       //jQuery on-ready.
       $(function() {
         var characterClass = '';
+        var characterImage = '';
         Login.pageLoad(PlayerData.initPlayer);
         Skills.init();
         InputHandler.help();
         SoundManager.playBackgroundMusicLoop();
+        $("#imageSelect").toggle();
+
         $("#music").on('click', function() {
           SoundManager.playBackgroundMusicLoop();
         });
@@ -985,9 +1038,16 @@
           var name = $("#playerName").val();
           var desc = $("#playerDescription").val();
           if (PlayerData.isLoggedIn()) {
-            PlayerData.createCharacter(name, desc, characterClass);
-            PlayerData.initPlayer();
             $("#charCreation").toggle();
+            $("#imageSelect").toggle();
+            $("#chatArea").toggle();
+            imageManager.loadImages(function(source){
+              characterImage = source;
+              $("#imageSelect").toggle();
+              $("#chatArea").toggle();
+              PlayerData.createCharacter(name, desc, characterClass, characterImage);
+              PlayerData.initPlayer();
+            });
           }
         });
         $("#chatForm").on('keyup', function(event) {
