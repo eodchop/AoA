@@ -7,14 +7,14 @@
         intelligence: 2,
         dexterity: 4,
         constitution: 6,
-        skills: ['sit']
+        skills: ['sit', 'cleave']
       },
       Ranger: {
         strength: 4,
         intelligence: 4,
         dexterity: 6,
         constitution: 4,
-        skills: ['sit']
+        skills: ['sit', 'ranged_shot']
       },
       Mage: {
         strength: 2,
