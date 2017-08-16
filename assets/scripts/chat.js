@@ -20,7 +20,7 @@
         intelligence: 8,
         dexterity: 4,
         constitution: 4,
-        skills: ['sit']
+        skills: ['sit', 'fireball', 'heal']
       }
     }
     var PlayerData = {
