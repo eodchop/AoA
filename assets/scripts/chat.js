@@ -814,6 +814,7 @@
               }
               if ((playerInfo.mana - manaCost) >= 0) {
                 playerInfo.mana -= manaCost;
+                playerInfo.playerRef.update({mana: playerInfo.mana});
                 ChatHandler.listItem(" was used.", skillInfo.name);
                 Object.keys(skillInfo.effects).forEach(function(effect) {
                   if (Skills.effects.includes(effect)) {
