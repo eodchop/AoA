@@ -316,6 +316,11 @@ var commands = {
         description: "Use to equip items found in '/inventory'"
     },
 
+    drop: {
+        syntax: "'/drop' + item name to drop",
+        description: "Drops the named item from inventory'"
+    },
+
     help: {
         syntax: "'/help' or '/h'",
         description: "Displays information or hints to current goal/area/objective"
@@ -399,10 +404,9 @@ function getGif() {
 /*function getPic() {
 
     //var queryURL = "https://api.flickr.com/services/feeds/photos_public.gne?tags=orc&limit=5";
-    //var queryURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=29d6f4ccf0b5c3ae814acdab08daad2b&text=orcs";
-    var queryURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=29d6f4ccf0b5c3ae814acdab08daad2b&format=json&nojsoncallback=1&text=wizard&extras=url_o"
-    var apiKey = "29d6f4ccf0b5c3ae814acdab08daad2b";
+    //var queryURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&text=orcs";
 
+   
     $.ajax({
         url: queryURL,
         method: 'GET'
@@ -430,8 +434,7 @@ function getGif() {
 function getPic() {
 
     var queryURL = "https://pixabay.com/api/?key=6164055-a12bf99fce60787bf61756a01&q=goblin&image_type=photo"
-    var apiKey =
-
+   
         $.ajax({
             url: queryURL,
             method: 'GET'
@@ -445,7 +448,6 @@ function getPic() {
 function getPic() {
 
     var queryURL = "https://thegamesdb.net/api/GetGamesList.php?name=halo"
-    var apiKey =
 
         $.ajax({
             url: queryURL,
