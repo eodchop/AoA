@@ -844,7 +844,6 @@
               snapshot.ref.update({
                 health: targetInfo.health
               });
-              PlayerData.playerRef.update(playerInfo);
               ChatHandler.infoAlert("You healed " + targetInfo.name + " for " + power + " health.");
             } else {
               ChatHandler.infoAlert(target + " doesn't seem to exsit.");
