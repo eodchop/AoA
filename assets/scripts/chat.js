@@ -805,6 +805,9 @@
             (!skillInfo.target_enemy && !skillInfo.target_player && !target)) {
             PlayerData.getPlayerData(function(playerInfo) {
               var manaCost = skillInfo.mana + Math.floor(playerInfo.level * 1.5);
+              if(skillInfo.mana <= 0){
+                manaCost = 0;
+              }
               if ((playerInfo.mana - manaCost) >= 0) {
                 playerInfo.mana -= manaCost;
                 ChatHandler.listItem(" was used.", skillInfo.name);
