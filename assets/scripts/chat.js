@@ -930,7 +930,7 @@
                 snapshot.ref.update({
                   health: (monsterData.health - playerDamage)
                 });
-                ChatHandler.listItem("You used attacked  " + monsterData.name + " and did " + playerDamage + " damage!", "->");
+                ChatHandler.listItem("You attacked  " + monsterData.name + " and did " + playerDamage + " damage!", "->");
                 if ((monsterData.health - playerDamage) > 0) {
                   monsterDamage = Utils.getRandomIntInclusive(monsterData.power, (monsterData.power * monsterData.level));
                   ChatHandler.listItem(monsterData.name + ' attacks ' + playerStats.name + ' back for ' + monsterDamage + " damage!", "<-");
