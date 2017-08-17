@@ -2,178 +2,181 @@
 <html lang='en-us'>
 
 <head>
-    <meta charset="utf-8">
-    <!-- CSS -->
-    <!-- Meyer Reset-->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <!-- Tether -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
-    <!-- Twitter Bootstrap-->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-    <!-- Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
-    <!-- Font Awesome-->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Our own css-->
-    <link rel="stylesheet" href="./assets/css/styles.css">
-    <!-- /CSS -->
-    <!-- JavaScript -->
-    <!-- jQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Tether -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-    <!-- Twitter Bootstrap -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-    <!---moment js-->
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-    <!-- Our own JavaScript-->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rasterizehtml/1.2.4/rasterizeHTML.allinone.js"></script>
-    <script type="text/javascript" src="./assets/scripts/sounds.js"></script>
-    <script type="text/javascript" src="./assets/scripts/main.js"></script>
-    <script type="text/javascript" src="./assets/scripts/login.js"></script>
-    <script type="text/javascript" src="./assets/scripts/chat.js"></script>
-    <!-- /JavaScript -->
-    <title>AoA</title>
+  <meta charset="utf-8">
+  <!-- CSS -->
+  <!-- Meyer Reset-->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <!-- Tether -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
+  <!-- Twitter Bootstrap-->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+  <!-- Google Fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+  <!-- Font Awesome-->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Our own css-->
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <!-- /CSS -->
+  <!-- JavaScript -->
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Tether -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+  <!-- Twitter Bootstrap -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <!---moment js-->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+  <!-- Our own JavaScript-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rasterizehtml/1.2.4/rasterizeHTML.allinone.js"></script>
+  <script type="text/javascript" src="./assets/scripts/sounds.js"></script>
+  <script type="text/javascript" src="./assets/scripts/main.js"></script>
+  <script type="text/javascript" src="./assets/scripts/login.js"></script>
+  <script type="text/javascript" src="./assets/scripts/chat.js"></script>
+  <!-- /JavaScript -->
+  <title>AoA</title>
 </head>
 
 <body>
-    <div class="container" id="chatArea">
-        <!--Inspection Panel-->
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div id="page-header" class="stone">
-                    <h1 class="stone1 animated fadeIn" id="mainTitle">AoA</h1>
-                    <p class="stone1"><small>(Another online Adventure) text based</small></p>
-                </div>
-            </div>
+  <div class="container" id="chatArea">
+    <!--Inspection Panel-->
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div id="page-header" class="stone">
+          <h1 class="stone1 animated fadeIn" id="mainTitle">AoA</h1>
+          <p class="stone1"><small>(Another online Adventure) text based</small></p>
         </div>
-        <div class="row">
-            <!--Main Chat Window Section-->
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 offset-2">
-                <div id="gameBorder">
-                    <div id="mainWindow">
-                        <div id="textWindow" class="styleScroll">
-                        </div>
-                        <form id="chatForm">
-                            <input autocomplete="off" id="commandInput" type="text" placeholder="Enter commands here.">
-                        </form>
-                        <div id="hudButtons">
-                            <button class="slideout-menu-toggle" id="commandBtn">Show Command List</button>
-                            <button data-toggle="modal" data-target="#myModal" id="charCreation">
+      </div>
+    </div>
+    <div class="row">
+      <!--Main Chat Window Section-->
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 offset-2">
+        <div id="gameBorder">
+          <div id="mainWindow">
+            <div id="textWindow" class="styleScroll">
+            </div>
+            <form id="chatForm">
+              <input autocomplete="off" id="commandInput" type="text" placeholder="Enter commands here.">
+            </form>
+            <div id="hudButtons">
+              <button class="slideout-menu-toggle" id="commandBtn">Show Command List</button>
+              <button data-toggle="modal" data-target="#myModal" id="charCreation">
                                 Create Character
                             </button>
-                            <button class="slideout-menu-right-toggle" id="characterBtn">Show Character Panel</button>
-                            <button type="button" id="eddieBtn">Screen Size</button>
-                            <button type="button" id="chatMute">Chat</button>
-                            <button type="button" id="music"><i class="fa fa-music" aria-hidden="true"></i></button>
-                            <a href="https://github.com/eodchop/AoA/issues" target='_blank'>
+              <button class="slideout-menu-right-toggle" id="characterBtn">Show Character Panel</button>
+              <button type="button" id="eddieBtn">Screen Size</button>
+              <button type="button" id="chatMute">Chat</button>
+              <button type="button" id="music"><i class="fa fa-music" aria-hidden="true"></i></button>
+              <a href="https://github.com/eodchop/AoA/issues" target='_blank'>
                                 <button type="button" id="submitBtn">Submit issue</button>
                             </a>
-                        </div>
-                    </div>
-                </div>
             </div>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 offset-2" id="inspectPanel">
-                <div class="card">
-                    <div class="card-body" id='inspectName'>
-                        Inspection name...
-                    </div>
-                    <div class="card-body" id="inspectDesc">
-                        Inspection description.
-                    </div>
-                </div>
-            </div>
-            <div class="slideout-menu">
-                <h3>Command List</h3>
-                <div id="commandBox">
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 offset-2" id="inspectPanel">
+        <div class="card">
+          <div class="card-body" id='inspectName'>
+            Inspection name...
+          </div>
+          <div class="card-body" id="inspectDesc">
+            Inspection description.
+          </div>
         </div>
-        <!--Character Panel-->
-        <div class="row">
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="modalTitle">Log In/ Create a New Character</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="enterPlayerName">Character Name</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Enter character name" id="playerName">
-                                </div>
-                                <label for="enterPlayerDescrip">Description</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Enter a little about your character" id="playerDescription">
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      </div>
+      <div class="slideout-menu">
+        <h3>Command List</h3>
+        <div id="commandBox">
+        </div>
+      </div>
+    </div>
+    <!--Character Panel-->
+    <div class="row">
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="modalTitle">Log In/ Create a New Character</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="enterPlayerName">Character Name</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="15 characters or less." id="playerName">
+                </div>
+                <label for="enterPlayerDescrip">Description</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="150 characters or less" id="playerDescription">
+                </div>
+              </div>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Pick a Class
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="classSelector">
-                                    <li> <a class="dropdown-item" href="#" id="warrior">Warrior</a></li>
-                                    <li> <a class="dropdown-item" href="#" id="ranger">Ranger</a></li>
-                                    <li><a class="dropdown-item" href="#" id="mage">Mage</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="charLoadBtn" data-toggle="modal" data-target="#pcitureModal">Save changes</button>
-                        </div>
-                    </div>
-                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="classSelector">
+                  <li> <a class="dropdown-item" href="#" id="warrior">Warrior</a></li>
+                  <li> <a class="dropdown-item" href="#" id="ranger">Ranger</a></li>
+                  <li><a class="dropdown-item" href="#" id="mage">Mage</a></li>
+                </ul>
+              </div>
             </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" id="charLoadBtn" data-toggle="modal" data-target="#pcitureModal">Save changes</button>
+            </div>
+          </div>
         </div>
-        <!--     Working on right panel      -->
-        <div class="slideout-menu-right">
-            <div id="characterInfo">
-                <p id="playerNameDisplay">You have not inspected a player</p>
-                <div id="playerPortrait">
-                    <img src="assets/images/defaultIcon.png" id="playerImage">
-                </div>
-                <p id="playerClass">Class: Unknown</p>
-                <p id="playerDescriptionInspect">Please type; /people [name]</p>
-                <p>Player Health</p>
-                <div class="progress">
-                    <div id="playerHealth" class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
+      </div>
+    </div>
+    <!--     Working on right panel      -->
+    <div class="slideout-menu-right">
+      <div id="characterInfo">
+        <p id="playerNameDisplay">You have not inspected a player</p>
+        <div id="playerPortrait">
+          <img src="assets/images/defaultIcon.png" id="playerImage">
+        </div>
+        <p id="playerClass">Class: Unknown</p>
+        <p id="playerDescriptionInspect">Please type; /people [name]</p>
+        <p>Player Health</p>
+        <div class="progress">
+          <div id="playerHealth" class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
 
-                <div class="progress">
-                    <div id="playerMana" class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p id="playerExp">Exp: ---</p>
-                <p id="playerLvl">Lvl: ---</p>
-                <div id="weaponInfo">
-                    <p id="playerWeapon">Weapon: ---</p>
-                    <p id="playerDesc">About your weapon</p>
-                    <p id="playerPower">Weapon Power: ----</p>
-                </div>
-            </div>
-            <div id="enemyInfo">
-                <p id="enemyNameDisplay">You have not inspected an enemy</p>
-                <div>
-                    <img src="assets/images/enemyPlaceholder.jpg" id="enemyImage">
-                </div>
-                <p id="enemyType">Type: unknown</p>
-                <p id="enemyDescription">Please type; /enemy [index]</p>
-                <p id="enemyHealth">Health: ---</p>
-            </div>
+        <div class="progress">
+          <div id="playerMana" class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <p id="playerExp">Exp: ---</p>
+        <p id="playerLvl">Lvl: ---</p>
+        <div id="weaponInfo">
+          <p id="playerWeapon">Weapon: ---</p>
+          <p id="playerDesc">About your weapon</p>
+          <p id="playerPower">Weapon Power: ----</p>
         </div>
       </div>
-      <div class='container' id='imageSelect'>
-        <div class='row'><div class='col-12'><h1 class='stone stone1 text-center'>Choose An Image</h1></div></div>
-        <div class="row"  id="characterImages"></div>
+      <div id="enemyInfo">
+        <p id="enemyNameDisplay">You have not inspected an enemy</p>
+        <div>
+          <img src="assets/images/enemyPlaceholder.jpg" id="enemyImage">
+        </div>
+        <p id="enemyType">Type: unknown</p>
+        <p id="enemyDescription">Please type; /enemy [index]</p>
+        <p id="enemyHealth">Health: ---</p>
       </div>
+    </div>
+  </div>
+  <div class='container' id='imageSelect'>
+    <div class='row'>
+      <div class='col-12'>
+        <h1 class='stone stone1 text-center'>Choose An Image</h1></div>
+    </div>
+    <div class="row" id="characterImages"></div>
+  </div>
 </body>
 
 </html>
