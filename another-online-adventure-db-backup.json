@@ -1,0 +1,845 @@
+{
+  "items" : {
+    "animal_den" : {
+      "description" : "Whatever lived here once, is long gone",
+      "name" : "Animal Den"
+    },
+    "bakery" : {
+      "description" : "A sign on the locked door reads \"Gone to the Tavern closed until....?\"  ",
+      "name" : "Bakery"
+    },
+    "bats" : {
+      "description" : "You awaken the bats and the fly in and around your face and body,  Why would you do that?!",
+      "name" : "Bats"
+    },
+    "boat" : {
+      "description" : "A rotten wooden boat lays near the edge of the lake",
+      "name" : "Boat"
+    },
+    "bones" : {
+      "description" : "Bones are strewn throughout the cave, some animal but you'd wager most are human",
+      "name" : "Bones"
+    },
+    "broken_oar" : {
+      "description" : "Probably used for self defense, also it probably didn't work from the looks of it",
+      "name" : "Broken Oar"
+    },
+    "bulletin_board" : {
+      "description" : "A lone note reads: \"Stay away from the forest it's full of beasts, so is the lake...Aw hell it's  all terrible don't leave the tavern!",
+      "name" : "Bulletin Board"
+    },
+    "cellar_door" : {
+      "description" : "The cellar door inside the cabin is chained shut, you can lift it enough to see the body of an old woman at the steps below",
+      "name" : "Cellar Door"
+    },
+    "door" : {
+      "description" : "A simple wooden door, probably couldn't hold out even one zombie...",
+      "name" : "Door"
+    },
+    "drunkard" : {
+      "description" : "\"The looney old drunk is ranting about ghosts near a lake that killed his fishermen friends",
+      "name" : "Drunkard"
+    },
+    "fishing_gear" : {
+      "description" : "The poles and tackle seems to be in good condition, strange they'd be left here in the woods.",
+      "name" : "Fishing Gear"
+    },
+    "footprints" : {
+      "description" : "You see a mix of human, beast and some unrecognizable tracks throughout the dirt on the ground",
+      "name" : "Footprints"
+    },
+    "forest_signpost" : {
+      "description" : " The signpost points east and reads :\"Back road to Widow's Lake\"",
+      "name" : "Forest Signpost"
+    },
+    "fountain" : {
+      "description" : "It's bone dry and the coins that once sat in the bottom found there way to the tavern by some of the more crafty drunks",
+      "name" : "Fountain"
+    },
+    "fresh_corpse" : {
+      "description" : "The old gravedigger lays dead still grasping his shovel, he would have had a better chance with a rusty stick",
+      "name" : "Fresh Corpse"
+    },
+    "friendly_bartender" : {
+      "description" : "The old bartender only nods when spoken to, he wears a dusty eyepatch and sour frown, he smells like piss and is most likely not friendly after all",
+      "name" : "Friendly Bartender"
+    },
+    "graves" : {
+      "description" : "Most lay empty, surrounded by dirst surrounding where the former inhanitants clawed their way to the surface",
+      "name" : "Graves"
+    },
+    "hammerhelm_tavern" : {
+      "description" : "One of the only places of life or light in the town, however the occupants all look grizzled, half dead and full drunk",
+      "name" : "Hammerhelm Tavern"
+    },
+    "old_book" : {
+      "description" : "The cover appears to be made of some kind of leather and a twisted face carved into the cover",
+      "name" : "Old Book"
+    },
+    "old_cabin" : {
+      "description" : "The old home's windows and doors have been ripped off and no light emits from the interior",
+      "name" : "Old Cabin"
+    },
+    "old_dog" : {
+      "description" : "The dog is skinny and wild eyed and wearing a collar.  You are able to make out \"groundskee-\" on the address before he almost catches your hand in his mouth",
+      "name" : "Old Dog"
+    },
+    "pier" : {
+      "description" : "Once a busy haven for fishermen, the pier was abandoned when they stopped coming home",
+      "name" : "Pier"
+    },
+    "putrid_ale" : {
+      "description" : "Taste like PBR",
+      "name" : "Putrid Ale"
+    },
+    "sleepy_drunk" : {
+      "description" : "Shhhh...he's sleeping",
+      "name" : "Sleepy Drunk"
+    },
+    "smoke" : {
+      "description" : "You follow the smell to a recently extinguished campfire, whoever was here left in a hurry, their footprints lead toward an old cave",
+      "name" : "Smoke"
+    },
+    "table" : {
+      "description" : "An old table",
+      "name" : "Table"
+    },
+    "tailor_shop" : {
+      "description" : "Based on the appearance of the other town's folk, they must sell soiled rags",
+      "name" : "Tailor Shop"
+    },
+    "town_crier" : {
+      "description" : "The ragged man appears to be decades older than he probably is, as you approach him he quickly starts his mad rant \"if you or a loved one has been diagnosed with mesothelioma you me be entitled to compensation...\"  ",
+      "name" : "Town Crier"
+    },
+    "turd" : {
+      "description" : "Stinks badly",
+      "name" : "Turd"
+    },
+    "weapons" : {
+      "boom_stick" : {
+        "class" : "All",
+        "damage_mod" : 15,
+        "description" : "See this?...This is my BOOM stick!",
+        "level" : 7,
+        "name" : "Boom Stick"
+      },
+      "club" : {
+        "class" : "All",
+        "damage_mod" : 3,
+        "description" : "\"THUNK\" - \"OW!\"",
+        "level" : 3,
+        "name" : "Club"
+      },
+      "halberd" : {
+        "class" : "All",
+        "damage_mod" : 6,
+        "description" : "Long, pointy and sharp, this'll work",
+        "level" : 5,
+        "name" : "Halberd"
+      },
+      "oak_staff" : {
+        "class" : "All",
+        "damage_mod" : 4,
+        "description" : "Use it to walk, break skulls and shoot fireballs",
+        "level" : 3,
+        "name" : "Oak Staff"
+      },
+      "rusty_stick" : {
+        "class" : "All",
+        "damage_mod" : 1,
+        "description" : "Why is this stick rusty?",
+        "level" : 1,
+        "name" : "Rusty Stick"
+      },
+      "rusty_sword" : {
+        "class" : "All",
+        "damage_mod" : 3,
+        "description" : "This was a great weapon once...Once.",
+        "level" : 2,
+        "name" : "Rusty Sword"
+      },
+      "sharp_dagger" : {
+        "class" : "All",
+        "damage_mod" : 5,
+        "description" : "Cuts through butter like flesh",
+        "level" : 3,
+        "name" : "Sharp Dagger"
+      },
+      "short_sword" : {
+        "class" : "All",
+        "damage_mod" : 4,
+        "description" : "Stab, Stab, Bleed.",
+        "level" : 3,
+        "name" : "Short Sword"
+      },
+      "slimy_stick" : {
+        "class" : "All",
+        "damage_mod" : 2,
+        "description" : "Eww! Wtf is with these sticks?",
+        "level" : 1,
+        "name" : "Slimy Stick"
+      },
+      "slingshot" : {
+        "class" : "All",
+        "damage_mod" : 3,
+        "description" : "Makes a thrown rock feel like a cool summer's breeze",
+        "level" : 2,
+        "name" : "Slingshot"
+      },
+      "stick" : {
+        "class" : "All",
+        "damage_mod" : 3,
+        "description" : "Just a regular old stick...",
+        "level" : 2,
+        "name" : "Stick"
+      }
+    }
+  },
+  "location_rooms" : {
+    "location_items" : {
+      "cemetery" : [ "bones", "graves" ],
+      "groundskeepers_quarters" : [ "cellar_door", "fresh_corpse", "old_book" ],
+      "hammerhelm_forest" : [ "footprints", "forest_signpost", "old_cabin", "smoke" ],
+      "hammerhelm_tavern" : [ "turd", "door", "drunkard", "friendly_bartender", "putrid_ale", "sleepy_drunk", "table" ],
+      "hammerhelm_village" : [ "bakery", "bulletin_board", "fountain", "hammerhelm_tavern", "old_dog", "tailor_shop", "town_crier" ],
+      "old_caves" : [ "animal_den", "bats", "bones" ],
+      "widows_lake" : [ "bats", "boat", "broken_oar", "fishing_gear", "pier" ]
+    },
+    "location_monsters" : {
+      "cemetery" : {
+        "level_cap" : 4,
+        "list" : [ null, {
+          "description" : "A hideous black creature of the abyss.",
+          "drop_level" : 3,
+          "exp" : 40,
+          "health" : 2,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fbelgor.png?alt=media&token=3633ba28-0e19-48f2-96ca-3b96db47838f",
+          "level" : 3,
+          "name" : "Belgor the Black",
+          "power" : 5,
+          "type" : "Dark Creature"
+        }, {
+          "description" : "Irritating animate ooze",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fslime.jpg?alt=media&token=b3c98bc3-bac3-4e6b-a82f-a75f8294b484",
+          "level" : 1,
+          "name" : "slime",
+          "power" : 1,
+          "type" : "Inconvenient Gelatin"
+        }, {
+          "description" : "Smells worse than eddies mum",
+          "drop_level" : 2,
+          "exp" : 20,
+          "health" : 30,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fzombie.png?alt=media&token=d2e5f90b-9daa-46bb-b5c7-5b893813d01c",
+          "level" : 2,
+          "name" : "Aight Suogeng",
+          "power" : 3,
+          "type" : "undead"
+        }, {
+          "description" : "Animated bones of the dead",
+          "drop_level" : 1,
+          "exp" : 25,
+          "health" : 25,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fskeleton.jpg?alt=media&token=212b7b75-ab59-4310-8400-32a29163ac15",
+          "level" : 1,
+          "name" : "skeleton",
+          "power" : 2,
+          "type" : "undead"
+        }, {
+          "description" : "Down down to goblin town..",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fgoblin.png?alt=media&token=78514367-57b1-4af4-9d62-81ea480d7f07",
+          "level" : 1,
+          "name" : "Stess Ash",
+          "power" : 2,
+          "type" : "Goblin"
+        } ],
+        "max" : 5
+      },
+      "groundskeepers_quarters" : {
+        "level_cap" : 10,
+        "list" : [ null, {
+          "description" : "Like a goblin, but hobbier",
+          "drop_level" : 1,
+          "exp" : 35,
+          "health" : 14,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fhobgoblin.png?alt=media&token=0d46bc82-03c3-4b1e-ac39-92a93ce08ecd",
+          "level" : 1,
+          "name" : "Tsunpeing Oirxovmi",
+          "power" : 3,
+          "type" : "Hobgoblin"
+        }, {
+          "description" : "Animated bones of the dead",
+          "drop_level" : 1,
+          "exp" : 25,
+          "health" : 25,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fskeleton.jpg?alt=media&token=212b7b75-ab59-4310-8400-32a29163ac15",
+          "level" : 1,
+          "name" : "skeleton",
+          "power" : 2,
+          "type" : "undead"
+        }, {
+          "description" : "Irritating animate ooze",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fslime.jpg?alt=media&token=b3c98bc3-bac3-4e6b-a82f-a75f8294b484",
+          "level" : 1,
+          "name" : "slime",
+          "power" : 1,
+          "type" : "Inconvenient Gelatin"
+        }, {
+          "description" : "Once a valued member of S-Mart, he has been possessed by the necronomicon\"",
+          "drop_level" : 7,
+          "exp" : 250,
+          "health" : 433,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fash.jpg?alt=media&token=34e53438-2abf-4cce-93e8-398a5b9d1858",
+          "level" : 10,
+          "name" : "Possessed Ash",
+          "power" : 25,
+          "type" : "unholy"
+        }, {
+          "description" : "Like a goblin, but hobbier",
+          "drop_level" : 1,
+          "exp" : 35,
+          "health" : 14,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fhobgoblin.png?alt=media&token=0d46bc82-03c3-4b1e-ac39-92a93ce08ecd",
+          "level" : 1,
+          "name" : "Toum Laaksoong",
+          "power" : 3,
+          "type" : "Hobgoblin"
+        } ],
+        "max" : 5
+      },
+      "hammerhelm_village" : {
+        "level_cap" : 1,
+        "list" : [ null, {
+          "description" : "Down down to goblin town..",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fgoblin.png?alt=media&token=78514367-57b1-4af4-9d62-81ea480d7f07",
+          "level" : 1,
+          "name" : "unnamed",
+          "power" : 2,
+          "type" : "Goblin"
+        }, {
+          "description" : "Irritating animate ooze",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 3,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fslime.jpg?alt=media&token=b3c98bc3-bac3-4e6b-a82f-a75f8294b484",
+          "level" : 1,
+          "name" : "slime",
+          "power" : 1,
+          "type" : "Inconvenient Gelatin"
+        }, {
+          "description" : "Down down to goblin town..",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fgoblin.png?alt=media&token=78514367-57b1-4af4-9d62-81ea480d7f07",
+          "level" : 1,
+          "name" : "Ap Juwakhub",
+          "power" : 2,
+          "type" : "Goblin"
+        }, {
+          "description" : "Like a goblin, but hobbier",
+          "drop_level" : 1,
+          "exp" : 35,
+          "health" : 14,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fhobgoblin.png?alt=media&token=0d46bc82-03c3-4b1e-ac39-92a93ce08ecd",
+          "level" : 1,
+          "name" : "Edequio Tsouzhoum",
+          "power" : 3,
+          "type" : "Hobgoblin"
+        } ],
+        "max" : 4
+      },
+      "hammerhelm_woods" : {
+        "level_cap" : 2,
+        "list" : [ null, {
+          "description" : "Down down to goblin town..",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fgoblin.png?alt=media&token=78514367-57b1-4af4-9d62-81ea480d7f07",
+          "level" : 1,
+          "name" : "Daiyung Peangirld",
+          "power" : 2,
+          "type" : "Goblin"
+        }, {
+          "description" : "Irritating animate ooze",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fslime.jpg?alt=media&token=b3c98bc3-bac3-4e6b-a82f-a75f8294b484",
+          "level" : 1,
+          "name" : "slime",
+          "power" : 1,
+          "type" : "Inconvenient Gelatin"
+        }, {
+          "description" : "Irritating animate ooze",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fslime.jpg?alt=media&token=b3c98bc3-bac3-4e6b-a82f-a75f8294b484",
+          "level" : 1,
+          "name" : "slime",
+          "power" : 1,
+          "type" : "Inconvenient Gelatin"
+        }, {
+          "description" : "Like a goblin, but hobbier",
+          "drop_level" : 1,
+          "exp" : 35,
+          "health" : 14,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fhobgoblin.png?alt=media&token=0d46bc82-03c3-4b1e-ac39-92a93ce08ecd",
+          "level" : 1,
+          "name" : "unnamed",
+          "power" : 3,
+          "type" : "Hobgoblin"
+        }, {
+          "description" : "Like a goblin, but hobbier",
+          "drop_level" : 1,
+          "exp" : 35,
+          "health" : 14,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fhobgoblin.png?alt=media&token=0d46bc82-03c3-4b1e-ac39-92a93ce08ecd",
+          "level" : 1,
+          "name" : "unnamed",
+          "power" : 3,
+          "type" : "Hobgoblin"
+        }, {
+          "description" : "Why won't you die?",
+          "drop_level" : 2,
+          "exp" : 20,
+          "health" : 30,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fzombie.png?alt=media&token=d2e5f90b-9daa-46bb-b5c7-5b893813d01c",
+          "level" : 2,
+          "name" : "unnamed",
+          "power" : 3,
+          "type" : "undead"
+        }, {
+          "description" : "Irritating animate ooze",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fslime.jpg?alt=media&token=b3c98bc3-bac3-4e6b-a82f-a75f8294b484",
+          "level" : 1,
+          "name" : "slime",
+          "power" : 1,
+          "type" : "Inconvenient Gelatin"
+        } ],
+        "max" : 7
+      },
+      "jungle_clearing" : {
+        "level_cap" : 5,
+        "list" : [ null, {
+          "description" : "Animated bones of the dead",
+          "drop_level" : 1,
+          "exp" : 25,
+          "health" : 25,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fskeleton.jpg?alt=media&token=495a78f2-8241-418f-9f2d-d5b1e28fe1f1",
+          "level" : 1,
+          "name" : "skeleton",
+          "power" : 2,
+          "type" : "undead"
+        }, {
+          "description" : "Down down to goblin town..",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2FTCP%20Troll%209.jpg?alt=media&token=e0061a4e-56d5-4096-a940-d1406eb1498a",
+          "level" : 1,
+          "name" : "Eglut Qexii",
+          "power" : 2,
+          "type" : "Goblin"
+        }, {
+          "description" : "Animated bones of the dead",
+          "drop_level" : 1,
+          "exp" : 25,
+          "health" : 25,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fskeleton.jpg?alt=media&token=495a78f2-8241-418f-9f2d-d5b1e28fe1f1",
+          "level" : 1,
+          "name" : "skeleton",
+          "power" : 2,
+          "type" : "undead"
+        }, {
+          "description" : "Irritating animate ooze",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fslime.jpg?alt=media&token=b3c98bc3-bac3-4e6b-a82f-a75f8294b484",
+          "level" : 1,
+          "name" : "slime",
+          "power" : 1,
+          "type" : "Inconvenient Gelatin"
+        } ],
+        "max" : 4
+      },
+      "old_caves" : {
+        "level_cap" : 3,
+        "list" : [ null, {
+          "description" : "Smells worse than eddies mum",
+          "drop_level" : 2,
+          "exp" : 20,
+          "health" : 30,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fzombie.png?alt=media&token=d2e5f90b-9daa-46bb-b5c7-5b893813d01c",
+          "level" : 2,
+          "name" : "Poumchuong Adhuzh",
+          "power" : 3,
+          "type" : "undead"
+        }, {
+          "description" : "The specter of an ancient warrior",
+          "drop_level" : 2,
+          "exp" : 30,
+          "health" : 30,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fwraith.jpg?alt=media&token=2d1f5535-3956-407a-a326-a290af4b4a36",
+          "level" : 2,
+          "name" : "Wraith",
+          "power" : 3,
+          "type" : "undead"
+        }, {
+          "description" : "Animated bones of the dead",
+          "drop_level" : 1,
+          "exp" : 25,
+          "health" : 3,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fskeleton.jpg?alt=media&token=212b7b75-ab59-4310-8400-32a29163ac15",
+          "level" : 1,
+          "name" : "skeleton",
+          "power" : 2,
+          "type" : "undead"
+        }, {
+          "description" : "Animated bones of the dead",
+          "drop_level" : 1,
+          "exp" : 25,
+          "health" : 25,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fskeleton.jpg?alt=media&token=212b7b75-ab59-4310-8400-32a29163ac15",
+          "level" : 1,
+          "name" : "skeleton",
+          "power" : 2,
+          "type" : "undead"
+        }, {
+          "description" : "Animated bones of the dead",
+          "drop_level" : 1,
+          "exp" : 25,
+          "health" : 25,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fskeleton.jpg?alt=media&token=212b7b75-ab59-4310-8400-32a29163ac15",
+          "level" : 1,
+          "name" : "skeleton",
+          "power" : 2,
+          "type" : "undead"
+        }, {
+          "description" : "Animated bones of the dead",
+          "drop_level" : 1,
+          "exp" : 25,
+          "health" : 25,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fskeleton.jpg?alt=media&token=212b7b75-ab59-4310-8400-32a29163ac15",
+          "level" : 1,
+          "name" : "skeleton",
+          "power" : 2,
+          "type" : "undead"
+        }, {
+          "description" : "Like a goblin, but hobbier",
+          "drop_level" : 1,
+          "exp" : 35,
+          "health" : 14,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fhobgoblin.png?alt=media&token=0d46bc82-03c3-4b1e-ac39-92a93ce08ecd",
+          "level" : 1,
+          "name" : "Sapung Aggig",
+          "power" : 3,
+          "type" : "Hobgoblin"
+        } ],
+        "max" : 7
+      },
+      "widows_lake" : {
+        "level_cap" : 3,
+        "list" : [ null, {
+          "description" : "Animated bones of the dead",
+          "drop_level" : 1,
+          "exp" : 25,
+          "health" : 25,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fskeleton.jpg?alt=media&token=212b7b75-ab59-4310-8400-32a29163ac15",
+          "level" : 1,
+          "name" : "skeleton",
+          "power" : 2,
+          "type" : "undead"
+        }, {
+          "description" : "Like a goblin, but hobbier",
+          "drop_level" : 1,
+          "exp" : 35,
+          "health" : 14,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fhobgoblin.png?alt=media&token=0d46bc82-03c3-4b1e-ac39-92a93ce08ecd",
+          "level" : 1,
+          "name" : "Quionfunca Mokoch",
+          "power" : 3,
+          "type" : "Hobgoblin"
+        }, {
+          "description" : "A hideous black creature of the abyss.",
+          "drop_level" : 3,
+          "exp" : 40,
+          "health" : 100,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fbelgor.png?alt=media&token=3633ba28-0e19-48f2-96ca-3b96db47838f",
+          "level" : 3,
+          "name" : "Belgor the Black",
+          "power" : 5,
+          "type" : "Dark Creature"
+        }, {
+          "description" : "Irritating animate ooze",
+          "drop_level" : 1,
+          "exp" : 10,
+          "health" : 10,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fslime.jpg?alt=media&token=b3c98bc3-bac3-4e6b-a82f-a75f8294b484",
+          "level" : 1,
+          "name" : "slime",
+          "power" : 1,
+          "type" : "Inconvenient Gelatin"
+        }, {
+          "description" : "Animated bones of the dead",
+          "drop_level" : 1,
+          "exp" : 25,
+          "health" : 25,
+          "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fskeleton.jpg?alt=media&token=212b7b75-ab59-4310-8400-32a29163ac15",
+          "level" : 1,
+          "name" : "skeleton",
+          "power" : 2,
+          "type" : "undead"
+        } ],
+        "max" : 5
+      }
+    },
+    "locations" : {
+      "cemetery" : {
+        "groundskeepers_quarters" : true,
+        "widows_lake" : true
+      },
+      "groundskeepers_quarters" : {
+        "cemetery" : true
+      },
+      "hammerhelm_tavern" : {
+        "hammerhelm_village" : true
+      },
+      "hammerhelm_village" : {
+        "hammerhelm_tavern" : true,
+        "hammerhelm_woods" : true,
+        "widows_lake" : true
+      },
+      "hammerhelm_woods" : {
+        "hammerhelm_village" : true,
+        "old_caves" : true,
+        "widows_lake" : "tru"
+      },
+      "jungle_clearing" : {
+        "old_caves" : true
+      },
+      "old_caves" : {
+        "hammerhelm_woods" : true,
+        "jungle_clearing" : true
+      },
+      "widows_lake" : {
+        "cemetery" : true,
+        "hammerhelm_village" : true
+      }
+    }
+  },
+  "monsters" : {
+    "Wraith" : {
+      "description" : "The specter of an ancient warrior",
+      "drop_level" : 2,
+      "exp" : 30,
+      "health" : 30,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fwraith.jpg?alt=media&token=2d1f5535-3956-407a-a326-a290af4b4a36",
+      "level" : 2,
+      "name" : "Wraith",
+      "power" : 3,
+      "type" : "undead"
+    },
+    "belgor" : {
+      "description" : "A hideous black creature of the abyss.",
+      "drop_level" : 3,
+      "exp" : 40,
+      "health" : 100,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fbelgor.png?alt=media&token=3633ba28-0e19-48f2-96ca-3b96db47838f",
+      "level" : 3,
+      "name" : "Belgor the Black",
+      "power" : 5,
+      "type" : "Dark Creature"
+    },
+    "goblin" : {
+      "description" : "Down down to goblin town..",
+      "drop_level" : 1,
+      "exp" : 10,
+      "health" : 10,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fgoblin.png?alt=media&token=78514367-57b1-4af4-9d62-81ea480d7f07",
+      "level" : 1,
+      "name" : "unnamed",
+      "power" : 2,
+      "type" : "Goblin"
+    },
+    "hobgoblin" : {
+      "description" : "Like a goblin, but hobbier",
+      "drop_level" : 1,
+      "exp" : 35,
+      "health" : 14,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fhobgoblin.png?alt=media&token=0d46bc82-03c3-4b1e-ac39-92a93ce08ecd",
+      "level" : 1,
+      "name" : "unnamed",
+      "power" : 3,
+      "type" : "Hobgoblin"
+    },
+    "hydra" : {
+      "description" : "are you tired of hacking off heads yet?",
+      "drop_level" : 4,
+      "exp" : 50,
+      "health" : 150,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fhydra.png?alt=media&token=534de33c-b386-4c79-a5ad-cb4280ce16c7",
+      "level" : 4,
+      "name" : "Hydra",
+      "power" : 7,
+      "type" : "dragon"
+    },
+    "lich" : {
+      "description" : "Undead magician whose energy is syphoned from the living",
+      "drop_level" : 3,
+      "exp" : 35,
+      "health" : 80,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Flich.png?alt=media&token=fb52e887-5f7b-4f16-b05f-f836e9e183d3",
+      "level" : 4,
+      "name" : "Lich",
+      "power" : 4,
+      "type" : "undead"
+    },
+    "ogre" : {
+      "description" : "Big, Dumb and Angry",
+      "drop_level" : 3,
+      "exp" : 30,
+      "health" : 75,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fogre.png?alt=media&token=d0e9cebe-deb3-4480-9c31-a5a09611dc41",
+      "level" : 3,
+      "name" : "Ogre",
+      "power" : 4,
+      "type" : "Hybrid"
+    },
+    "possessed_ash" : {
+      "description" : "Once a valued member of S-Mart, he has been possessed by the necronomicon\"",
+      "drop_level" : 7,
+      "exp" : 250,
+      "health" : 500,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fash.jpg?alt=media&token=34e53438-2abf-4cce-93e8-398a5b9d1858",
+      "level" : 10,
+      "name" : "Possessed Ash",
+      "power" : 25,
+      "type" : "unholy"
+    },
+    "skeleton" : {
+      "description" : "Animated bones of the dead",
+      "drop_level" : 1,
+      "exp" : 25,
+      "health" : 25,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fskeleton.jpg?alt=media&token=212b7b75-ab59-4310-8400-32a29163ac15",
+      "level" : 1,
+      "name" : "skeleton",
+      "power" : 2,
+      "type" : "undead"
+    },
+    "slime" : {
+      "description" : "Irritating animate ooze",
+      "drop_level" : 1,
+      "exp" : 10,
+      "health" : 10,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fslime.jpg?alt=media&token=b3c98bc3-bac3-4e6b-a82f-a75f8294b484",
+      "level" : 1,
+      "name" : "slime",
+      "power" : 1,
+      "type" : "Inconvenient Gelatin"
+    },
+    "troll" : {
+      "description" : "The bigger they are, the worse they smell?",
+      "drop_level" : 5,
+      "exp" : 175,
+      "health" : 200,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Ftroll.png?alt=media&token=0e18af5e-ea29-47e5-9b9e-2a5021c68249",
+      "level" : 5,
+      "name" : "Troll",
+      "power" : 8,
+      "type" : "Hybrid"
+    },
+    "zombie" : {
+      "description" : "Why won't you die?",
+      "drop_level" : 2,
+      "exp" : 20,
+      "health" : 30,
+      "image" : "https://firebasestorage.googleapis.com/v0/b/another-online-adventure.appspot.com/o/monster_portraits%2Fzombie.png?alt=media&token=d2e5f90b-9daa-46bb-b5c7-5b893813d01c",
+      "level" : 2,
+      "name" : "unnamed",
+      "power" : 3,
+      "type" : "undead"
+    }
+  },
+  "players" : {
+    "temp" : 0
+  },
+  "skills" : {
+    "EFFECTS_LIST_REFERENCE" : {
+      "damage" : true,
+      "heal" : true,
+      "regen" : true
+    },
+    "cleave" : {
+      "description" : "A two-handed swing that punishes the enemy while knocking you off guard",
+      "effects" : {
+        "damage" : 10
+      },
+      "mana" : 9,
+      "name" : "Cleave",
+      "target_enemy" : true,
+      "target_player" : false
+    },
+    "fireball" : {
+      "description" : "Burn them all!",
+      "effects" : {
+        "damage" : 10
+      },
+      "mana" : 9,
+      "name" : "Fireball",
+      "target_enemy" : true,
+      "target_player" : false
+    },
+    "heal" : {
+      "description" : "Heal yourself or another player.",
+      "effects" : {
+        "heal" : 10
+      },
+      "mana" : 10,
+      "name" : "Heal",
+      "target_enemy" : false,
+      "target_player" : true
+    },
+    "overdraw" : {
+      "description" : "Powerful ranged attack that knocks you and the enemy off balance",
+      "effects" : {
+        "damage" : 10
+      },
+      "mana" : 9,
+      "name" : "Overdraw",
+      "target_enemy" : true,
+      "target_player" : false
+    },
+    "sit" : {
+      "description" : "Just sit and regain some vigor.",
+      "effects" : {
+        "heal" : 1,
+        "regen" : 1
+      },
+      "mana" : 0,
+      "name" : "Sit",
+      "target_enemy" : false,
+      "target_player" : false
+    }
+  }
+}
