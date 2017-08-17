@@ -79,6 +79,7 @@
       ChatHandler.clearChat();
       PlayerData.playerRef.once('value', function(snapshot) {
         PlayerData.playerLocation = snapshot.val().location;
+        PlayerData.playerChatroomRef.off('child_added');
         PlayerData.playerChatroomRef = database.ref()
           .child('location_rooms')
           .child('location_chat')
@@ -87,7 +88,6 @@
       })
     },
     updateChatroom: function() {
-      PlayerData.playerChatroomRef.off('child_added');
       PlayerData.playerChatroomRef.limitToLast(50).on('child_added', function(snapshot) {
         ChatHandler.pushMessageLocal(snapshot.val());
         SoundManager.playMessagePopOnce();
@@ -206,6 +206,8 @@
       playerStats.stats.dexterity += Utils.getRandomIntInclusive(1, 2);
       playerStats.healthMax = (playerStats.stats.constitution * 5);
       playerStats.health = playerStats.healthMax;
+      playerStats.manaMax = (playerStats.stats.intelligence * 5);
+      playerStats.mana = playerStats.manaMax;
       ChatHandler.shout(' has reached level ' + playerStats.level + "!");
       PlayerData.playerRef.update(playerStats);
     },
