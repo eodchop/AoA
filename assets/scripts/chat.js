@@ -226,7 +226,7 @@
               ChatHandler.listItem(monsterData.name + ' attacks ' + playerStats.name + ' back for ' + monsterDamage + " damage!", "<-");
               if (playerStats.health - monsterDamage <= 0) {
                 SoundManager.playPlayerDeathSound();
-                PlayerData.createCharacter(playerStats.name, playerStats.description, playerStats.playerClass);
+                PlayerData.createCharacter(playerStats.name, playerStats.description, playerStats.playerClass, playerStats.image);
                 PlayerData.changeLocation('hammerhelm_tavern');
                 ChatHandler.shout(' had died and been reborn!');
                 InputHandler.wipe();
@@ -937,7 +937,7 @@
                   ChatHandler.listItem(monsterData.name + ' attacks ' + playerStats.name + ' back for ' + monsterDamage + " damage!", "<-");
                   if (playerStats.health - monsterDamage <= 0) {
                     SoundManager.playPlayerDeathSound();
-                    PlayerData.createCharacter(playerStats.name, playerStats.description, playerStats.playerClass);
+                    PlayerData.createCharacter(playerStats.name, playerStats.description, playerStats.playerClass, playerStats.image);
                     PlayerData.changeLocation('hammerhelm_tavern');
                     ChatHandler.shout(' had died and been reborn!');
                     InputHandler.wipe();
