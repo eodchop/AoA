@@ -309,6 +309,11 @@ var commands = {
         description: "Attacks the enemy corresponding to the number entered"
     },
 
+    skills: {
+        syntax: "'/skills'",
+        description: "Displays a list of your character's skills, to use a skill ype a'/' and then the skill name'"
+    },
+
      inventory: {
         syntax: "'/inventory' or '/inv'",
         description: "Displays a list of items in your character's inventory"
