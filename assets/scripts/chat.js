@@ -14,7 +14,7 @@
       intelligence: 4,
       dexterity: 6,
       constitution: 4,
-      skills: ['sit', 'ranged_shot']
+      skills: ['sit', 'overdraw']
     },
     Mage: {
       strength: 2,
