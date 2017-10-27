@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AOA - Another Online Adventure
 
 Developed by:  Caleb Gasser, Josh Lehne and Ryan Southard
@@ -65,3 +66,7 @@ The Rusty Sword is easy to swap out for the Rusty Stick using '/eqp rusty sword'
 ![](https://i.imgur.com/AAzHgbq.png)
 
 However level 2 and an Attack Power of 3 are not even close to strong enough to take on some of AoA's more powerful creatures.  Login and see for yourself at https://eodchop.github.io/AoA/
+=======
+# AoA_another_online_adventure
+A text based MMORPG using Firebase as character/world storage
+>>>>>>> 108cf029450ae21cac854b95065feb81a6fd6608
