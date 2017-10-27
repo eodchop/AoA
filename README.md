@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # AOA - Another Online Adventure
 
 Developed by:  Caleb Gasser, Josh Lehne and Ryan Southard
